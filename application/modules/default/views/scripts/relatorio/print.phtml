@@ -1,0 +1,42 @@
+<table border=0 cellpadding=0 cellspacing=0 width=561 style='border-collapse:collapse;table-layout:fixed;'>
+    <col width=297 style='mso-width-source:userset;mso-width-alt:13824;width:297pt'>
+    <col width=117 style='mso-width-source:userset;mso-width-alt:6314;width:117pt'>
+    <col width=77 style='mso-width-source:userset;mso-width-alt:3669;width:77pt'>
+    <col width=70 style='mso-width-source:userset;mso-width-alt:4565;width:70pt'>
+    <tr height=15 style='height:15.0pt' class="title-relatorio">
+        <td class=xl65>Cliente</td>
+        <td class=xl65>Forma Pagamento</td>
+        <td class=xl65>Contrato</td>
+        <td class=xl65>Em dia</td>
+    </tr>
+    <?php $i=0; ?>
+    <?php foreach($this->data as $value): ?>
+        <?php if($i==45): ?>
+            </table>
+            <table border=0 cellpadding=0 cellspacing=0 width=561 style='border-collapse:collapse;table-layout:fixed;' class="table-sequence">
+                <col width=297 style='mso-width-source:userset;mso-width-alt:13824;width:297pt'>
+                <col width=117 style='mso-width-source:userset;mso-width-alt:6314;width:117pt'>
+                <col width=77 style='mso-width-source:userset;mso-width-alt:3669;width:77pt'>
+                <col width=70 style='mso-width-source:userset;mso-width-alt:4565;width:70pt'>
+                <tr height=15 style='height:15.0pt' class="title-relatorio">
+                    <td class=xl65>Cliente</td>
+                    <td class=xl65>Forma Pagamento</td>
+                    <td class=xl65>Contrato</td>
+                    <td class=xl65>Em dia</td>
+                </tr>
+             <?php $i=0; ?>
+        <?php endif; ?>
+        <?php if($i%2==0): ?>
+            <tr height=15 style='height:15.0pt' class="xl66">
+        <?php else: ?>
+            <tr height=15 style='height:15.0pt' class="alt">
+        <?php endif; ?>
+            <td class="text-relatorio" height=15 style='height:15.0pt'><?php echo strtoupper($value["nm_cliente"]); ?></td>
+            <td class="text-relatorio"><?php echo $value["nm_forma_pagamento"]; ?></td>
+            <td class="text-relatorio"><?php echo $value["nm_contrato_gog"]; ?></td>
+            <td class="text-relatorio"><?php if($value["pagamento"] == 1 || $value["pagamento"] == 2): ?>Sim<?php else: ?>Não<?php endif; ?></td>
+        </tr>
+        <?php $i++; ?>
+    <?php endforeach; ?>
+    <th colspan="4">&nbsp;Quantidade: <?php echo $this->count; ?></th>
+</table>

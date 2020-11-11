@@ -1,0 +1,87 @@
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/css/lightbox.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/css/prestador/add.css" type="text/css" />
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/lightbox.js"></script>
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/prestador/add.js"></script>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Cadastrar Prestador
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <form role="form" onSubmit="return validaCadastroPrestador(this);" name="addPrestador" id="addPrestador" enctype="multipart/form-data">
+                        <div id="dataTables-example_wrapper2" class="dataTables_wrapper form-inline" role="grid">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="nm_prestador" name="nm_prestador" placeholder="Nome">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="file" class="lk_prestador" name="lk_prestador">
+                                </div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <input class="form-control" id="nm_site" name="nm_site" placeholder="Site do Prestador">
+                                </div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <textarea class="form-control" rows="3" id="tx_sobre" name="tx_sobre" placeholder="Fale sobre o Prestador..."></textarea>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-sm-6" id="content-select">
+                                    <div class="content-select">
+                                        <div class="content-procedimento">
+                                            <?php foreach ($this->dataProcedimento as $value): ?>
+                                                <div class="procedimento" id="<?php echo $value["co_seq_procedimento"]; ?>" onclick="procedimentoSelect(this);">
+                                                    <?php echo $value["co_seq_procedimento"]; ?>
+                                                    <span>
+                                                        <?php echo ($value["co_exame"]==null)?($value["co_consulta"]==null)?($value["co_laboratorio"]==null)?:$value["nm_laboratorio"]:$value["nm_consulta"]:$value["nm_exame"]; ?>
+                                                    </span>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                        <div class="content-space">&nbsp;</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6" id="content-mais">
+                                    <a href="javascript:void(0);" class="btn btn-info btn-lg btn-rect" onclick="addProcedimento();" style="float:left; position:absolute; bottom:14px; clear:left">+</a>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Código</th>
+                                            <th>Nome Procedimento</th>
+                                            <th>Ação</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <a href="javascript:void(0);" class="btn btn-success btn-lg btn-rect" onclick="submitCadastroPrestador();">Cadastrar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

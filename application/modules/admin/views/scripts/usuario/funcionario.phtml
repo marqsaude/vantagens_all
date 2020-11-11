@@ -1,0 +1,43 @@
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/usuario/index.js"></script>
+
+<div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Usuários do Sistema
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nome Usuário</th>
+                            <th>Login</th>
+                            <th>Ação</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php $i=1; ?>
+                        <?php foreach($this->dataUsuario as $value) :?>
+                            <tr>
+                                <td><?php echo $i; ?></td>
+                                <td><?php echo $value["nm_usuario"]; ?></td>
+                                <td><?php echo $value["nm_login"]; ?></td>
+                                <td>
+                                    <a href="<?php echo $this->baseUrl(); ?>/admin/usuario/edit-funcionario/id/<?php echo $value["co_seq_usuario"]; ?>"><i class="icon-edit"></i></a>&nbsp;
+                                    <a href="javascript:void(0);" for="usuario" onclick="excluirRegistro(<?php echo $value["co_seq_usuario"]; ?>, this);" style="color: #d9534f;"><i class="icon-trash"></i></a>
+                                    <a href="<?php echo $this->baseUrl(); ?>/admin/usuario/view/id/<?php echo $value["co_seq_usuario"]; ?>"><i class="icon-eye-open"></i></a>&nbsp;
+                                </td>
+                            </tr>
+                            <?php $i++; ?>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-1"></div>
+</div>

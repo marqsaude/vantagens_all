@@ -1,0 +1,45 @@
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/contrato-gog/cancel.js"></script>
+
+<div class="row">&nbsp;</div>
+<div class="row">
+    <div class="col-lg-3">&nbsp;</div>
+    <div class="col-lg-6">
+        <h4 style="text-align: center;">Cancelamento do Contrato do Plano <?php echo $this->dataAcordo[0]["nm_contrato_gog"]; ?></h4>
+    </div>
+    <div class="col-lg-3">&nbsp;</div>
+</div>
+<div class="row">
+    <div class="col-lg-3">&nbsp;</div>
+    <div class="col-lg-6">
+        <div style="text-align: center;">Deseja mesmo cancelar seu contrato?</div>
+    </div>
+    <div class="col-lg-3">&nbsp;</div>
+</div>
+<div class="row">&nbsp;</div>
+<form role="form" onSubmit="return validaCancelContrato(this);" name="cancelContrato" id="cancelContrato">
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-2 form-group">
+            <input type="radio" name="cancel" value="1" style="margin-left: 57px;"> Sim
+        </div>
+        <div class="col-lg-2 form-group">
+            <input type="radio" name="cancel" value="2" style="margin-left: 17px;" checked> Não
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-3">
+            <?php if($this->coTipoLogin!=4) :?>
+                <a href="<?php echo $this->baseUrl(); ?>/admin/usuario/index" class="btn btn-warning btn-flat btn-rect"><i class="icon-reply"></i>&nbsp;Voltar</a>
+            <?php endif; ?>
+        </div>
+        <div class="col-lg-5"></div>
+        <div class="col-lg-2">
+            <a href="javascript:void(0);" class="btn btn-danger btn-flat btn-rect" onclick="submitCancelContrato();" style="float: right;">OK</a>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+    <input type="hidden" value="<?php echo $this->dataAcordo[0]["co_seq_acordo"]; ?>" name="co_seq_acordo" id="co_seq_acordo"/>
+    <input type="hidden" value="<?php echo $this->dataAcordo[0]["co_seq_cliente"]; ?>" name="co_seq_cliente" id="co_seq_cliente"/>
+</form>

@@ -1,0 +1,110 @@
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/css/index/index.css" />
+
+<!-- CHART & CHAT  SECTION -->
+<div class="row">
+	<div class="col-lg-12">
+		<div class="main section" id="main">
+			<div class="widget Blog" data-version="1" id="Blog1">
+				<div class="blog-posts hfeed">
+					<div class="date-outer">
+						<?php $i=0; $lastDate=""; ?>
+						<?php foreach($this->dataBlog["data"] as $value): ?>
+							<div class="date-posts">
+								<?php if($lastDate!=explode(" ", $value["dt_inclusao"])[0]) :?>
+									<?php $i=0; ?>
+								<?php endif; ?>
+								<?php $lastDate = explode(" ", $value["dt_inclusao"])[0]; ?>
+								<?php if($i==0): ?>
+									<h2 class="date-header">
+										<span><?php echo Util_Util::getDateNameDayNameMonth(explode(" ", $value["dt_inclusao"])[0]); ?></span>
+									</h2>
+								<?php endif; ?>
+								<div class="post-outer">
+									<div class="post-start row" id="post_po_summary5405969120918013030">
+										<div class="home-post-single">
+											<div class="home-post-above">
+												<?php foreach($this->dataBlog["data_procedimento"][$value["co_seq_blog"]] as $v): ?>
+													<span class="post-labels">
+														<?php $linkName = ($v["co_exame"]==0 || $v["co_exame"]=="") ? ($v["co_consulta"]==0 || $v["co_consulta"]=="") ? "laboratorio" : "consulta" : "exame"; ?>
+														<?php $linkID = ($v["co_exame"]==0 || $v["co_exame"]=="") ? ($v["co_consulta"]==0 || $v["co_consulta"]=="") ? $v["co_laboratorio"] : $v["co_consulta"] : $v["co_exame"]; ?>
+														<a href="<?php echo $this->baseUrl(); ?>/admin/<?php echo $linkName; ?>/view/id/<?php echo $linkID; ?>" rel="tag">
+															<span class="badge"><?php echo ($v["co_exame"]==0 || $v["co_exame"]=="") ? ($v["co_consulta"]==0 || $v["co_consulta"]=="") ? $v["nm_laboratorio"] : $v["nm_consulta"] : $v["nm_exame"]; ?></span>
+														</a>
+													</span>
+												<?php endforeach; ?>
+											</div>
+											<h2 class="post-home-title post-main-home-title">
+												<a href="<?php echo $this->baseUrl(); ?>/admin/index/view/id/<?php echo $value["co_seq_blog"]; ?>" title="Abrir: <?php echo $value["nm_blog"]; ?>">
+													<?php echo $value["nm_blog"]; ?>
+												</a>
+											</h2>
+											<div class="post-header-home">
+												<span class="post-author vcard">
+													Postado às
+													<span class="fn"></span>
+												</span>
+												<span class="post-timestamp">
+													<i class="fa fa-clock-o"></i>
+													<abbr class="published" title="<?php echo explode(" ", $value["dt_inclusao"])[1]; ?>">
+														<?php echo explode(" ", $value["dt_inclusao"])[1]; ?>
+													</abbr>
+												</span>
+											</div>
+											<div class="homapge-thumb">
+												<div class="post hentry">
+													<div id="summary5405969120918013030">
+														<div class="col-lg-3" style="margin-bottom: 21px;">
+															<a href="javascript:void(0);">
+																<span class="img-post-span">
+																	<img class="image-home-pop responsive-img" width="100" src="<?php echo $this->baseUrl(); ?>/adm/blog/img/<?php echo $value["lk_img_blog"]; ?>">
+																</span>
+															</a>
+														</div>
+														<div class="col-lg-9">
+															<iframe id="frameBlog<?php echo $value["co_seq_blog"]; ?>" src="<?php echo $this->baseUrl(); ?>/admin/text-blog/index/text/<?php echo strip_tags(Util_Util::getTextMinBlog($value["tx_blog"])); ?>" width="100%" frameborder="0" height="77px"></iframe>
+														</div>
+														<span class="readmore_main">
+															<a class="waves-effect waves-light btn" href="<?php echo $this->baseUrl(); ?>/admin/index/view/id/<?php echo $value["co_seq_blog"]; ?>">Leia +</a>
+														</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<?php $i++; ?>
+							</div>
+						<?php endforeach; ?>
+						<div class="row">
+							<div class="col s12 m12 l12">
+								<div class="blog-pager" id="blog-pager">
+
+								</div>
+							</div>
+						</div>
+						<div class="clear"></div>
+						<div class="blog-feeds">
+							<div class="feed-links">
+
+							</div>
+						</div>
+						<script type="text/javascript">window.___gcfg = {'lang': 'en'};</script>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	<?php foreach($this->dataBlog["data"] as $value): ?>
+		$(function(){
+			var x = document.getElementById('frameBlog<?php echo $value["co_seq_blog"]; ?>');
+			var y = (x.contentWindow || x.contentDocument);
+			if (y.document)y = y.document;
+
+			y.body.style.backgroundColor = "red";
+			y.getElementsByClassName("text-blog").innerHTML = "teste";
+		});
+	<?php endforeach; ?>
+</script>

@@ -1,0 +1,37 @@
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/laboratorio/index.js"></script>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Lista de Laboratórios
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome laboratório</th>
+                    <th>Ação</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php $i=1; ?>
+                <?php foreach($this->dataLaboratorio as $value): ?>
+                    <tr>
+                        <td width="5%"><?php echo $i; ?></td>
+                        <td width="82%"><?php echo $value["nm_laboratorio"]; ?></td>
+                        <td width="13%">
+                            <a href="<?php echo $this->baseUrl(); ?>/admin/laboratorio/view/id/<?php echo $value["co_seq_laboratorio"]; ?>"><i class="icon-eye-open" title="Visualizar"></i></a>&nbsp;&nbsp;
+                            <?php if($this->session_login->coTipoLogin==1 || $this->session_login->coTipoLogin==2 || $this->session_login->coTipoLogin==3) :?>
+                                <a href="<?php echo $this->baseUrl(); ?>/admin/laboratorio/edit/id/<?php echo $value["co_seq_laboratorio"]; ?>"><i class="icon-edit" title="Editar"></i></a>&nbsp;&nbsp;
+                                <a href="javascript:void(0);" for="laboratorio" onclick="excluirRegistro(<?php echo $value["co_seq_laboratorio"]; ?>, this);" style="color: #d9534f;"><i class="icon-trash"></i></a>&nbsp;&nbsp;
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                    <?php $i++; ?>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

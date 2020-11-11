@@ -1,0 +1,48 @@
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/usuario/add.js"></script>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Cadastrar Usuário
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <form role="form" onSubmit="return validaCadastroUsuario(this);" name="addUsuario" id="addUsuario">
+                        <div class="row">
+                            <div class="col-lg-6 form-group">
+                                <input type="text" class="form-control" name="nm_usuario" placeholder="Nome do Usuário"/>
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <input type="text" class="form-control" name="nm_login" placeholder="Nome do Login"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 form-group">
+                                <input type="password" class="form-control" name="nm_senha" placeholder="Senha"/>
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <input type="password" class="form-control" name="nm_confirma_senha" placeholder="Confirma Senha"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 form-group">
+                                <select class="form-control" name="tipoUsuario">
+                                    <option value="0">Selecione um tipo de usuário</option>
+                                    <?php foreach($this->dataTipoUsuario as $value) :?>
+                                        <option value="<?php echo $value["co_seq_tipo_usuario"]; ?>"><?php echo $value["nm_tipo_usuario"]; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <a href="javascript:void(0);" style="float: right;" class="btn btn-success btn-lg btn-rect" onclick="submitCadastroUsuario();">Cadastrar</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

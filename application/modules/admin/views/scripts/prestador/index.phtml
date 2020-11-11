@@ -1,0 +1,42 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Lista de Prestadores
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome do Prestador</th>
+                    <th>Logo</th>
+                    <th>Ação</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php $i=1; ?>
+                <?php foreach($this->dataPrestador as $value): ?>
+                    <tr>
+                        <td width="5%"><?php echo $i; ?></td>
+                        <td width="51%"><?php echo $value["nm_prestador"]; ?></td>
+                        <td width="31%"><img src='<?php echo $this->baseUrl()."/site/images/prestador/".$value["lk_prestador"]; ?>' height="30" /></td>
+                        <td width="13%">
+                            <a href="<?php echo $this->baseUrl(); ?>/admin/prestador/view/id/<?php echo $value["co_seq_prestador"]; ?>"><i class="icon-eye-open" title="Visualizar"></i></a>&nbsp;&nbsp;
+                            <?php if($this->coTipoLogin==3 || $this->coTipoLogin==4) :?>
+                                <a href="http://<?php echo $value["nm_site"]; ?>"><i class="icon-link" title="Visitar Site"></i></a>&nbsp;&nbsp;
+                            <?php endif; ?>
+                            <?php if($this->coTipoLogin==1 || $this->coTipoLogin==2) :?>
+                                <a href="<?php echo $this->baseUrl(); ?>/admin/prestador/edit/id/<?php echo $value["co_seq_prestador"]; ?>"><i class="icon-edit" title="Editar"></i></a>&nbsp;&nbsp;
+                            <?php endif; ?>
+                            <?php if($this->coTipoLogin==1 || $this->coTipoLogin==2) :?>
+                                <a href="javascript:void(0);" for="prestador" onclick="excluirRegistro(<?php echo $value["co_seq_prestador"]; ?>, this);" style="color: #d9534f;" title="Excluir"><i class="icon-trash"></i></a>&nbsp;&nbsp;
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                    <?php $i++; ?>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

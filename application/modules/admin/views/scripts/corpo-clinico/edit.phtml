@@ -1,0 +1,52 @@
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/corpo-clinico/edit.js"></script>
+
+<div class="row">
+    <div class="col-lg-12">
+        <a href="javascript:void(0)" onclick="goBack();" class="btn btn-warning btn-flat btn-rect"><i class="icon-reply"></i>&nbsp;Voltar</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">&nbsp;</div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Editar Corpo Clínico
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <div class="row">&nbsp;</div>
+                    <div class="row">
+                        <form role="form" onSubmit="return validaEditarCorpoClinico(this);" name="editCorpoClinico" id="editCorpoClinico">
+                            <div class="row">
+                                <div class="col-lg-1">&nbsp;</div>
+                                <div class="col-lg-5 form-group">
+                                    <input type="text" class="form-control" name="nm_corpo_clinico" placeholder="Nome do Corpo Clínico" value="<?php echo $this->dataCorpoClinico[0]["nm_corpo_clinico"]; ?>"/>
+                                </div>
+                                <input type="hidden" name="co_seq_corpo_clinico" value="<?php echo $this->dataCorpoClinico[0]["co_seq_corpo_clinico"]; ?>">
+                                <div class="col-lg-5 form-group">
+                                    <select class="form-control" name="tipoCorpoClinico">
+                                        <option value="0">Selecione um tipo de Corpo Clínico...</option>
+                                        <?php foreach($this->dataTipoCorpoClinico as $value) :?>
+                                            <option value="<?php echo $value["co_seq_tipo_corpo_clinico"]; ?>" <?php if($this->dataCorpoClinico[0]["co_tipo_corpo_clinico"]==$value["co_seq_tipo_corpo_clinico"]) :?>selected<?php endif;?>><?php echo $value["nm_tipo_corpo_clinico"]; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                                <div class="col-lg-1">&nbsp;</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-1">&nbsp;</div>
+                                <div class="col-lg-3">
+                                    <a href="javascript:void(0);" class="btn btn-success btn-flat btn-rect" onclick="submitEditarCorpoClinico();">Salvar</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

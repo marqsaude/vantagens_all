@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/def/css/scripts/sobre/index.css">
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/def/js/scripts/sobre/index.js"></script>
+
+<?php if(!Util_Util::isMobile()): ?>
+    <section id="contact-page" class="container">
+<?php else: ?>
+    <section id="contact-page" class="container" style="width: 100% !important;">
+<?php endif; ?>
+    <?php if(!Util_Util::isMobile()): ?>
+        <section class="spotlight">
+            <div class="content"></div>
+        </section>
+    <?php endif; ?>
+    <?php if(!Util_Util::isMobile()): ?>
+        <section class="spotlight" id="text-sobre">
+    <?php else: ?>
+        <section class="spotlight" id="text-sobre" style=" padding-left: 14px; padding-right: 14px;">
+    <?php endif; ?>
+        <div class="row-fluid">
+            <div class="span1"></div>
+            <?php if(Util_Util::isMobile()): ?>
+                <div class="span10" style="font-size: 15px;">
+            <?php else: ?>
+                <div class="span10" style="font-size: 15px; padding-left: 7px;">
+            <?php endif; ?>
+                <?php if(Util_Util::isMobile()): ?>
+                    <?php echo str_replace("<br>", "<div><br></div>", $this->dataSobre["tx_sobre"]); ?>
+                <?php else: ?>
+                    <?php echo $this->dataSobre["tx_sobre"]; ?>
+                <?php endif; ?>
+            </div>
+            <div class="span1"></div>
+        </div>
+    </section>
+</section>
+<section class="column-right"></section>

@@ -1,0 +1,133 @@
+.column-registro {
+    padding-left: 55px !important;
+    padding-right: 55px !important;
+}
+
+#main {
+    background: url(../../images/simbolo_medicina.png), url(../../images/white_q_saude.jpg) !important;
+    background-repeat: no-repeat, repeat;
+    background-size: 100% 100%, auto;
+    color: #ffffff;
+}
+
+input{
+    border: 1px solid #989898 !important;
+}
+
+select{
+    border: 1px solid #989898 !important;
+}
+
+textarea{
+    border: 1px solid #989898 !important;
+}
+
+.logradouro-cep{
+    color: #363636;
+}
+
+.bairro-cep{
+    color: #363636;
+}
+
+.localidade-cep{
+    color: #363636;
+}
+
+.uf-cep{
+    color: #363636;
+}
+
+.address-cep{
+    float: left; margin-left: 7px;
+}
+
+.ui-datepicker-title select{
+    width: 45%;
+    margin-left: 4px;
+    margin-right: 4px;
+    height: 30px !important;
+    min-height: 30px !important;
+    margin-top: 3px;
+}
+
+#ui-datepicker-div{
+    width: 370px !important;
+    text-align: center;
+    background-color: #6f6f6f;
+}
+
+.ui-datepicker-title{
+    text-align: center;
+    margin-top: 3px;
+}
+
+.ui-datepicker-calendar{
+    width: 90%;
+    margin-left: 5%;
+}
+
+.ui-icon-circle-triangle-w{
+    margin-left: 5%;
+    float: left;
+    color: #ffffff;
+    background-color: #E67E22;
+    padding-right: 3px;
+    padding-left: 3px;
+}
+
+.ui-icon-circle-triangle-e{
+    color: #ffffff;
+}
+
+.ui-datepicker-prev{
+    background-color: #E67E22;
+    margin-bottom: 5px;
+}
+
+.ui-datepicker-next{
+    background-color: #E67E22;
+    margin-left: 227px;
+    padding: 3px;
+    margin-bottom: 5px;
+}
+
+.ui-datepicker-buttonpane{
+    margin-top: 13px;
+    margin-bottom: 35px;
+}
+
+.ui-datepicker-current{
+    margin-left: 5%;
+    background-color: #E67E22;
+    border: none;
+    color: white;
+}
+
+.ui-datepicker-close{
+    margin-right: 5%;
+    background-color: #E67E22;
+    border: none;
+    color: white;
+}
+
+.ui-datepicker-header{
+    margin-top: 8px;
+}
+
+#loading {
+    position: absolute; width: 100%; height: 100%; background: url('../../images/spinner.gif') no-repeat center center;
+    z-index:88899;
+}
+
+#overlay {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 88888;
+    background: url('../../images/semitransparent.png');
+}
+
+#contact-page{
+    background-color: #ffffff;
+}

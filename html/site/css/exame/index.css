@@ -1,0 +1,119 @@
+input[type="text"], textarea {
+    border-radius: 0;
+    outline: medium none;
+}
+.form-control {
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #555;
+    display: block;
+    font-size: 14px;
+    height: 34px;
+    line-height: 1.42857;
+    padding: 6px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 77%;
+}
+input, select, textarea {
+    color: #636e7b;
+    font-family: "LatoRegular","Lucida Grande","Lucida Sans Unicode",Helvetica,sans-serif !important;
+}
+input, button, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+input {
+    line-height: normal;
+}
+button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+}
+* {
+    box-sizing: border-box;
+}
+* {
+}
+.form-control::-moz-placeholder {
+    color: #999;
+    opacity: 1;
+}
+.btn-success {
+    background-color: #ae2634;
+    border-color: #ae2634;
+    color: #ffffff;
+}
+.btn {
+    border-radius: 3px;
+    line-height: 21px;
+    padding: 6px 15px;
+    transition: all 0.2s ease-out 0s;
+}
+.btn-block {
+    display: block;
+    padding-left: 0;
+    padding-right: 0;
+    width: 77%;
+}
+.btn {
+    -moz-user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857;
+    margin-bottom: 0;
+    padding: 6px 12px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+}
+input, button, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+input, button, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+    cursor: pointer;
+}
+button, select {
+    text-transform: none;
+}
+button {
+    overflow: visible;
+}
+.btn-success:hover,
+.btn-success:active,
+.btn-success.active,
+.open .dropdown-toggle.btn-success {
+    background-color: #e9737e;
+    border-color: #e9737e;
+}
+
+.login-paciente{
+    border: 1px solid #d4d4d4;
+    width: 347px;
+    margin-left: 20%;
+}
+
+.login-form{
+    text-align: center;
+}

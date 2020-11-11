@@ -1,0 +1,35 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Lista de Blogs
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome do Blog</th>
+                    <th>Visualização</th>
+                    <th>Ação</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php $i=1; ?>
+                <?php foreach($this->dataBlog as $value): ?>
+                    <tr>
+                        <td width="5%"><?php echo $i; ?></td>
+                        <td width="51%"><?php echo $value["nm_blog"]; ?></td>
+                        <td width="31%"><?php echo ($value["tp_visualizacao"]==1) ? ($value["tp_visualizacao"]==2) ? "Cliente" : "Funcionário" : "Todos"; ?></td>
+                        <td width="13%">
+                            <a href="<?php echo $this->baseUrl(); ?>/admin/blog/view/id/<?php echo $value["co_seq_blog"]; ?>"><i class="icon-eye-open" title="Visualizar"></i></a>&nbsp;&nbsp;
+                            <a href="<?php echo $this->baseUrl(); ?>/admin/blog/edit/id/<?php echo $value["co_seq_blog"]; ?>"><i class="icon-edit" title="Editar"></i></a>&nbsp;&nbsp;
+                            <a href="javascript:void(0);" for="blog" onclick="excluirRegistro(<?php echo $value["co_seq_blog"]; ?>, this);" style="color: #d9534f;"><i class="icon-trash"></i></a>&nbsp;&nbsp;
+                        </td>
+                    </tr>
+                    <?php $i++; ?>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

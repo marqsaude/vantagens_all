@@ -1,0 +1,35 @@
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/contrato-gog/index.js"></script>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Lista de Contratos Gog
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome do Contrato Gog</th>
+                    <th>Ação</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php $i=1; ?>
+                <?php foreach($this->dataContratoGog as $value): ?>
+                    <tr>
+                        <td width="5%"><?php echo $i; ?></td>
+                        <td width="82%"><?php echo $value["nm_contrato_gog"]; ?></td>
+                        <td width="13%">
+                            <a href="<?php echo $this->baseUrl(); ?>/admin/contrato-gog/view/id/<?php echo $value["co_seq_contrato_gog"]; ?>"><i class="icon-eye-open" title="Visualizar"></i></a>&nbsp;&nbsp;
+                            <a href="<?php echo $this->baseUrl(); ?>/admin/contrato-gog/edit/id/<?php echo $value["co_seq_contrato_gog"]; ?>"><i class="icon-edit" title="Editar"></i></a>&nbsp;&nbsp;
+                            <a href="javascript:void(0);" for="contrato-gog" onclick="excluirContratoGog(<?php echo $value["co_seq_contrato_gog"]; ?>, this);" style="color: #d9534f;" title="Excluir"><i class="icon-trash"></i></a>&nbsp;&nbsp;
+                        </td>
+                    </tr>
+                    <?php $i++; ?>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

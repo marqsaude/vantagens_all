@@ -1,0 +1,114 @@
+<!--table
+{mso-displayed-decimal-separator:"\,";
+    mso-displayed-thousand-separator:"\.";}
+
+.style0
+{mso-number-format:General;
+    text-align:general;
+    vertical-align:bottom;
+    white-space:nowrap;
+    mso-rotate:0;
+    mso-background-source:auto;
+    mso-pattern:auto;
+    color:black;
+    font-size:12.0pt;
+    font-weight:400;
+    font-style:normal;
+    text-decoration:none;
+    font-family:Calibri, sans-serif;
+    mso-font-charset:0;
+    border:none;
+    mso-protection:locked visible;
+    mso-style-name:Normal;
+    mso-style-id:0;}
+td
+{mso-style-parent:style0;
+    padding-top:1px;
+    padding-right:1px;
+    padding-left:1px;
+    mso-ignore:padding;
+    color:black;
+    font-size:12.0pt;
+    font-weight:400;
+    font-style:normal;
+    text-decoration:none;
+    font-family:Calibri, sans-serif;
+    mso-font-charset:0;
+    mso-number-format:General;
+    text-align:general;
+    vertical-align:bottom;
+    border:none;
+    mso-background-source:auto;
+    mso-pattern:auto;
+    mso-protection:locked visible;
+    white-space:nowrap;
+    mso-rotate:0;}
+.xl65
+{mso-style-parent:style0;
+    color:white;
+    background:gray;
+    mso-pattern:black none;}
+.xl66
+{mso-style-parent:style0;
+    background:#DCE6F1;
+    mso-pattern:black none;}
+-->
+
+.content{
+    width: 100%;
+}
+
+.row {
+    width: 78%;
+    float: left;
+    text-align: center;
+}
+
+.space {
+    width: 11%;
+    float: left;
+}
+
+table{
+    width:87%;
+    border: 1px solid black;
+    margin-left: -107px;
+    margin-top: 40px;
+}
+
+.title-relatorio td {
+    text-align: center;
+    border: 1px solid black;
+}
+
+.text-relatorio{
+    font-size: 12px;
+}
+
+.text-relatorio:first-child{
+    float: left;
+}
+
+.alt{
+    background-color: #ffffff !important;
+}
+
+th{
+    font-size: 17px;
+    font-weight: normal;
+    text-align: left;
+    height: 37px;
+    background-color: #f0f0f0;
+}
+
+@page { size: A4; margin:17.77pt 1.4cm 30.77pt 1.4cm !important;}
+
+@page content {
+    size:595.3pt 841.9pt !important;
+    margin:17.77pt 1.4cm 30.77pt 1.4cm !important;
+}
+
+.table-sequence{
+    margin-left: -29px;
+}
+

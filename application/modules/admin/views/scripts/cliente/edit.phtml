@@ -1,0 +1,107 @@
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/site/css/register/date-picker.css" type="text/css"/>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Editar Cliente
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <form role="form" onSubmit="return validaEditarCliente(this);" name="editCliente" id="editCliente">
+                        <div id="dataTables-example_wrapper2" class="dataTables_wrapper form-inline" role="grid">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <input class="form-control nm_cliente" name="nm_cliente" value="<?php echo $this->dataCliente["nm_cliente"]; ?>" placeholder="Nome">
+                                </div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <input class="form-control nu_rg" name="nu_rg" value="<?php echo $this->dataCliente["nu_rg"]; ?>" placeholder="RG">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input class="form-control nu_cpf" name="nu_cpf" value="<?php echo $this->dataCliente["nu_cpf"]; ?>" placeholder="CPF">
+                                </div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <input class="form-control dt_nascimento date-picker" name="dt_nascimento" value="<?php echo $this->dataCliente["dt_nascimento"]; ?>" placeholder="Data Nascimento">
+                                </div>
+                                <div class="col-sm-6">
+                                    <select class="form-control tp_sexo" name="tp_sexo">
+                                        <option value="0" <?php if($this->dataCliente["tp_sexo"]=="") {echo "selected";}?>>Selecione o Sexo</option>
+                                        <option value="1" <?php if($this->dataCliente["tp_sexo"]=="1") {echo "selected";}?>>Masculino</option>
+                                        <option value="2" <?php if($this->dataCliente["tp_sexo"]=="2") {echo "selected";}?>>Feminino</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <input class="form-control nu_telefone" name="nu_telefone" value="<?php echo "(".$this->dataTelefone["T"]["nu_ddd"].") ".$this->dataTelefone["T"]["nu_telefone"]; ?>" placeholder="Telefone Residêncial">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input class="form-control nu_celular" name="nu_celular" value="<?php echo "(".$this->dataTelefone["C"]["nu_ddd"].") ".$this->dataTelefone["C"]["nu_telefone"]; ?>" placeholder="Telefone Celular">
+                                </div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <input class="form-control nu_whatsapp" name="nu_whatsapp" value="<?php if($this->dataTelefone["W"]["nu_telefone"]!=null){ echo "(".$this->dataTelefone["W"]["nu_ddd"].") ".$this->dataTelefone["W"]["nu_telefone"];} ?>" placeholder="WhatsApp">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input class="form-control nm_email" name="nm_email" value="<?php echo $this->dataCliente["nm_email"]; ?>" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <input class="form-control nu_cep" name="nu_cep" value="<?php echo $this->dataCliente["nu_cep"]; ?>" placeholder="CEP">
+                                </div>
+                            </div>
+                            <input type="hidden" name="co_seq_cep" value="<?php echo $this->dataCliente["co_seq_cep"]; ?>">
+                            <input type="hidden" name="co_seq_cliente" value="<?php echo $this->dataCliente["co_seq_cliente"]; ?>">
+                            <input type="hidden" name="co_usuario" value="<?php echo $this->dataCliente["co_usuario"]; ?>">
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    Logradouro: <?php echo $this->dataCliente["nm_logradouro"]; ?>
+                                    <input type="hidden" name="nm_logradouro" value="<?php echo $this->dataCliente["nm_logradouro"]; ?>">
+                                </div>
+                                <div class="col-sm-6">
+                                    Bairro: <?php echo $this->dataCliente["nm_bairro"]; ?>
+                                    <input type="hidden" name="nm_bairro" value="<?php echo $this->dataCliente["nm_bairro"]; ?>">
+                                </div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    Localidade: <?php echo $this->dataCliente["nm_localidade"]; ?>
+                                    <input type="hidden" name="nm_localidade" value="<?php echo $this->dataCliente["nm_localidade"]; ?>">
+                                </div>
+                                <div class="col-sm-6">
+                                    UF: <?php echo $this->dataCliente["nm_uf"]; ?>
+                                    <input type="hidden" name="nm_uf" value="<?php echo $this->dataCliente["nm_uf"]; ?>">
+                                </div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <a href="<?php echo $this->baseUrl(); ?>/admin/cliente/index" class="btn btn-warning btn-lg btn-rect"><i class="icon-reply"></i>&nbsp;Voltar</a>
+                                </div>
+                                <div class="col-lg-6">
+                                    <a href="javascript:void(0);" style="float: right;" class="btn btn-success btn-lg btn-rect" onclick="submitEditCliente();">Salvar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="<?php echo $this->baseUrl(); ?>/site/js/cartao-marq/extension/insert-mask.js"></script>
+<script src="<?php echo $this->baseUrl(); ?>/adm/js/cliente/edit.js"></script>

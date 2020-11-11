@@ -1,0 +1,163 @@
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/site/css/MoneAdmin.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/site/css/Markdown.Editor.hack.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/site/css/jquery.cleditor-hack.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/site/css/bootstrap-wysihtml5-hack.css" type="text/css" />
+<style>
+    .wysihtml5-toolbar li{
+        width: 197px;
+        float: left;
+        list-style-type: none;
+    }
+    .wysihtml5-toolbar li:nth-child(4){
+        width: 157px;
+        float: left;
+        list-style-type: none;
+    }
+    .wysihtml5-toolbar li:nth-child(5){
+        width: 37px;
+        float: left;
+        list-style-type: none;
+    }
+    .wysihtml5-toolbar li:nth-child(6){
+        width: 37px;
+        float: left;
+        list-style-type: none;
+    }
+    .wysihtml5-toolbar li:nth-child(7){
+        width: 37px;
+        float: left;
+        list-style-type: none;
+    }
+    .wysihtml5-toolbar .dropdown{
+        width: 127px;
+        float: left;
+        list-style-type: none;
+    }
+    .wysihtml5-toolbar .dropdown:nth-child(1){
+        margin-left: -19px;
+    }
+    .wysihtml5-toolbar .dropdown:nth-child(2){
+        width: 72px;
+        float: left;
+        list-style-type: none;
+        margin-bottom: 7px;
+    }
+    .wysihtml5-toolbar{
+        text-align: center;
+    }
+</style>
+
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/css/contato/view.css" type="text/css" />
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/contato/view.js"></script>
+
+<div id="loading"></div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <a href="javascript:void(0)" onclick="goBack();" class="btn btn-warning btn-flat btn-rect"><i class="icon-reply"></i>&nbsp;Voltar</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">&nbsp;</div>
+</div>
+
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Contato <h4><?php echo $this->dataContato[0]["nm_nome"]; ?></h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="well">
+            <div class="col-lg-6">
+                <p>Email</p>
+                <h4><?php echo $this->dataContato[0]["nm_email"]; ?></h4>
+            </div>
+            <div class="col-lg-6">
+                <p>Mensagem</p>
+                <h4><?php echo $this->dataContato[0]["tx_mensagem"]; ?></h4>
+            </div>
+            <div class="col-lg-6">
+                <p>Enviado por</p>
+                <h4><?php echo ($this->dataContato[0]["tp_envio"] == 1)?"Computador":"Dispositivo Mobile"; ?></h4>
+            </div>
+            <div class="col-lg-6">
+                <p>Data Envio</p>
+                <h4><?php echo Util_Util::getDataClient($this->dataContato[0]["dt_inclusao"]); ?></h4>
+            </div>
+            <div class="col-lg-6">
+                <p>Telefones</p>
+                <h4>(<?php echo $this->dataContato[0]["nu_ddd"]; ?>) <?php echo $this->dataContato[0]["nu_telefone"]; ?></h4>
+                <h4></h4>
+                <h4></h4>
+            </div>
+            <div class="col-lg-12">&nbsp;</div>
+            <div class="col-lg-12">&nbsp;</div>
+            <div class="col-lg-12">&nbsp;</div>
+            <div class="col-lg-12">&nbsp;</div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <a href="javascript:void(0)" onclick="openModal(this);" rel="modal-conheca1" class="btn btn-warning btn-flat btn-rect">Responder</a>
+    </div>
+</div>
+
+<div id="modal-conheca1" class="modal-conheca <?php if(Util_Util::isMobile()): ?>modal-conheca-mobile<?php endif; ?>">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Responder ao email <a href="javascript:void(0);" onclick="closeModal();"><i class="icon-remove" style="float: right;"></i></a>
+        </div>
+        <div class="panel-body <?php if(Util_Util::isMobile()): ?>panel-body-mobile<?php endif; ?>">
+            <div class="table-responsive">
+                <form role="form" onSubmit="return respondeEmailCliente(this);" name="respondeEmail" id="respondeEmail">
+                    <input type="hidden" name="co_seq_contato" value="<?php echo $this->dataContato[0]["co_seq_contato"]; ?>">
+                    <input type="hidden" name="nm_email" value="<?php echo $this->dataContato[0]["nm_email"]; ?>">
+                    <?php if(!Util_Util::isMobile()): ?>
+                        <div class="row">
+                            <div class="col-lg-12">&nbsp;</div>
+                        </div>
+                    <?php endif; ?>
+                    <div class="row">
+                        <div class="col-lg-1">&nbsp;</div>
+                        <div class="col-lg-10">
+                            <input type="name" placeholder="Assunto" id="nm_assunto" name="nm_assunto">
+                        </div>
+                        <div class="col-lg-1">&nbsp;</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 <?php if(Util_Util::isMobile()): ?>mobile-text-area<?php endif; ?>">
+                            <textarea id="wysihtml5" class="form-control" rows="10" name="tx_mensagem"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-9">&nbsp;</div>
+                        <div class="col-lg-2">
+                            <a href="javascript:void(0)" onclick="submitRespondeEmailCliente(this);" class="btn btn-success btn-flat btn-rect btn-responder-cliente">Responder</a>
+                        </div>
+                        <div class="col-lg-1">&nbsp;</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="<?php echo $this->baseUrl(); ?>/site/js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+<script src="<?php echo $this->baseUrl(); ?>/site/js/wysihtml5-0.3.0.min.js"></script>
+<script src="<?php echo $this->baseUrl(); ?>/site/js/bootstrap-wysihtml5-hack.js"></script>
+<script src="<?php echo $this->baseUrl(); ?>/site/js/jquery.cleditor.min.js"></script>
+<script src="<?php echo $this->baseUrl(); ?>/site/js/Markdown.Converter.js"></script>
+<script src="<?php echo $this->baseUrl(); ?>/site/js/Markdown.Sanitizer.js"></script>
+<script src="<?php echo $this->baseUrl(); ?>/site/js/editorInit.js"></script>
+<script>
+    $(function () { formWysiwyg(); });
+</script>

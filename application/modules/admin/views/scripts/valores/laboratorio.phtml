@@ -1,0 +1,33 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Lista de Valores dos Exames Laboratoriais
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome Exame Laboratorial</th>
+                    <th>Valor c/ Cartão</th>
+                    <th>Ação</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php $i=1; ?>
+                <?php foreach($this->dataProcedimento as $value): ?>
+                    <tr>
+                        <td width="5%"><?php echo $i; ?></td>
+                        <td width="55%"><?php echo $value["nm_laboratorio"]; ?></td>
+                        <td width="30%">R$ <?php echo number_format($value["nu_valor"], 2, '.', ''); ?></td>
+                        <td width="10%">
+                            <a href="<?php echo $this->baseUrl(); ?>/admin/laboratorio/view/id/<?php echo $value["co_seq_laboratorio"]; ?>"><i class="icon-eye-open" title="Visualizar"></i></a>&nbsp;&nbsp;
+                        </td>
+                    </tr>
+                    <?php $i++; ?>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

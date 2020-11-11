@@ -1,0 +1,55 @@
+#pages {
+    padding: 3px;
+}
+#pages ul {
+    list-style-type: none;
+}
+#pages li {
+    float: left;
+    display: inline;
+    margin: 0 5px 0 0;
+    display: block;
+}
+#pages li a {
+    color: #88af3f;
+    padding: 4px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    float: left;
+}
+#pages li a:hover {
+    color: #638425;
+    background: #f1ffd6;
+    border: 1px solid #85bd1e;
+}
+#pages li.nolink {
+    color: #CCC;
+    border: 1px solid #F3F3F3;
+    padding: 4px;
+}
+#pages li.current {
+    color: #FFF;
+    border: 1px solid #b2e05d;
+    padding: 4px;
+    background: #b2e05d;
+}
+
+/* unvisited link */
+.abrir-agenda a:link {
+    color: #1d2939;
+}
+
+/* visited link */
+.abrir-agenda a:visited {
+    color: #1d2939;
+}
+
+/* mouse over link */
+.abrir-agenda a:hover {
+    color: #1d2939;
+}
+
+/* selected link */
+.abrir-agenda a:active {
+    color: #1d2939;
+}

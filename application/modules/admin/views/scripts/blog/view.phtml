@@ -1,0 +1,86 @@
+<div class="row">
+    <div class="col-lg-12">
+        <a href="javascript:void(0)" onclick="goBack();" class="btn btn-warning btn-flat btn-rect"><i class="icon-reply"></i>&nbsp;Voltar</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">&nbsp;</div>
+</div>
+
+<div class="row">
+
+    <div class="col-lg-12">&nbsp;</div>
+
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Blog <h4><?php echo $this->dataBlog["nm_blog"]; ?></h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="well">
+            <div class="col-lg-12">
+                <h4><?php echo $this->dataBlog["tx_blog"]; ?></h4>
+            </div>
+            <div class="col-lg-12">&nbsp;</div>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="well">
+            <div class="col-lg-12">
+                <div>
+                    <img class="image-home-pop responsive-img" width="377" src="<?php echo $this->baseUrl(); ?>/adm/blog/img/<?php echo $this->dataBlog["lk_img_blog"]; ?>">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-4">&nbsp;</div>
+            <div class="col-lg-4"><p style="text-align: center; font-size: 14px;">Procedimentos</p></div>
+            <div class="col-lg-4">&nbsp;</div>
+        </div>
+        <div class="row">
+            <?php if(count($this->dataProcedimentoBlog)>0) :?>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Nome Procedimento</th>
+                                <th>Ação</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php foreach($this->dataProcedimentoBlog as $value): ?>
+                                <tr>
+                                    <td><?php echo $value["co_seq_procedimento"]; ?></td>
+                                    <td><?php echo ($value["co_exame"]==null)?($value["co_consulta"]==null)?($value["co_laboratorio"]==null)?:$value["nm_laboratorio"]:$value["nm_consulta"]:$value["nm_exame"]; ?></td>
+                                    <td width="13%">
+                                        <a href="<?php echo $this->baseUrl(); ?>/admin/procedimento/view/id/<?php echo $value["co_seq_procedimento"]; ?>"><i class="icon-eye-open" title="Visualizar"></i></a>&nbsp;&nbsp;
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            <?php else :?>
+                <div class="col-lg-6">
+                    <p></p>
+                    <h4>Não tem procedimentos vinculado...</h4>
+                </div>
+            <?php endif; ?>
+        </div>
+        <div class="col-lg-12">&nbsp;</div>
+        <div class="col-lg-12">&nbsp;</div>
+    </div>
+
+
+</div>

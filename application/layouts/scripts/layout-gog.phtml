@@ -1,0 +1,301 @@
+<?php
+
+$controller = Zend_Controller_Front::getInstance();
+$controlerName = $controller->getRequest()->getControllerName();
+$actionName = $controller->getRequest()->getActionName();
+$read = Zend_Auth::getInstance()->getStorage()->read();
+$session_login = new Zend_Session_Namespace('LoginGog');
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="icon" href="<?php echo $this->baseUrl(); ?>/site/images/favicon.ico">
+
+    <title>+ Vantagens</title>
+
+    <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/data/css/layout/style.default.css" type="text/css" />
+    <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/data/css/form.css" type="text/css" />
+    <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/site/style.css" type="text/css" />
+    <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/data/css/layout/jquery.datatables.css" type="text/css" />
+    <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/data/css/layout/bootstrap-fileupload.min.css" type="text/css" />
+    <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/data/css/layout/bootstrap-timepicker.min.css" type="text/css" />
+    <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/data/css/layout/jquery.tagsinput.css" type="text/css" />
+    <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/data/css/layout/colorpicker.css" type="text/css" />
+    <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/data/css/layout/dropzone.css" type="text/css" />
+    <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/gogs/css/font-awesome.css" type="text/css" />
+    <style>
+        @font-face {
+            font-family: "Vipnagorgialla";
+            src: url("<?php echo $this->baseUrl(); ?>/site/fonts/marq_saude/vipnagorgialla.regular.ttf");
+        }
+        @font-face {
+            font-family: "SignPainter";
+            src: url("<?php echo $this->baseUrl(); ?>/site/fonts/marq_saude/signpainter.otf");
+        }
+        @font-face {
+            font-family: 'DJBDearStNick';
+            src: url('<?php echo $this->baseUrl(); ?>/gogs/fonts/DJBDearStNick.ttf');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Museo900';
+            src: url('<?php echo $this->baseUrl(); ?>/gogs/fonts/Museo900-Regular.otf');
+            font-weight: normal;
+            font-style: normal;
+        }
+        .marqsaude-footer a:link{
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+        .marqsaude-footer a:visited{
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+        .marqsaude-footer a:hover{
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+        .marqsaude-footer a:active{
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+    </style>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/data/js/libarys/html5shiv.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/data/js/libarys/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/data/js/libarys/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/data/js/forms/mascara_money.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/data/js/forms/jquery.maskedinput.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/data/js/libarys/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/data/js/libarys/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/data/js/libarys/modernizr.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/data/js/libarys/jquery.sparkline.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/data/js/libarys/toggles.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/data/js/libarys/retina.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/data/js/libarys/jquery.cookies.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/data/js/libarys/flot/flot.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/data/js/libarys/flot/flot.resize.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/data/js/libarys/morris.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/data/js/libarys/raphael-2.1.0.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/data/js/libarys/jquery.datatables.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/data/js/libarys/chosen.jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/data/js/libarys/custom.js"></script>
+
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/data/js/libarys/jquery-ui-1.10.3.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/data/js/libarys/jquery.autogrow-textarea.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/data/js/libarys/bootstrap-fileupload.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/data/js/libarys/bootstrap-timepicker.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/data/js/libarys/jquery.tagsinput.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/data/js/libarys/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/data/js/libarys/dropzone.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/data/js/libarys/colorpicker.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/gogs/js/jquery.mobile-1.4.5.js"></script>
+
+    <!--script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/data/js/libarys/dashboard.js"></script-->
+
+    <script LANGUAGE="JavaScript" TYPE="text/javascript">
+        function excluir(id){
+            decisao = confirm("Deseja mesmo excluir esse registro?");
+            if(decisao){
+                location.href="<?php echo str_replace("_", "-", $this->urlPage); ?>"+"/delete/id/"+id;
+                return false;
+            }
+            else{
+                return false;
+            }
+        }
+        var img_site_insono = true;
+        jQuery(function() {
+            jQuery(".menutoggle").click(function () {
+                if(img_site_insono==true) {
+                    //jQuery("#img-site-marq").hide();
+                    jQuery("#img-site-marq").attr("src", "<?php echo $this->baseUrl();?>/site/images/marqsaude_cruz.png");
+                    jQuery("#img-site-marq").attr("style", "margin-left: 0px; height: 43px;");
+                    jQuery("#telefone-footer").hide();
+                    img_site_insono=false;
+                }else{
+                    //jQuery("#img-site-marq").show();
+                    jQuery("#img-site-marq").attr("src", "<?php echo $this->baseUrl();?>/site/images/marqsaude_diferente_branco.png");
+                    jQuery("#img-site-marq").attr("style", "margin-left: -15px; height: 56px;");
+                    jQuery("#telefone-footer").show();
+                    img_site_insono=true;
+                }
+            });
+            jQuery(".ui-loader-default").remove();
+        });
+    </script>
+
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/global.js"></script>
+
+</head>
+
+<body>
+
+<div style="display: none" id="url-page"><?php echo $this->baseUrl(); ?></div>
+
+<!-- Preloader -->
+<div id="preloader">
+    <div id="status"><i class="fa fa-spinner fa-spin"></i></div>
+</div>
+
+<section>
+
+    <div class="leftpanel">
+
+        <!--a href="<?php echo $this->baseUrl();?>/"-->
+            <div class="logopanel">
+                <!-- <h1><span>[</span> Logo <span>]</span></h1> -->
+                <img style="height:35px;" src="<?php echo $this->baseUrl(); ?>/site/images/icone_blue.png">
+                <span style="font-family:'DJBDearStNick'; font-size: 25px; margin-top: 6px; margin-right: 17px; float: right;">Vantagens</span>
+            </div><!-- logopanel -->
+        <!--/a-->
+
+        <div class="leftpanelinner">
+
+
+            <ul class="nav nav-pills nav-stacked nav-bracket">
+
+                <li class="<?php if($controlerName == "index"){echo "active";}?>">
+                    <a href="<?php echo $this->baseUrl(); ?>/gog/">
+                        <i class="fa fa-home"></i> <span>In&iacute;cio</span>
+                    </a>
+                </li>
+
+                <?php if($this->coTipoLogin != 3) :?>
+                    <li class="<?php if($controlerName == "cartao-marq"){echo "active";}?>">
+                        <a href="<?php echo $this->baseUrl(); ?>/gog/cartao-marq/add-cliente">
+                            <i class="fa fa-address-book-o"></i> <span>Cadastrar</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if($this->coTipoLogin != 3) :?>
+                    <li class="<?php if($controlerName == "contrato"){echo "active";}?>">
+                        <a href="<?php echo $this->baseUrl(); ?>/gog/contrato">
+                            <i class="fa fa-folder-open-o"></i> <span>Contrato</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if($this->coTipoLogin != 3) :?>
+                    <li class="<?php if($controlerName == "consulta"){echo "active";}?>">
+                        <a href="<?php echo $this->baseUrl(); ?>/gog/pagamentos"><i class="fa fa-calendar-o"></i> <span>Pagamentos</span></a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if($this->coTipoLogin < 3) :?>
+                    <li class="<?php if($controlerName == "consulta"){echo "active";}?>">
+                        <a href="<?php echo $this->baseUrl(); ?>/gog/dependentes"><i class="fa fa-users"></i> <span>Dependentes</span></a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if($this->coTipoLogin < 3) :?>
+                    <li class="<?php if($controlerName == "consulta"){echo "active";}?>">
+                        <a href="<?php echo $this->baseUrl(); ?>/gog/caixa"><i class="fa fa-money"></i> <span>Caixa</span></a>
+                    </li>
+                <?php endif; ?>
+
+            </ul>
+            <div style="position: fixed; font-family: 'Vipnagorgialla'; bottom: 11px; text-align: center; color: #8f939e; font-size: 18px;"  id="telefone-footer">
+                <div style="padding-bottom: 7px;" class="marqsaude-footer">
+                    <a href="<?php echo $this->baseUrl();?>/">
+                        <span><img style="height:27px;" src="<?php echo $this->baseUrl(); ?>/site/images/icone_white.png"></span>
+                        <span style="font-size: 20px;">MARQ <span style="color: #8f939e;">Saúde</span></span>
+                    </a>
+                </div>
+                <div style="margin-left: 1px; margin-top: -10px; font-family: Museo900; font-size: 20px;">
+                    (61)2026-1313
+                </div>
+            </div>
+
+        </div><!-- leftpanelinner -->
+    </div><!-- leftpanel -->
+    <div class="mainpanel">
+
+        <div class="headerbar">
+
+            <a class="menutoggle"><i class="fa fa-bars"></i></a>
+
+            <div class="header-right">
+                <ul class="headermenu">
+                    <li>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+
+                                <?php //echo $this->read->nm_usuario; ?>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+                                <li><a href="<?php echo $this->baseUrl(); ?>/gog/usuario"><i class="fa fa-user"></i><?php echo $session_login->nmCliente; ?></a></li>
+                                <li><a href="<?php echo $this->baseUrl(); ?>/gog/login/logout"><i class="fa fa-times"></i>Sair</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                </ul>
+            </div><!-- header-right -->
+
+        </div><!-- headerbar -->
+
+        <div class="pageheader">
+            <?php
+            switch ($controlerName) {
+                case "index":
+                    $class = "fa fa-book";
+                    $nome = "Página Inicial";
+                    break;
+                case "contrato":
+                    $class = "fa fa-folder-open-o";
+                    $nome = "Contrato";
+                    break;
+                case "exame":
+                    $class = "fa fa-stethoscope";
+                    $nome = "Exames";
+                    break;
+                case "consulta":
+                    $class = "fa fa-stethoscope";
+                    $nome = "Consulta";
+                    break;
+                case "blog":
+                    $class = "fa fa-tag";
+                    $nome = "Blog";
+                    break;
+                case "cartao-marq":
+                    $class = "fa fa-credit-card";
+                    $nome = "Cartão <img style='height:25px;' src='". $this->baseUrl() ."/site/images/icone_blue.png'> <f style='font-family:\"DJBDearStNick\"; font-size:20px;'>Vantagens</f>";
+                    break;
+            }
+            ?>
+            <h2><i class="<?php echo $class; ?>"></i>
+                <?php echo $nome; ?>
+            </h2>
+
+            <div style="display: none;" id="url-page"><?php echo $this->baseUrl(); ?></div>
+            <div style="display: none;" id="action-page"><?php echo $actionName; ?></div>
+
+        </div>
+        <div class="contentpanel">
+
+            <?php //echo $this->navigation()->menu() ?>
+            <?php echo $this->layout()->content; ?>
+
+        </div><!-- contentpanel -->
+
+    </div><!-- mainpanel -->
+
+
+
+</section>
+</body>
+</html>

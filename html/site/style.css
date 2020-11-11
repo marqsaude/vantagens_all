@@ -1,0 +1,38 @@
+.logoLayotadm{
+	width: 55%;
+	margin-top: 30px;
+}
+#saude{
+	font-family: ERASB;
+	text-transform: none;
+	font-size: 76px;
+	margin-top: 47px;
+	margin-left: 10px;
+	float: left;
+	color: #bd2026;
+}
+#vantagens{
+	font-family: KGAlwaysAGoodTime;
+	text-transform: none;
+	font-size: 30px;
+	margin-top: 61px;
+	margin-left: 10px;
+	float: left;
+	color: #bd2026;
+}
+#qsaude{
+	float: left;
+	margin-left: 200px;
+}
+
+.btn-logar {
+	background-color: #bd2026;
+	border-color: #bd2026;
+	color: #fff;
+}
+
+.btn-logar:hover {
+	background-color: #83191d;
+	border-color: #83191d;
+	color: #fff;
+}

@@ -1,0 +1,121 @@
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/site/css/exame/index.css" type="text/css" />
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/data/jsView/login/index.js"></script>
+
+<div class="container_12">
+    <div class="grid_12">
+        <h2 style="text-align: center;" class="indent-2">Exames</h2><br/>
+    </div>
+</div>
+
+<div class="bg-1">
+    <div class="container_12">
+    </div>
+</div>
+<div class="bg-2">
+    <div class="container_12">
+        <div class="grid_6">
+            <div class="border-1">
+                <br/><br/>
+                <div>
+                    <h4>Audiometria</h4>
+                </div>
+                <div>
+                    <h4>Avaliação Metabólica</h4>
+                </div>
+                <div>
+                    <h4>Bera</h4>
+                </div>
+                <div>
+                    <h4>Densitometria Óssea</h4>
+                </div>
+                <div>
+                    <h4>Doppler Arterial</h4>
+                </div>
+                <div>
+                    <h4>Doppler Transcraniano</h4>
+                </div>
+                <div>
+                    <h4>Doppler Venoso</h4>
+                </div>
+                <div>
+                    <h4>Ecografias</h4>
+                </div>
+                <div>
+                    <h4>EEG  - Eletroencefalograma</h4>
+                </div>
+                <div>
+                    <h4>Eletrocardiograma</h4>
+                </div>
+                <div>
+                    <h4>Eletroneuromiografia</h4>
+                </div>
+                <div>
+                    <h4>Espirometria</h4>
+                </div>
+                <div>
+                    <h4>Holter 24H + Mapa</h4>
+                </div>
+                <div>
+                    <h4>Impedanciometria</h4>
+                </div>
+                <div>
+                    <h4>Mapeamento Cerebral</h4>
+                </div>
+                <div>
+                    <h4>P300</h4>
+                </div>
+                <div>
+                    <h4>Polissonografia Basal</h4>
+                </div>
+                <div>
+                    <h4>Polissonografia CPAP</h4>
+                </div>
+                <div>
+                    <h4>Prova de Função Pulmonar</h4>
+                </div>
+                <div>
+                    <h4>Teste de Múltiplas Latências do Sono</h4>
+                </div>
+                <div>
+                    <h4>VENG</h4>
+                </div>
+            </div>
+        </div>
+        <div class="grid_6">
+            <br/><br/><br/>
+            <div class="confortavel-exame">
+                <img src="<?php echo $this->baseUrl();?>/site/images/confortavel.png" width="170" />
+            </div>
+            <div class="resultados-exame">
+                <center><h4 style="font-size: 17px;">Para sua comodidade, em breve, acesso para resultados de exames!</h4></center>
+            </div>
+            <?php if(!$this->session_login->logado) :?>
+                <div class="login-paciente" style="margin-top: 80px;">
+                    <div style="font-size: 18px;">
+                        <br/>
+                        <center>Logar</center>
+                        <br/>
+                    </div>
+                    <form action="<?php echo $this->baseUrl();?>/admin/login/logar" method="Post" onSubmit="return validLogin(this);" class="login-form">
+                        <div id="erroMessage"></div>
+                        <center>
+                            <input type="text" name="usuarioLogin" class="form-control uname" placeholder="Usuário">
+                            <input  type="password" name="senhaLogin" class="form-control pword"  placeholder="Senha">
+                        </center>
+                        <br/>
+                        <button type="submit" class="btn btn-success btn-block">Entrar</button>
+                    </form>
+                    <br/>
+                </div>
+            <?php else :?>
+                <br/><br/>
+                <center><a href="<?php echo $this->baseUrl();?>/admin/">Ir para área do usuário</a></center>
+            <?php endif; ?>
+        </div>
+        <div class="grid_12 centro" style="margin-top: 50px; padding-bottom: 20px;">
+            <div class="marq-para-vc">
+                <span>MARQ <span>Saúde</span></span>&nbsp; <i>(61) 2026-1313</i>
+            </div>
+        </div>
+    </div>
+</div>

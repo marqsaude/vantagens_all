@@ -1,0 +1,155 @@
+<style>
+    #search-cliente{
+        width: 250px !important;
+    }
+    #search-cliente input{
+        width: 84% !important;
+        float: left;
+    }
+</style>
+<script src="<?php echo $this->baseUrl(); ?>/adm/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="<?php echo $this->baseUrl(); ?>/adm/plugins/dataTables/dataTables.bootstrap.js"></script>
+<script src="<?php echo $this->baseUrl(); ?>/adm/js/cliente/index.js"></script>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Clientes Cadastrados: <?php echo $this->count; ?> &nbsp;&nbsp; Vidas: <?php echo $this->vidas; ?>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <div id="dataTables-example_wrapper2" class="dataTables_wrapper form-inline" role="grid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="dataTables_length" id="dataTables-example_length">
+                                    <label>
+                                        <select name="dataTables-example_length" onchange="changePerPage(this);" aria-controls="dataTables-example" class="form-control input-sm">
+                                            <?php foreach($this->arrayPerPage as $value) :?>
+                                                <?php if($this->perPage==$value) {?>
+                                                    <option value="<?php echo $value ?>" selected><?php echo $value ?></option>
+                                                <?php }else{ ?>
+                                                    <option value="<?php echo $value ?>"><?php echo $value ?></option>
+                                                <?php } ?>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        registro por página
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div id="dataTables-example_filter" class="dataTables_filter">
+                                    <label>
+                                        <form role="form" onSubmit="return searchClient(this);" action="javascript:void(0);" name="searchCliente" id="searchCliente">
+                                            <div class="form-group input-group" id="search-cliente">
+                                                <input class="form-control" type="text" name="searchName" placeholder="Buscar Cliente">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default" type="button" onclick="submitSearchClient();">
+                                                        <i class="icon-search"></i>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </form>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables" aria-describedby="dataTables-example_info">
+                            <thead>
+                            <tr role="row">
+                                <th tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 300px;">Nome Cliente</th>
+                                <th tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 200px;">Login</th>
+                                <th tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 200px;">Nascimento</th>
+                                <th tabindex="0" aria-controls="dataTables-example" rowspan="1" colspan="1" style="width: 90px;">Ação</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php $i=0; ?>
+                            <?php foreach($this->dataCliente as $value) :?>
+                                <tr class="gradeA <?php if($i%2==0) {echo"odd";}else{echo"even";} ?>">
+                                    <td class="sorting_1"><?php echo $value["nm_cliente"]; ?></td>
+                                    <td class=" "><?php echo $value["nm_login"]; ?></td>
+                                    <td class=" "><?php echo Util_Util::getDataClientNoHour($value["dt_nascimento"]); ?></td>
+                                    <td class="center" style="text-align: center;">
+                                        <?php if($value["st_cliente"]==1){ ?><a href="<?php echo $this->baseUrl(); ?>/admin/cliente/view/id/<?php echo $value["co_seq_cliente"]; ?>"><i class="icon-eye-open" title="Visualizar"></i></a><?php }else{ ?><i class="icon-eye-open" style="color: #c3c3c3;" title="Desativado"></i><?php } ?>&nbsp;&nbsp;
+                                        <?php if($value["st_cliente"]==1){ ?>
+                                            <?php if($this->coTipoLogin <= 3) :?>
+                                                <a href="<?php echo $this->baseUrl(); ?>/admin/cliente/edit/id/<?php echo $value["co_seq_cliente"]; ?>"><i class="icon-edit" title="Editar"></i></a>
+                                            <?php endif; ?>
+                                        <?php }else{ ?>
+                                            <i class="icon-edit" style="color: #c3c3c3;" title="Desativado"></i>
+                                        <?php } ?>&nbsp;&nbsp;
+                                        <?php if($this->coTipoLogin==1 || $this->coTipoLogin==2 || $this->coTipoLogin==3): ?>
+                                            <?php if($value["st_cliente"]==1){ ?>
+                                                <a href="javascript:void(0);" onclick="disableClient(<?php echo $value["co_seq_cliente"]; ?>);">
+                                                    <i class="icon-ban-circle" style="color: #f0ad4e;" title="Desativar"></i>
+                                                </a>
+                                            <?php }else{ ?>
+                                                <a href="javascript:void(0);" onclick="enableClient(<?php echo $value["co_seq_cliente"]; ?>);">
+                                                    <i class="icon-ok-circle" style="color: #47a447;" title="Ativar"></i>
+                                                </a>
+                                            <?php } ?>
+                                        <?php endif; ?>
+                                    </td>
+                                </tr>
+                                <?php $i++; ?>
+                            <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="dataTables_info" id="dataTables-example_info" role="alert" aria-live="polite" aria-relevant="all"></div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
+                                    <ul class="pagination">
+                                        <?php if($this->id == 1){?>
+                                    <li class="paginate_button previous disabled" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous">
+                                    <a href="javascript:void(0);">Anterior</a>
+                                    <?php } else { ?>
+                                        <li class="paginate_button previous" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous">
+                                            <a href="<?php echo $this->baseUrl(); ?>/admin/cliente/excluded/page/<?php echo $this->id-1; ?>">Anterior</a>
+                                            <?php }?>
+                                        </li>
+                                        <?php for($i=1; $i<=$this->dataCount; $i++) :?>
+                                            <?php if($i==$this->id) {?>
+                                                <li class="paginate_button active" aria-controls="dataTables-example" tabindex="0">
+                                            <?php }else {?>
+                                                <li class="paginate_button" aria-controls="dataTables-example" tabindex="0">
+                                            <?php } ?>
+                                            <a href="<?php echo $this->baseUrl(); ?>/admin/cliente/excluded/page/<?php echo $i;?>"><?php echo $i; ?></a>
+                                            </li>
+                                        <?php endfor; ?>
+                                        <!--li class="paginate_button " aria-controls="dataTables-example" tabindex="0">
+                                            <a href="#">2</a>
+                                        </li>
+                                        <li class="paginate_button " aria-controls="dataTables-example" tabindex="0">
+                                            <a href="#">3</a>
+                                        </li>
+                                        <li class="paginate_button " aria-controls="dataTables-example" tabindex="0">
+                                            <a href="#">4</a>
+                                        </li>
+                                        <li class="paginate_button " aria-controls="dataTables-example" tabindex="0">
+                                            <a href="#">5</a>
+                                        </li>
+                                        <li class="paginate_button " aria-controls="dataTables-example" tabindex="0">
+                                            <a href="#">6</a>
+                                        </li-->
+                                        <?php if($this->id == $this->dataCount){?>
+                                        <li class="paginate_button next disabled" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_next">
+                                            <a href="javascript:void(0);">Próxima</a>
+                                            <?php } else { ?>
+                                        <li class="paginate_button next" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_next">
+                                            <a href="<?php echo $this->baseUrl(); ?>/admin/cliente/excluded/page/<?php echo $this->id+1; ?>">Próxima</a>
+                                            <?php }?>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

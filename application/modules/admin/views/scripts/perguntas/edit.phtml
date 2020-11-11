@@ -1,0 +1,108 @@
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/site/css/MoneAdmin.css" />
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/site/css/Markdown.Editor.hack.css" />
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/site/css/jquery.cleditor-hack.css" />
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/site/css/bootstrap-wysihtml5-hack.css" />
+<style>
+    .wysihtml5-toolbar li{
+        width: 197px;
+        float: left;
+        list-style-type: none;
+    }
+    .wysihtml5-toolbar li:nth-child(4){
+        width: 157px;
+        float: left;
+        list-style-type: none;
+    }
+    .wysihtml5-toolbar li:nth-child(5){
+        width: 37px;
+        float: left;
+        list-style-type: none;
+    }
+    .wysihtml5-toolbar li:nth-child(6){
+        width: 37px;
+        float: left;
+        list-style-type: none;
+    }
+    .wysihtml5-toolbar li:nth-child(7){
+        width: 37px;
+        float: left;
+        list-style-type: none;
+    }
+    .wysihtml5-toolbar .dropdown{
+        width: 127px;
+        float: left;
+        list-style-type: none;
+    }
+    .wysihtml5-toolbar .dropdown:nth-child(1){
+        margin-left: 27px;
+    }
+    .wysihtml5-toolbar .dropdown:nth-child(2){
+        width: 72px;
+        float: left;
+        list-style-type: none;
+        margin-bottom: 7px;
+    }
+    .wysihtml5-toolbar{
+        text-align: center;
+    }
+</style>
+
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/perguntas/edit.js"></script>
+
+<div class="row">
+    <div class="col-lg-12">
+        <a href="javascript:void(0)" onclick="goBack();" class="btn btn-warning btn-flat btn-rect"><i class="icon-reply"></i>&nbsp;Voltar</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">&nbsp;</div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Editar Pergunta
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <form role="form" onSubmit="return validaEditarPerguntas(this);" name="editPergunta" id="editPergunta">
+                        <div id="dataTables-example_wrapper2" class="dataTables_wrapper form-inline" role="grid">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <textarea id="wysihtml5" class="form-control" rows="3" name="tx_pergunta" placeholder="Escreva a Pergunta..." style="resize: none;"><?php echo $this->dataPerguntas["tx_pergunta"]; ?></textarea>
+                                    <input type="hidden" name="co_seq_perguntas" id="co_seq_perguntas" value="<?php echo $this->dataPerguntas["co_seq_perguntas"]; ?>"/>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <textarea id="wysihtml51" class="form-control" rows="3" name="tx_resposta" placeholder="Escreva a Resposta..." style="resize: none;"><?php echo $this->dataPerguntas["tx_resposta"]; ?></textarea>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <a href="javascript:void(0);" class="btn btn-success btn-lg btn-rect" onclick="submitEditarPerguntas();">Salvar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="<?php echo $this->baseUrl(); ?>/site/js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+<script src="<?php echo $this->baseUrl(); ?>/site/js/wysihtml5-0.3.0.min.js"></script>
+<script src="<?php echo $this->baseUrl(); ?>/site/js/bootstrap-wysihtml5-hack.js"></script>
+<script src="<?php echo $this->baseUrl(); ?>/site/js/jquery.cleditor.min.js"></script>
+<script src="<?php echo $this->baseUrl(); ?>/site/js/Markdown.Converter.js"></script>
+<script src="<?php echo $this->baseUrl(); ?>/site/js/Markdown.Sanitizer.js"></script>
+<script src="<?php echo $this->baseUrl(); ?>/site/js/editorInit.js"></script>
+<script>
+    $(function () { formWysiwyg(); });
+</script>

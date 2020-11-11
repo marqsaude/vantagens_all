@@ -1,0 +1,35 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Lista de Valores das Consultas
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome Consulta</th>
+                    <th>Valor c/ Cartão</th>
+                    <th>Valor Real</th>
+                    <th>Ação</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php $i=1; ?>
+                <?php foreach($this->dataProcedimento as $value): ?>
+                    <tr>
+                        <td width="5%"><?php echo $i; ?></td>
+                        <td width="45%"><?php echo $value["nm_consulta"]; ?></td>
+                        <td width="20%">R$ <?php echo number_format($value["nu_valor"], 2, '.', ''); ?></td>
+                        <td width="20%">R$ <?php echo number_format($value["nu_valor_real"], 2, '.', ''); ?></td>
+                        <td width="10%">
+                            <a href="<?php echo $this->baseUrl(); ?>/admin/consulta/view/id/<?php echo $value["co_seq_consulta"]; ?>"><i class="icon-eye-open" title="Visualizar"></i></a>&nbsp;&nbsp;
+                        </td>
+                    </tr>
+                    <?php $i++; ?>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

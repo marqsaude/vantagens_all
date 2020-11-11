@@ -1,0 +1,133 @@
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/css/lightbox.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/css/procedimento/edit.css" type="text/css" />
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/lightbox.js"></script>
+<script>
+    var prestadores = [];
+    <?php foreach ($this->dataPrestadorTem as $value): ?>
+        var prestador = {"id": <?php echo $value["co_seq_prestador"]; ?>, "nome": "<?php echo $value["nm_prestador"]; ?>"};
+        prestadores.push(prestador);
+    <?php endforeach; ?>
+    var OSName = "Unknown";
+    var valor = "<?php echo number_format($this->dataProcedimento["nu_valor"], 2, ',', '.'); ?>";
+    var valorReal = "<?php echo number_format($this->dataProcedimento["nu_valor_real"], 2, ',', '.'); ?>";
+    if(valorReal==null || valorReal==""){
+        valorReal = 1;
+    }
+</script>
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/procedimento/edit.js"></script>
+
+<div class="row">
+    <div class="col-lg-12">
+        <a href="javascript:void(0)" onclick="goBack();" class="btn btn-warning btn-flat btn-rect"><i class="icon-reply"></i>&nbsp;Voltar</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">&nbsp;</div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Editar Procedimento - <?php echo $this->dataProcedimento["co_seq_procedimento"]; ?> -
+                <?php echo ($this->dataProcedimento["co_exame"]==null)?($this->dataProcedimento["co_consulta"]==null)?($this->dataProcedimento["co_laboratorio"]==null)?:$this->dataProcedimento["nm_laboratorio"]:$this->dataProcedimento["nm_consulta"]:$this->dataProcedimento["nm_exame"]; ?>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <form role="form" onSubmit="return validaEditProcedimento(this);" name="editProcedimento" id="editProcedimento">
+                        <div id="dataTables-example_wrapper2" class="dataTables_wrapper form-inline" role="grid">
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-sm-2">&nbsp;</div>
+                                <div class="col-sm-8">
+                                    <div class="form-group input-group" style="width: 610px !important;">
+                                        <span class="input-group-addon" style="float: left; height: 34px; width: 40px;">R$</span>
+                                        <input value="<?php echo $this->dataProcedimento["co_seq_procedimento"]; ?>" name="co_seq_procedimento" type="hidden"/>
+                                        <input style="float: left !important; width: 77%;" value="<?php echo number_format($this->dataProcedimento["nu_valor"], 2, ',', '.'); ?>" class="form-control" id="nu_valor" type="text" name="nu_valor" placeholder="Valor do Procedimento" onkeypress="return validaTeclado(this, event, '999.999,99');" onkeyup="maskIt(this, event, '999.999,99', true)" onfocus="setFieldPosition(this)" />
+                                        <!--span style="float: left; height: 34px; width: 40px;" class="input-group-addon">.00</span-->
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">&nbsp;</div>
+                            </div>
+                            <?php if($this->dataProcedimento["co_laboratorio"]==null){ ?>
+                                <div class="col-sm-12">&nbsp;</div>
+                                <div class="row">
+                                    <div class="col-sm-2">&nbsp;</div>
+                                    <div class="col-sm-8">
+                                        <div class="form-group input-group" style="width: 610px !important;">
+                                            <span class="input-group-addon" style="float: left; height: 34px; width: 40px;">R$</span>
+                                            <input style="float: left !important; width: 77%;" value="<?php echo number_format($this->dataProcedimento["nu_valor_real"], 2, ',', '.'); ?>" class="form-control" id="nu_valor_real" type="text" name="nu_valor_real" placeholder="Valor do Procedimento Real" onkeypress="return validaTeclado(this, event, '999.999,99');" onkeyup="maskIt(this, event, '999.999,99', true)" onfocus="setFieldPosition(this)" />
+                                            <!--span style="float: left; height: 34px; width: 40px;" class="input-group-addon">.00</span-->
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">&nbsp;</div>
+                                </div>
+                            <?php }else {?>
+                                <input class="form-control" id="nu_valor_real" type="hidden" name="nu_valor_real" />
+                            <?php } ?>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-sm-9" id="content-select">
+                                    <div class="content-select">
+                                        <div class="content-prestador">
+                                            <?php foreach ($this->dataPrestador as $value): ?>
+                                                <div class="prestador" id="<?php echo $value["co_seq_prestador"]; ?>" onclick="prestadorSelect(this);">
+                                                    <?php echo $value["co_seq_prestador"]; ?>
+                                                    <span>
+                                                        <?php echo trim($value["nm_prestador"]); ?>
+                                                    </span>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                        <div class="content-space">&nbsp;</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3" id="content-mais">
+                                    <a href="javascript:void(0);" class="btn btn-info btn-lg btn-rect" onclick="addPrestador();" style="float:left; position:absolute; bottom:14px; clear:left">+</a>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Código</th>
+                                            <th>Nome Prestador</th>
+                                            <th>Ação</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr></tr>
+                                        <?php foreach ($this->dataPrestadorTem as $value): ?>
+                                            <tr class="prestador-table">
+                                                <td width="5%"><?php echo $value["co_seq_prestador"]; ?></td>
+                                                <td width="82%"><?php echo $value["nm_prestador"]; ?></td>
+                                                <td width="13%">
+                                                    <a href="<?php echo $this->baseUrl(); ?>/admin/prestador/view/id/<?php echo $value["co_seq_prestador"]; ?>"><i class="icon-eye-open" title="Visualizar"></i></a>&nbsp;&nbsp;
+                                                    <a href="javascript:void(0);" onclick="removePrestador(this);" style="color: #d9534f;" title="Excluir"><i class="icon-trash"></i></a>&nbsp;&nbsp;
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-lg-9"></div>
+                                <div class="col-lg-3">
+                                    <a href="javascript:void(0);" class="btn btn-success btn-lg btn-rect" onclick="submitEditProcedimento();">Salvar</a>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

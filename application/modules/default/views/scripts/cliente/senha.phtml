@@ -1,0 +1,97 @@
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/site/js/cliente/senha.js"></script>
+
+<section id="contact-page" class="container" xmlns="http://www.w3.org/1999/html" style="background-color: #efefef;">
+    <div class="row-fluid">
+        <div class="span12">
+        </div>
+    </div>
+    <?php if($this->checkValid) :?>
+        <div id="main-senha">
+            <div class="row-fluid" style="border-bottom: 17px solid #f5f5f5; border-top: 7px solid #f5f5f5;">
+                <div class="span12">
+                    <?php if($this->esqueceuSenha) {?>
+                        <h3 style="font-family:'Tobago'; margin-top:7px; text-align:center; color:#972a2b; text-shadow: 0 4px 1px #ffffff, 0 -4px 1px #ffffff, -4px 0 1px #ffffff, 4px 0 1px #ffffff;">Alterar Senha</h3>
+                    <?php }else{ ?>
+                        <h3 style="font-family:'Tobago'; margin-top:7px; text-align:center; color:#972a2b; text-shadow: 0 4px 1px #ffffff, 0 -4px 1px #ffffff, -4px 0 1px #ffffff, 4px 0 1px #ffffff;">Cadastro de Senha</h3>
+                    <?php } ?>
+                </div>
+            </div>
+            <div class="row-fluid" style="height: 97px;">
+                <div class="span12">
+                    &nbsp;
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span2"></div>
+                <div class="span8">
+                    <div style="text-align: center;">
+                        <h4 style="color: #777777;">
+                            <?php if($this->esqueceuSenha) {?>
+                                Insira uma senha para alterar a da sua conta <img src="<?php echo $this->baseUrl(); ?>/site/images/logo_admin.png" width="107"> .</span>
+                            <?php }else{ ?>
+                                Insira uma senha para acessar sua conta <img src="<?php echo $this->baseUrl(); ?>/site/images/logo_admin.png" width="127"> .</span>
+                            <?php } ?>
+                        </h4>
+                    </div>
+                </div>
+                <div class="span2"></div>
+            </div>
+            <div class="row-fluid">
+                <div class="span4"></div>
+                <div class="span4">
+                    <form onSubmit="return validaCadastroSenha(this);" action="javascript:void(0);" method="post" class="contact-form" id="main-contact-form" name="contact-form">
+                        <br/>
+                        <div style="text-align: center; color: #777777;">
+                            Senha:
+                            <input type="password" name="nm_senha" id="nm_senha" value="" class="input-block-level nm_senha" required="required" maxlength="80" />
+                        </div>
+                        <div style="text-align: center; color: #777777;">
+                            Confirma Senha:
+                            <input type="password" name="nm_confirma_senha" id="nm_confirma_senha" value="" class="input-block-level nm_confirma_senha" required="required" maxlength="80" />
+                            <input type="hidden" name="nm_code" id="nm_code" value="<?php echo $this->code; ?>" />
+                        </div>
+                        <div style="margin-top: -5px; width: 257px; color: #777777;">
+                            <?php if($this->esqueceuSenha) {?>
+                                Após a senha ser confirmada, você podera efetuar login com ela.
+                            <?php }else{ ?>
+                                Você podera efetuar o login com essa senha.
+                            <?php } ?>
+                        </div>
+                        <div style="text-align: right;">
+                            <button type="submit" class="btn btn-primary btn-large pull-right">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="span4"></div>
+            </div>
+        </div>
+    <?php else :?>
+        <div class="row-fluid" style="border-bottom: 17px solid #f5f5f5; border-top: 7px solid #f5f5f5;">
+            <div class="span12">
+                <h3 style="font-family:'Tobago'; margin-top:7px; text-align:center; color:#972a2b; text-shadow: 0 4px 1px #ffffff, 0 -4px 1px #ffffff, -4px 0 1px #ffffff, 4px 0 1px #ffffff;">Link não ativo</h3>
+            </div>
+        </div>
+        <div class="row-fluid" style="height: 97px;">
+            <div class="span12">
+                &nbsp;
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span2"></div>
+            <div class="span8">
+                <div style="text-align: center;">
+                    <h4>
+                        Link desativado pelo cliente, se o(a) senhor(a) dejesa se cadastrar para obter a vantagem <br/>
+                        <img src="<?php echo $this->baseUrl(); ?>/site/images/q_do_qsaude.png" width="57"> <span style="color: #0390fd; font-family: ERASB; font-size: 27px;">saúde</span> <span style="color: #0390fd; font-family: KGAlwaysAGoodTime; font-size: 15px;">Vantagens</span>, clique no link que segue -> <a href="<?php echo $this->baseUrl(); ?>/cliente/index">CADASTRO .
+                    </h4>
+                </div>
+            </div>
+            <div class="span2"></div>
+        </div>
+    <?php endif; ?>
+    <div class="row-fluid" style="height: 57px;">
+        <div class="span12">
+            &nbsp;
+        </div>
+    </div>
+</section>

@@ -1,0 +1,125 @@
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/css/procedimento/index.css" type="text/css" />
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/procedimento/index.js"></script>
+
+<div class="menu-procedimento">
+    <a href="javascript:void(0);" onclick="clickExame(this);" class="btn btn-flat btn-rect btn-exame btn-desativo">Exame</a>
+    <a href="javascript:void(0);" onclick="clickConsulta(this);" class="btn btn-flat btn-rect btn-consulta">Consulta</a>
+    <a href="javascript:void(0);" onclick="clickLaboratorio(this);" class="btn btn-flat btn-rect btn-laboratorio">Laboratório</a>
+</div>
+<div class="content-procedimento" id="exame-procedimento">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Lista de Procedimentos - Exames
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Nº Procedimento</th>
+                        <th>Tipo Procedimento</th>
+                        <th>Nome do Procedimento</th>
+                        <th>Ação</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($this->dataProcedimento as $value): ?>
+                            <?php if($value["co_exame"]!=0 && $value["co_exame"]!="") :?>
+                                <tr>
+                                    <td width="20%"><?php echo $value["co_seq_procedimento"]; ?></td>
+                                    <td width="20%"><?php echo ($value["co_exame"]==0 || $value["co_exame"]=="") ? ($value["co_consulta"]==0 || $value["co_consulta"]=="") ? "Laboratório" : "Consulta":"Exame"; ?></td>
+                                    <td width="50%"><?php echo ($value["co_exame"]==0 || $value["co_exame"]=="") ? ($value["co_consulta"]==0 || $value["co_consulta"]=="") ? $value["nm_laboratorio"] : $value["nm_consulta"]:$value["nm_exame"]; ?></td>
+                                    <td width="10%">
+                                        <a href="<?php echo $this->baseUrl(); ?>/admin/procedimento/view/id/<?php echo $value["co_seq_procedimento"]; ?>"><i class="icon-eye-open"></i></a>&nbsp;
+                                        <?php if($this->session_login->coTipoLogin==1 || $this->session_login->coTipoLogin==2 || $this->session_login->coTipoLogin==3) :?>
+                                            <a href="<?php echo $this->baseUrl(); ?>/admin/procedimento/edit/id/<?php echo $value["co_seq_procedimento"]; ?>"><i class="icon-edit" title="Editar"></i></a>&nbsp;&nbsp;
+                                            <a href="javascript:void(0);" for="procedimento" onclick="excluirRegistro(<?php echo $value["co_seq_procedimento"]; ?>, this);" style="color: #d9534f;"><i class="icon-trash"></i></a>&nbsp;&nbsp;
+                                        <?php endif; ?>
+                                    </td>
+                                </tr>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-procedimento" id="consulta-procedimento">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Lista de Procedimentos - Consultas
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Nº Procedimento</th>
+                        <th>Tipo Procedimento</th>
+                        <th>Nome do Procedimento</th>
+                        <th>Ação</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach($this->dataProcedimento as $value): ?>
+                        <?php if($value["co_consulta"]!=0 && $value["co_consulta"]!="") :?>
+                            <tr>
+                                <td width="20%"><?php echo $value["co_seq_procedimento"]; ?></td>
+                                <td width="20%"><?php echo ($value["co_exame"]==0 || $value["co_exame"]=="") ? ($value["co_consulta"]==0 || $value["co_consulta"]=="") ? "Laboratório" : "Consulta":"Exame"; ?></td>
+                                <td width="50%"><?php echo ($value["co_exame"]==0 || $value["co_exame"]=="") ? ($value["co_consulta"]==0 || $value["co_consulta"]=="") ? $value["nm_laboratorio"] : $value["nm_consulta"]:$value["nm_exame"]; ?></td>
+                                <td width="10%">
+                                    <a href="<?php echo $this->baseUrl(); ?>/admin/procedimento/view/id/<?php echo $value["co_seq_procedimento"]; ?>"><i class="icon-eye-open"></i></a>&nbsp;
+                                    <?php if($this->session_login->coTipoLogin==1 || $this->session_login->coTipoLogin==2 || $this->session_login->coTipoLogin==3) :?>
+                                        <a href="<?php echo $this->baseUrl(); ?>/admin/procedimento/edit/id/<?php echo $value["co_seq_procedimento"]; ?>"><i class="icon-edit" title="Editar"></i></a>&nbsp;&nbsp;
+                                        <a href="javascript:void(0);" for="procedimento" onclick="excluirRegistro(<?php echo $value["co_seq_procedimento"]; ?>, this);" style="color: #d9534f;"><i class="icon-trash"></i></a>&nbsp;&nbsp;
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-procedimento" id="laboratorio-procedimento">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Lista de Procedimentos - Exames Laboratoriais
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Nº Procedimento</th>
+                        <th>Tipo Procedimento</th>
+                        <th>Nome do Procedimento</th>
+                        <th>Ação</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach($this->dataProcedimento as $value): ?>
+                        <?php if($value["co_laboratorio"]!=0 && $value["co_laboratorio"]!="") :?>
+                            <tr>
+                                <td width="20%"><?php echo $value["co_seq_procedimento"]; ?></td>
+                                <td width="20%"><?php echo ($value["co_exame"]==0 || $value["co_exame"]=="") ? ($value["co_consulta"]==0 || $value["co_consulta"]=="") ? "Laboratório" : "Consulta":"Exame"; ?></td>
+                                <td width="50%"><?php echo ($value["co_exame"]==0 || $value["co_exame"]=="") ? ($value["co_consulta"]==0 || $value["co_consulta"]=="") ? $value["nm_laboratorio"] : $value["nm_consulta"]:$value["nm_exame"]; ?></td>
+                                <td width="10%">
+                                    <a href="<?php echo $this->baseUrl(); ?>/admin/procedimento/view/id/<?php echo $value["co_seq_procedimento"]; ?>"><i class="icon-eye-open"></i></a>&nbsp;
+                                    <?php if($this->session_login->coTipoLogin==1 || $this->session_login->coTipoLogin==2 || $this->session_login->coTipoLogin==3) :?>
+                                        <a href="<?php echo $this->baseUrl(); ?>/admin/procedimento/edit/id/<?php echo $value["co_seq_procedimento"]; ?>"><i class="icon-edit" title="Editar"></i></a>&nbsp;&nbsp;
+                                        <a href="javascript:void(0);" for="procedimento" onclick="excluirRegistro(<?php echo $value["co_seq_procedimento"]; ?>, this);" style="color: #d9534f;"><i class="icon-trash"></i></a>&nbsp;&nbsp;
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

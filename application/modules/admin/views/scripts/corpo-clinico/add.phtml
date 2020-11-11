@@ -1,0 +1,41 @@
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/corpo-clinico/add.js"></script>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Cadastro do Corpo Clínico
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <div class="row">&nbsp;</div>
+                    <div class="row">
+                        <form role="form" onSubmit="return validaCadastroCorpoClinico(this);" name="addCorpoClinico" id="addCorpoClinico">
+                            <div class="row">
+                                <div class="col-lg-1">&nbsp;</div>
+                                <div class="col-lg-5 form-group">
+                                    <input type="text" class="form-control" name="nm_corpo_clinico" placeholder="Nome do Corpo Clínico"/>
+                                </div>
+                                <div class="col-lg-5 form-group">
+                                    <select class="form-control" name="tipoCorpoClinico">
+                                        <option value="0">Selecione um tipo do Corpo Clínico...</option>
+                                        <?php foreach($this->dataTipoCorpoClinico as $value) :?>
+                                            <option value="<?php echo $value["co_seq_tipo_corpo_clinico"]; ?>"><?php echo $value["nm_tipo_corpo_clinico"]; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                                <div class="col-lg-1">&nbsp;</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-1">&nbsp;</div>
+                                <div class="col-lg-3">
+                                    <a href="javascript:void(0);" class="btn btn-success btn-flat btn-rect" onclick="submitCadastroCorpoClinico();">Cadastrar</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

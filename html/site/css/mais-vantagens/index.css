@@ -1,0 +1,45 @@
+.title-mais-vantagens h2{
+    font-family: 'KGAlwaysAGoodTime' !important;
+}
+
+.container-mais-vantagens{
+    background-color: #ffffff;
+    padding: 47px 20px 27px 20px;
+}
+
+.container-title-mais-vantagens{
+    color: red;
+    text-align: center;
+    font-size: 17px;
+}
+
+.exame-mais-vantagens{
+    width: 100%;
+    text-align: center;
+    border: 1px solid black;
+    font-size: 14px;
+}
+
+.exame-mais-vantagens tr{
+    border-bottom: 1px solid #000000;
+}
+
+.exame-mais-vantagens td{
+    border-right: 1px solid #000000;
+}
+
+.exame-mais-vantagens .nome-procedimento{
+    text-align: left;
+    padding-left: 17px;
+    padding-bottom: 2px;
+}
+
+.exame-mais-vantagens .title-procedimento{
+    background-color: #0390fd;
+}
+
+.exame-mais-vantagens .title-procedimento th{
+    padding-top: 7px;
+    padding-bottom: 7px;
+    color: #FFFFFF;
+}

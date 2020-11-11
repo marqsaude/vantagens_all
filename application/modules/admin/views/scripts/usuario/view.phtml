@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-lg-12">
+        <a href="javascript:void(0)" onclick="goBack();" class="btn btn-warning btn-flat btn-rect"><i class="icon-reply"></i>&nbsp;Voltar</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">&nbsp;</div>
+</div>
+
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Usuário <h4><?php echo $this->dataUsuario["nm_usuario"]; ?></h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="well">
+            <div class="col-lg-4">
+                <p>Login: </p>
+                <h4><?php echo $this->dataUsuario["nm_login"]; ?></h4>
+            </div>
+            <div class="col-lg-4">
+                <p>Data Inclusão: </p>
+                <h4><?php echo Util_Util::getDataClientNoHour($this->dataUsuario["dt_inclusao"]); ?></h4>
+            </div>
+            <div class="col-lg-4">
+                <p>Login: </p>
+                <?php switch($this->dataUsuario["co_tipo_usuario"]){
+                    case 1:
+                        echo "<h4>Admin</h4>";
+                        break;
+                    case 2:
+                        echo "<h4>Coordenador</h4>";
+                        break;
+                    case 3:
+                        echo "<h4>Funcionário</h4>";
+                        break;
+                    case 4:
+                        echo "<h4>Cliente</h4>";
+                        break;
+                } ?>
+            </div>
+            <div class="col-lg-12">&nbsp;</div>
+            <div class="col-lg-12">&nbsp;</div>
+        </div>
+    </div>
+
+</div>

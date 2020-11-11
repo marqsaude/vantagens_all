@@ -1,0 +1,62 @@
+/* unvisited link */
+#mais_mulher a:link {
+    color: #ce7c8a;
+}
+
+/* visited link */
+#mais_mulher a:visited {
+    color: #ce7c8a;
+}
+
+/* mouse over link */
+#mais_mulher a:hover {
+    color: #ce7c8a;
+}
+
+/* selected link */
+#mais_mulher a:active {
+    color: #ce7c8a;
+}
+
+
+/* unvisited link */
+#mais_fitness a:link {
+    color: #5fc4ba;
+}
+
+/* visited link */
+#mais_fitness a:visited {
+    color: #5fc4ba;
+}
+
+/* mouse over link */
+#mais_fitness a:hover {
+    color: #5fc4ba;
+}
+
+/* selected link */
+#mais_fitness a:active {
+    color: #5fc4ba;
+}
+
+
+
+/* unvisited link */
+#mais_idade a:link {
+    color: #9dc49d;
+}
+
+/* visited link */
+#mais_idade a:visited {
+    color: #9dc49d;
+}
+
+/* mouse over link */
+#mais_idade a:hover {
+    color: #9dc49d;
+}
+
+/* selected link */
+#mais_idade a:active {
+    color: #9dc49d;
+}

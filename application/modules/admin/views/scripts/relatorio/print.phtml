@@ -1,0 +1,27 @@
+<table border=0 cellpadding=0 cellspacing=0 width=665 style='border-collapse:collapse;table-layout:fixed;'>
+    <col width=324 style='mso-width-source:userset;mso-width-alt:13824;width:324pt'>
+    <col width=148 style='mso-width-source:userset;mso-width-alt:6314;width:148pt'>
+    <col width=86 style='mso-width-source:userset;mso-width-alt:3669;width:86pt'>
+    <col width=107 style='mso-width-source:userset;mso-width-alt:4565;width:107pt'>
+    <tr height=15 style='height:15.0pt' class="title-relatorio">
+        <td height=15 class=xl65 width=324 style='height:15.0pt;width:324pt'>Cliente</td>
+        <td class=xl65 width=148 style='width:148pt'>Forma Pagamento</td>
+        <td class=xl65 width=86 style='width:86pt'>Contrato</td>
+        <td class=xl65 width=107 style='width:107pt'>Em dia</td>
+    </tr>
+    <?php $i=0; ?>
+    <?php foreach($this->data as $value): ?>
+        <?php if($i%2==0): ?>
+            <tr height=15 style='height:15.0pt' class="xl66">
+        <?php else: ?>
+            <tr height=15 style='height:15.0pt' class="alt">
+        <?php endif; ?>
+            <td height=15 style='height:15.0pt'><?php echo strtoupper($value["nm_cliente"]); ?></td>
+            <td>Boleto</td>
+            <td>Master</td>
+            <td>Sim</td>
+        </tr>
+        <?php $i++; ?>
+    <?php endforeach; ?>
+    <th colspan="4">Quantidade: <?php echo $this->count; ?></th>
+</table>

@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/site/css/por-dentro/view.css" type="text/css" />
+
+<section class="title">
+    <div class="container">
+        <div class="row-fluid">
+            <div class="span6">
+                <h2><?php echo $this->dataBlog["data"][0]["nm_blog"]; ?></h2>
+            </div>
+            <div class="span6">
+                <ul class="breadcrumb pull-right">
+                    <li><a href="<?php echo $this->baseUrl(); ?>/">Q Saúde + Vantagens</a> <span class="divider">/</span></li>
+                    <li><a href="<?php echo $this->baseUrl(); ?>/por-dentro/index/page/<?php echo $this->page; ?>">Por Dentro</a> <span class="divider">/</span></li>
+                    <li class="active"><?php echo $this->dataBlog["data"][0]["nm_blog"]; ?></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container" style="background-color: #ffffff; padding: 47px 20px 27px 20px;" >
+    <div class="row-fluid"><div class="span12"></div></div>
+    <div class="row-fluid">
+        <div class="span1"></div>
+        <div class="span10" style="font-size: 15px;">
+                <div class="span6">
+                    <img width="500" src="<?php echo $this->baseUrl(); ?>/adm/blog/img/<?php echo $this->dataBlog["data"][0]["lk_img_blog"]; ?>" />
+                </div>
+                <div class="span6">
+                    <?php echo $this->dataBlog["data"][0]["tx_blog"]; ?>
+                </div>
+                <div>&nbsp;</div>
+        </div>
+        <div class="span1"></div>
+    </div>
+    <div class="row-fluid"><div class="span12"></div></div>
+    <div class="row-fluid"><div class="span12"></div></div>
+</section>

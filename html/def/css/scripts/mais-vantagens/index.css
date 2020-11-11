@@ -1,0 +1,15 @@
+.container-mais-vantagens{
+    background-color: #ffffff;
+    color: #373737;
+    padding-top: 7em;
+    box-shadow: inset 0px 3px 21px rgba(0, 0, 0, 0.77);
+    font-size: 15px;
+}
+
+.container-title-mais-vantagens{
+    font-size: 17px;
+}
+
+.title-procedimento th{
+    color: #474747;
+}

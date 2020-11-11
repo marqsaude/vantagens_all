@@ -1,0 +1,98 @@
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/css/configuracao/index.css">
+
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>Configurações</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="well" style="height: 127px;">
+            <div class="col-lg-4">&nbsp;</div>
+            <div class="col-lg-4" style="text-align: center;"><b>Coluna direita</b></div>
+            <div class="col-lg-4">&nbsp;</div>
+            <div class="col-lg-12">&nbsp;</div>
+            <div class="col-lg-12">&nbsp;</div>
+            <div class="col-lg-5">
+                <p><input type="checkbox"> Visualizar Caixa</p>
+            </div>
+            <div class="col-lg-3">
+                <p><input type="checkbox"> Usuário Visualiza</p>
+            </div>
+            <div class="col-lg-4">
+                <p style="float: right;"><input type="checkbox"> Cliente Visualiza</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="well" style="height: 217px;">
+            <div class="col-lg-4">&nbsp;</div>
+            <div class="col-lg-4" style="text-align: center;"><b>Permissões de Usuário</b></div>
+            <div class="col-lg-4">&nbsp;</div>
+            <div class="col-lg-12">&nbsp;</div>
+            <div class="col-lg-12">&nbsp;</div>
+            <div class="col-lg-3">
+                <p>Tipo Usuário</p>
+                <select multiple="multiple" class="form-control">
+                    <?php foreach($this->dataTipoUsuario as $value) :?>
+                        <option value="<?php echo $value["co_seq_tipo_usuario"]; ?>"><?php echo $value["nm_tipo_usuario"]; ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="col-lg-2">
+                <p>Usuário</p>
+                <p><input type="checkbox"> Cadastrar</p>
+                <p><input type="checkbox"> Listar</p>
+            </div>
+            <div class="col-lg-2">
+                <p>Cliente</p>
+                <p><input type="checkbox"> Listar</p>
+                <p><input type="checkbox"> Cadastrar</p>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="col-lg-12">
+        <div class="well" style="height: 237px;">
+            <div class="col-lg-4">&nbsp;</div>
+            <div class="col-lg-4" style="text-align: center;"><b>Email</b></div>
+            <div class="col-lg-4">&nbsp;</div>
+            <div class="col-lg-12">&nbsp;</div>
+            <div class="col-lg-12">&nbsp;</div>
+            <div class="col-lg-6">
+                <p>Email do Cadastro</p>
+                <p>
+                    <input type="text" placeholder="Email do Cadastro" value="<?php echo $this->dataConfiguracao["nm_email_login_cadastro"]; ?>">
+                </p>
+            </div>
+            <div class="col-lg-6">
+                <p>Senha do Email do Cadastro</p>
+                <p>
+                    <input type="text" placeholder="Senha do Email do Cadastro" value="<?php echo $this->dataConfiguracao["nm_email_senha_cadastro"]; ?>">
+                </p>
+            </div>
+            <div class="col-lg-6">
+                <p>Porta do Email do Cadastro</p>
+                <p>
+                    <input type="text" placeholder="Porta do Email do Cadastro" value="<?php echo $this->dataConfiguracao["nm_email_port_cadastro"]; ?>">
+                </p>
+            </div>
+            <div class="col-lg-6">
+                <p>SMTP do Email do Cadastro</p>
+                <p>
+                    <input type="text" placeholder="SMTP do Email do Cadastro" value="<?php echo $this->dataConfiguracao["nm_email_smtp_cadastro"]; ?>">
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+</div>

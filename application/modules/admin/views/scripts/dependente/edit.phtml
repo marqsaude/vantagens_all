@@ -1,0 +1,103 @@
+<script type="text/javascript">
+    var countDependentes=1;
+    var dataTipoDependentes=null;
+    var array = {"id": 1};
+</script>
+<!--script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/cliente/extension/cep.js"></script-->
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/dependentes/edit.js"></script>
+
+<div class="row">
+    <div class="col-lg-2">
+        <a href="javascript:void(0)" onclick="goBack();" class="btn btn-warning btn-flat btn-rect"><i class="icon-reply"></i>&nbsp;Voltar</a>
+    </div>
+    <div class="col-lg-10"></div>
+</div>
+<div class="row">
+    <div class="col-lg-12"></div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Editar Dependente <?php echo $this->dataDependentes["nm_dependente"]; ?>
+            </div>
+            <div class="table-responsive" id="cartao-vantagem">
+                <form id="editDependente" onSubmit="return validaEditarDependentes(this);" action="javascript:void(0);" method="post" class="contact-form">
+                    <input type="hidden" name="co_seq_dependentes" value="<?php echo $this->dataDependentes["co_seq_dependentes"]; ?>" />
+                    <input type="hidden" name="co_seq_cliente" value="<?php echo $this->dataDependentes["co_seq_cliente"]; ?>" />
+                    <div id="dataTables-example_wrapper2" class="dataTables_wrapper form-inline" role="grid">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                &nbsp;
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="status alert alert-success" style="display: none"></div>
+                            </div>
+                        </div>
+                        <div class="row dependencia">
+                            <br/>
+                        </div>
+                        <div class="row dependencia">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-8">
+                                <input type="text" name="nm_dependente" id="nm_cliente" value="<?php echo $this->dataDependentes["nm_dependente"]; ?>" class="form-control" size="30" maxlength="80" placeholder="Nome"/>
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                        <br/>
+                        <div class="row dependencia">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-4">
+                                <input type="text" name="nu_rg" id="nu_rg" value="<?php echo $this->dataDependentes["rg_dependente"]; ?>" class="form-control nu_rg" size="30" placeholder="RG"/>
+                                <br/><br/>
+                                <input type="text" name="dt_nascimento" id="dt_nascimento" value="<?php echo Util_Util::getDataClientNoHour($this->dataDependentes["nascimento_dependente"]); ?>" class="form-control date-picker" size="30" placeholder="Data Nascimento"/>
+                                <br/><br/>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" name="nu_cpf" id="nu_cpf" value="<?php echo $this->dataDependentes["cpf_dependente"]; ?>" class="form-control nu_cpf" size="30" placeholder="CPF"/>
+                                <br/><br/>
+                                <select name="tipo_dependente" id="tipo_dependente" class="form-control tipo_dependente" style="float: left; margin-bottom: 20px;">
+                                    <option name="0" value="0">Selecione Tipo Dependente</option>
+                                    <?php foreach($this->dataTipoDependentes as $value) :?>
+                                        <option for="<?php echo $value["st_agregado"]; ?>" name="<?php echo $value["co_seq_tipo_dependentes"]; ?>" value="<?php echo $value["co_seq_tipo_dependentes"]; ?>" <?php if($value["co_seq_tipo_dependentes"]==$this->dataDependentes["co_seq_tipo_dependentes"]) :?>selected="selected" <?php endif; ?>>
+                                            <?php echo $value["nm_tipo_dependente"]; ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <br/><br/>
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                        <div class="row dependencia">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-8">
+                                <input type="text" name="nm_email" id="nm_email" value="<?php echo $this->dataDependentes["email_dependente"]; ?>" class="form-control" size="30" maxlength="50" placeholder="Email"/>
+                                <br/><br/>
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                &nbsp;
+                            </div>
+                            <div class="col-sm-4">
+                                &nbsp;
+                            </div>
+                            <div class="col-lg-4">
+                                <a href="javascript:void(0);" style="float: right;" class="btn btn-success btn-lg btn-rect" onclick="submitEditarDependente();">Salvar</a>
+                            </div>
+                            <div class="col-sm-2">
+                                &nbsp;
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12"><br/></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

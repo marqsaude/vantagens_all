@@ -1,0 +1,56 @@
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/exame/edit.js"></script>
+
+<div class="row">
+    <div class="col-lg-12">
+        <a href="javascript:void(0)" onclick="goBack();" class="btn btn-warning btn-flat btn-rect"><i class="icon-reply"></i>&nbsp;Voltar</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">&nbsp;</div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Editar de Exame
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <form role="form" onSubmit="return validaEditarExame(this);" name="editExame" id="editExame">
+                        <div class="row">&nbsp;</div>
+                        <div class="row">
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-10">
+                                <select class="form-control" name="tipoExame">
+                                    <option value="0">Selecione um tipo de Exame...</option>
+                                    <?php foreach($this->dataTipoExame as $value) :?>
+                                        <option value="<?php echo $value["co_seq_tipo_exame"]; ?>" <?php echo ($this->dataExame["co_tipo_exame"]==$value["co_seq_tipo_exame"])?"selected":""; ?>><?php echo $value["nm_tipo_exame"]; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="col-lg-1"></div>
+                        </div>
+                        <div class="row">&nbsp;</div>
+                        <div class="row">
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-10 form-group">
+                                <div class="form-group input-group">
+                                    <input type="text" class="form-control" name="nm_exame" placeholder="Nome do Exame" value="<?php echo $this->dataExame["nm_exame"]; ?>"/>
+                                    <input type="hidden" name="co_seq_exame" value="<?php echo $this->dataExame["co_seq_exame"]; ?>">
+                                    <span class="input-group-btn">
+                                        <button onclick="submitEditarExame();" class="btn btn-default" type="button" style="background-color: #5cb85c; color: #FFFFFF;">
+                                            Salvar
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-1"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+.logo{
+	
+	width: 130px;
+	
+	
+	
+}
+
+
+.btn-success-gog:hover, .btn-success-gog:active, .btn-success-gog.active, .open .dropdown-toggle.btn-success-gog {
+	background-color: #e9737e;
+	border-color: #e9737e;
+	color: #FFFFFF;
+}
+
+
+.btn-success-gog {
+	background-color: #ae2634;
+	border-color: #ae2634;
+	color: #FFFFFF;
+}
+
+
+.font{
+	
+	
+	font-size: 13px;
+}

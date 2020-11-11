@@ -1,0 +1,64 @@
+.content-mobile-btn{
+    width: 100%;
+    position:fixed;
+    bottom: 0px;
+    left: 0px;
+    z-index: 99999;
+}
+
+.row-mobile-btn{
+    height: 77px;
+    float: left;
+    background-color: #4ecb5c;
+    width: 50%;
+}
+
+.row-mobile-btn:nth-child(2) {
+    background-color: #bd2026;
+}
+
+.row-mobile-btn a:active{
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.row-mobile-btn a:link{
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.row-mobile-btn a:visited{
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.whatsapp-mobile-btn{
+    width: 50%;
+    height: 77px;
+    background-color: #4ecb5c;
+}
+
+.cel-mobile-btn{
+    width: 50%;
+    background-color: #bd2026;
+    height: 77px;
+}
+
+.cel-mobile-btn div{
+    padding-top: 30px;
+    text-align: center;
+}
+
+.whatsapp-mobile-btn div{
+    text-align: center;
+}
+
+.cel-mobile-btn div span{
+    font-size: 21px;
+    margin-top: -20px;
+}
+
+.whatsapp-mobile-btn div span{
+    font-size: 21px;
+    margin-top: -20px;
+}

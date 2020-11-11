@@ -1,0 +1,27 @@
+.spotlight{
+    background-color: rgba(255, 255, 255, 1) !important;
+}
+
+.spotlight .image img{
+    opacity: 1.0 !important;
+}
+
+.wrapper.style2 {
+    background-color: transparent;
+}
+
+.spotlight:last-child{
+    padding-bottom: 47px;
+}
+
+.spotlight:first-child{
+    padding-top: 47px;
+}
+
+.spotlight .image {
+    margin-right: 6.8%;
+}
+
+#cta{
+    box-shadow: 0px 0px 20px 2px #000 !important;
+}

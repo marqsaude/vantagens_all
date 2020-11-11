@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/def/css/scripts/perguntas/index.css">
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/def/js/scripts/perguntas/index.js"></script>
+<!-- Three -->
+<section id="three" class="wrapper style3 special">
+    <div class="inner">
+        <header class="major">
+            <h2>Peguntas sobre o MarqSaúde + Vantagens</h2>
+        </header>
+        <ul class="features">
+            <?php foreach($this->dataPerguntas as $value): ?>
+                <li class="icon fa-paper-plane-o">
+                    <h3><?php echo $value["tx_pergunta"]; ?></h3>
+                    <h3 class="seta-pergunta"><span class="rotate"><i class="icon fa-2x fa-angle-down" title="Resposta"></i></span></h3>
+                    <p class="hideAnswer"><?php echo $value["tx_resposta"]; ?></p>
+                </li>
+            <?php endforeach; ?>
+            <!--li class="icon fa-laptop">
+                <h3>Ac Augue Eget</h3>
+                <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+            </li>
+            <li class="icon fa-code">
+                <h3>Mus Scelerisque</h3>
+                <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+            </li>
+            <li class="icon fa-headphones">
+                <h3>Mauris Imperdiet</h3>
+                <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+            </li>
+            <li class="icon fa-heart-o">
+                <h3>Aenean Primis</h3>
+                <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+            </li>
+            <li class="icon fa-flag-o">
+                <h3>Tortor Ut</h3>
+                <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+            </li-->
+        </ul>
+    </div>
+</section>

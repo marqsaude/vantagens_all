@@ -1,0 +1,95 @@
+<div class="row">
+    <div class="col-lg-12">
+        <a href="javascript:void(0)" onclick="goBack();" class="btn btn-warning btn-flat btn-rect"><i class="icon-reply"></i>&nbsp;Voltar</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">&nbsp;</div>
+</div>
+
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Procedimento: <h4><?php echo $this->dataProcedimento["co_seq_procedimento"]; ?></h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="well">
+            <div class="col-lg-6">
+                Nome do Procedimento:
+                <h5>
+                    <?php if($this->dataProcedimento["co_exame"] != null) :?>
+                        <?php echo $this->dataProcedimento["nm_exame"]; ?>
+                    <?php elseif($this->dataProcedimento["co_consulta"] != null) :?>
+                        <?php echo $this->dataProcedimento["nm_consulta"]; ?>
+                    <?php elseif($this->dataProcedimento["co_laboratorio"] != null) :?>
+                        <?php echo $this->dataProcedimento["nm_laboratorio"]; ?>
+                    <?php endif; ?>
+                </h5>
+            </div>
+            <div class="col-lg-6">
+                Tipo do Procedimento
+                <h5>
+                    <?php if($this->dataProcedimento["co_exame"] != null) :?>
+                        Exame
+                    <?php elseif($this->dataProcedimento["co_consulta"] != null) :?>
+                        Consulta
+                    <?php elseif($this->dataProcedimento["co_laboratorio"] != null) :?>
+                        Exame Laboratorial
+                    <?php endif; ?>
+                </h5>
+            </div>
+            <div class="col-lg-6">
+                Valor:
+                <h5>
+                    R$ <?php echo number_format($this->dataProcedimento["nu_valor"], 2, '.', ''); ?>
+                </h5>
+            </div>
+            <div class="col-lg-6">
+                Valor Real:
+                <h5>
+                    R$ <?php echo number_format($this->dataProcedimento["nu_valor_real"], 2, '.', ''); ?>
+                </h5>
+            </div>
+            <div class="col-lg-12">&nbsp;</div>
+        </div>
+    </div>
+
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Lista de Prestadores
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome do Prestador</th>
+                    <th>Ação</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php $i=1; ?>
+                <?php foreach($this->dataProcedimentoPrestador as $value): ?>
+                    <tr>
+                        <td width="5%"><?php echo $i; ?></td>
+                        <td width="82%"><?php echo $value["nm_prestador"]; ?></td>
+                        <td width="13%">
+                            <a href="<?php echo $this->baseUrl(); ?>/admin/prestador/view/id/<?php echo $value["co_seq_prestador"]; ?>"><i class="icon-eye-open" title="Visualizar"></i></a>&nbsp;&nbsp;
+                        </td>
+                    </tr>
+                    <?php $i++; ?>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

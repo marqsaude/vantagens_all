@@ -1,0 +1,91 @@
+<!--
+/* Font Definitions */
+@font-face
+{font-family:Arial;
+    panose-1:2 11 6 4 2 2 2 2 2 4;}
+@font-face
+{font-family:"\FF2D\FF33 \660E\671D";}
+@font-face
+{font-family:"\FF2D\FF33 \660E\671D";}
+@font-face
+{font-family:Calibri;
+    panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+{font-family:"Lucida Grande";
+    panose-1:2 11 6 0 4 5 2 2 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+{margin-top:0cm;
+    margin-right:0cm;
+    margin-bottom:8.0pt;
+    margin-left:0cm;
+    line-height:107%;
+    font-size:10.0pt;
+    font-family:Calibri;}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+{margin:0cm;
+    margin-bottom:.0001pt;
+    font-size:9.0pt;
+    font-family:Calibri;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+{margin:0cm;
+    margin-bottom:.0001pt;
+    font-size:10.0pt;
+    font-family:Calibri;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+{margin:0cm;
+    margin-bottom:.0001pt;
+    font-size:8.0pt;
+    font-family:"Lucida Grande";}
+span.BalloonTextChar
+{font-family:"Lucida Grande";}
+.MsoChpDefault
+{font-size:10.0pt;
+    font-family:Calibri;}
+.MsoPapDefault
+{margin-bottom:8.0pt;
+    line-height:107%;}
+/* Page Definitions */
+@page WordSection1 {
+    size:595.3pt 841.9pt;
+    margin:47.15pt 3.0cm 77.85pt 3.0cm;
+}
+div.WordSection1
+{page:WordSection1;}
+-->
+
+.page{
+    float: right;
+    margin-right: 7px;
+    margin-top: 17px;
+    width: 100%;
+    text-align: right;
+    position:absolute;
+    bottom: 0px;
+}
+
+@page { size: A4;}
+
+.logo-head{
+    text-align: center;
+    margin-bottom: 37px;
+}
+
+/* Page Definitions */
+@page firstWordDiv {
+    size:595.3pt 841.9pt !important;
+    margin:27.15pt 3.0cm 37.85pt 3.0cm !important;
+
+}
+div.firstWordDiv
+{page:firstWordDiv;}
+
+@page secondWordDiv {
+    size:595.3pt 841.9pt !important;
+    margin:27.15pt 3.0cm 77.85pt 3.0cm !important;
+
+}
+
+div.secondWordDiv
+{page:secondWordDiv;}
+

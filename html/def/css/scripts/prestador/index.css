@@ -1,0 +1,38 @@
+.row-fluid .span4 p{
+    color: #474747;
+    font-size: 0.77em;
+}
+.row-fluid .span4 a{
+    border-bottom: dotted 0px;
+}
+.row-fluid .span2 a{
+    color: #474747;
+    border-bottom: dotted 0px;
+}
+.row-fluid .span10 p{
+    color: #474747;
+    font-size: 0.77em;
+}
+.row-fluid .span10 a{
+    border-bottom: dotted 0px;
+}
+.title .container{
+    background-color: #ffffff;
+}
+.row-fluid .span4 h4{
+    color: #474747 !important;
+    font-size: 0.87em;
+}
+.row-fluid .span10 h4{
+    color: #474747 !important;
+    font-size: 0.87em;
+}
+#container-prestador{
+    background-color: #ffffff;
+    padding: 77px 20px 27px 20px;
+    box-shadow: inset 0px 3px 21px rgba(0, 0, 0, 0.77);
+    margin-top: 2.7em;
+}
+.w100p{
+    width: 100%;
+}

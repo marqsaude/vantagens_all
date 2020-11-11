@@ -1,0 +1,182 @@
+<script type="text/javascript">
+    var setContratoGog = <?php echo ($this->idContrato)?$this->idContrato:"false"; ?>;
+</script>
+
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/def/js/scripts/cliente/index.js"></script>
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/def/css/scripts/cliente/signature-pad.css" type="text/css"/>
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/def/css/scripts/cliente/date-picker.css" type="text/css"/>
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/def/css/scripts/cliente/index.css" type="text/css"/>
+
+<div id="loading"></div>
+<?php if($this->isMobile) :?>
+    <?php $percent = 13; ?>
+<?php else: ?>
+    <?php $percent = 8; ?>
+<?php endif; ?>
+<?php if(!Util_Util::isMobile()): ?>
+    <section id="contact-page" class="container" xmlns="http://www.w3.org/1999/html">
+<?php else: ?>
+    <section id="contact-page" class="container" xmlns="http://www.w3.org/1999/html" style="width: 100%;">
+<?php endif; ?>
+    <div class="row-fluid">
+        <div class="span12">
+            <?php $percent = 6; ?>
+            <div style="text-align: center; color: #363636;">
+                <span class="space-icon" style="margin-left: <?php echo $percent; ?>%;">&nbsp;</span>
+                <span class="icon fa-user fa-2x">&nbsp;</span>
+                <span class="space-icon" style="margin-left: <?php echo $percent; ?>%;">&nbsp;</span>
+                <span class="space-icon" style="margin-left: <?php echo $percent; ?>%;">&nbsp;</span>
+                <span class="icon fa-file fa-2x">&nbsp;</span>
+                <span class="space-icon" style="margin-left: <?php echo $percent; ?>%;">&nbsp;</span>
+                <span class="space-icon" style="margin-left: <?php echo $percent; ?>%;">&nbsp;</span>
+                <span class="icon fa-group fa-2x sem-single">&nbsp;</span>
+                <span class="space-icon sem-single" style="margin-left: <?php echo $percent; ?>%;">&nbsp;</span>
+                <span class="space-icon" style="margin-left: <?php echo $percent; ?>%;">&nbsp;</span>
+                <span class="icon fa-credit-card fa-2x">&nbsp;</span>
+                <span class="space-icon" style="margin-left: <?php echo $percent; ?>%;">&nbsp;</span>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+            <?php if($this->isMobile) :?>
+                <div style="text-align: center; color: #363636; font-size: 9px;">
+            <?php else: ?>
+                <div style="text-align: center; color: #363636;">
+            <?php endif; ?>
+                <span class="icon fa-circle">&nbsp;</span>
+                <span class="icon fa-circle">&nbsp;</span>
+                <span class="icon fa-circle">&nbsp;</span>
+                <span class="icon fa-circle">&nbsp;</span>
+                <span class="icon fa-circle">&nbsp;</span>
+                <span class="icon fa-circle">&nbsp;</span>
+                <span class="icon fa-circle">&nbsp;</span>
+                <span class="icon fa-circle">&nbsp;</span>
+                <span class="icon fa-circle">&nbsp;</span>
+                <span class="icon fa-circle-o">&nbsp;</span>
+                <span class="icon fa-circle-o">&nbsp;</span>
+                <span class="icon fa-circle-o">&nbsp;</span>
+                <span class="icon fa-circle-o">&nbsp;</span>
+                <span class="icon fa-circle-o">&nbsp;</span>
+                <span class="icon fa-circle-o">&nbsp;</span>
+                <span class="icon fa-circle-o">&nbsp;</span>
+                <span class="icon fa-circle-o">&nbsp;</span>
+                <span class="icon fa-circle-o">&nbsp;</span>
+                <span class="icon fa-circle-o sem-single">&nbsp;</span>
+                <span class="icon fa-circle-o sem-single">&nbsp;</span>
+                <span class="icon fa-circle-o sem-single">&nbsp;</span>
+                <span class="icon fa-circle-o sem-single">&nbsp;</span>
+                <span class="icon fa-circle-o sem-single">&nbsp;</span>
+                <span class="icon fa-circle-o sem-single">&nbsp;</span>
+                <span class="icon fa-circle-o sem-single">&nbsp;</span>
+                <span class="icon fa-circle-o sem-single">&nbsp;</span>
+                <span class="icon fa-circle-o sem-single">&nbsp;</span>
+                <span class="icon fa-circle-o">&nbsp;</span>
+                <span class="icon fa-circle-o">&nbsp;</span>
+                <span class="icon fa-circle-o">&nbsp;</span>
+                <span class="icon fa-circle-o">&nbsp;</span>
+                <span class="icon fa-circle-o">&nbsp;</span>
+                <span class="icon fa-circle-o">&nbsp;</span>
+                <span class="icon fa-circle-o">&nbsp;</span>
+                <span class="icon fa-circle-o">&nbsp;</span>
+                <span class="icon fa-circle-o">&nbsp;</span>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span12"></div>
+    </div>
+    <div id="cartao-vantagem">
+        <form onSubmit="return validaCliente(this);" action="javascript:void(0);" method="post" class="contact-form" id="main-contact-form" name="contact-form">
+            <!--div class="row-fluid" style="border-bottom: 17px solid #f5f5f5; border-top: 7px solid #f5f5f5;">
+                <div class="span12">
+                    <h3 style="font-family:'Tobago'; text-align:center; color:#972a2b; text-shadow: 0 4px 1px #ffffff, 0 -4px 1px #ffffff, -4px 0 1px #ffffff, 4px 0 1px #ffffff;">Cadastro</h3>
+                </div>
+            </div-->
+            <div class="row-fluid">
+                <div class="span12">
+                    &nbsp;
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="status alert alert-success" style="display: none"></div>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span2"></div>
+                <div class="span8">
+                    <input type="text" name="nm_cliente" id="nm_cliente" value="" class="input-block-level nm_cliente" required="required" maxlength="80" placeholder="Nome" />
+                </div>
+                <div class="span2"></div>
+            </div>
+            <div class="row-fluid">
+                <div class="span2"></div>
+                <div class="span4">
+                    <input type="text" name="nu_rg" id="nu_rg" value="" class="input-block-level nu_rg" size="30" required="required" placeholder="RG" maxlength="12"/>
+                    <input type="text" name="dt_nascimento" id="dt_nascimento" value="" class="input-block-level date-picker" size="30" placeholder="Data Nascimento" required="required"/>
+                    <input type="text" name="nu_telefone" id="nu_telefone" value="" class="required nu_telefone input-block-level" size="30" placeholder="Telefone Residêncial" required="required"/>
+                    <input type="text" name="nu_whatsapp" id="nu_whatsapp" value="" class="required nu_whatsapp input-block-level" size="30" placeholder="WhatsApp"/>
+                </div>
+                <div class="span4">
+                    <input type="text" name="nu_cpf" id="nu_cpf" value="" class="input-block-level nu_cpf" size="30" required="required" placeholder="CPF"/>
+                    <i class="icon fa-angle-down select-fa"></i>
+                    <select name="tp_sexo" id="tp_sexo" class="input-block-level form-control" required="required" style="margin-bottom: 11px;">
+                        <option value="0">Selecione o Sexo...</option>
+                        <option value="1">Masculino</option>
+                        <option value="2">Feminino</option>
+                    </select>
+                    <input type="text" name="nu_celular" id="nu_celular" value="" class="input-block-level nu_celular" size="30" placeholder="Telefone Celular" required="required"/>
+                    <input type="text" name="nm_email" id="nm_email" value="" class="input-block-level nm_email" size="30" maxlength="50" placeholder="Email" required="required"/>
+                </div>
+                <div class="span2"></div>
+            </div>
+            <div class="row-fluid">
+                <div class="span2"></div>
+                <div class="span8">
+                    <input type="text" name="nu_cep" id="nu_cep" value="" class="input-block-level nu_cep" size="30" placeholder="CEP" onkeydown="cepKeyDown(this)" onkeyup="cepKeyUp(this)"  required="required"/>
+                </div>
+                <div class="span2"></div>
+            </div>
+            <div class="row-fluid">
+                <div class="span2"></div>
+                <div class="span4">
+                    <div class="load-cep"></div>
+                    <div class="logradouro-cep form-linha"></div>
+                </div>
+                <div class="span4">
+                    <div class="bairro-cep form-linha"></div>
+                </div>
+                <div class="span2"></div>
+            </div>
+            <div class="row-fluid">
+                <div class="span2"></div>
+                <div class="span4">
+                    <div class="localidade-cep form-linha"></div>
+                </div>
+                <div class="span4">
+                    <div class="uf-cep form-linha"></div>
+                </div>
+                <div class="span2"></div>
+            </div>
+            <div class="row-fluid">
+                <div class="span2"></div>
+                <div class="span4">
+                    <div class="complemento-cep form-linha"></div>
+                </div>
+                <div class="span4">
+                    <div class="numero-cep form-linha"></div>
+                </div>
+                <div class="span2"></div>
+            </div>
+
+
+            <div class="row-fluid">
+                <div class="span6"></div>
+                <div class="span6">
+                    <button type="submit" class="pull-right btn-contato" id="btn-submit-cadastro">Próximo >></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

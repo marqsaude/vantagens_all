@@ -1,0 +1,202 @@
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/def/css/scripts/por-dentro/index.css" />
+<?php if(!Util_Util::isMobile()): ?>
+    <section id="contact-page" class="container">
+<?php else: ?>
+    <section id="contact-page" class="container" style="width: 100%;">
+<?php endif; ?>
+    <div class="content-contato">
+        <!-- CHART & CHAT  SECTION -->
+        <div class="row blog">
+            <div class="blog-general">
+                <div class="blog-title-general">
+                    Fique Por Dentro
+                </div>
+                <div class="column-left">&nbsp;</div>
+                <div class="column-center">
+                    <div class="main section" id="main">
+                        <div class="widget Blog" data-version="1" id="Blog1">
+                            <div class="blog-posts hfeed">
+                                <div class="date-outer">
+                                    <div class="row">
+                                        <div class="col s12 m12 l12">
+                                            <div class="blog-pager" id="blog-pager">
+                                                <?php if($this->dataBlog["page"] != 1) :?>
+                                                    <a class="home-link btn-blog waves-effect waves-teal" href="<?php echo $this->baseUrl(); ?>/por-dentro/index/page/<?php echo $this->dataBlog["page"]-1; ?>">
+                                                        <<
+                                                    </a>
+                                                <?php endif; ?>
+                                                <?php
+                                                $pagesL = intval($this->dataBlog["page"]/6);
+                                                $pagesLimit = array();
+                                                ?>
+                                                <?php if($this->dataBlog["page"]>5) :?>
+                                                    <a class="btn-number" href="<?php echo $this->baseUrl(); ?>/por-dentro/index/jump/<?php echo $pagesL-1; ?>">
+                                                        ...
+                                                    </a>
+                                                <?php endif; ?>
+                                                <?php $pages = ($this->dataBlog["count"]%5==0)?$this->dataBlog["count"]/5:(intval($this->dataBlog["count"]/5)+1); ?>
+                                                <?php for($i=1; $i<=5; $i++): ?>
+                                                    <?php
+                                                    if($i+($pagesL*5) <= $pages) {$pagesLimit[$i] = $i + ($pagesL * 5);}
+                                                    ?>
+                                                <?php endfor; ?>
+                                                <?php //var_dump($pagesLimit);exit; ?>
+                                                <?php foreach($pagesLimit as $value): ?>
+                                                    <a class="btn-number <?php if($this->dataBlog["page"]==$value): ?>not-active<?php endif; ?>" href="<?php echo $this->baseUrl(); ?>/por-dentro/index/page/<?php echo $value; ?>">
+                                                        <?php echo $value; ?>
+                                                    </a>
+                                                <?php endforeach; ?>
+                                                <?php  ?>
+                                                <?php if($this->dataBlog["page"]<6) :?>
+                                                    <a class="btn-number" href="<?php echo $this->baseUrl(); ?>/por-dentro/index/jump/<?php echo $pagesL+1; ?>">
+                                                        ...
+                                                    </a>
+                                                <?php endif; ?>
+                                                <?php if($pagesLimit>$this->dataBlog["page"]) :?>
+                                                    <a class="blog-pager-older-link btn-blog waves-effect waves-teal" href="<?php echo $this->baseUrl(); ?>/por-dentro/index/page/<?php echo $this->dataBlog["page"]+1; ?>" id="Blog1_blog-pager-older-link" title="Older Posts">
+                                                        >>
+                                                    </a>
+                                                <?php endif; ?>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php $i=0; $lastDate=""; ?>
+                                    <?php foreach($this->dataBlog["data"] as $value): ?>
+                                        <div class="date-posts">
+                                            <?php if($lastDate!=explode(" ", $value["dt_inclusao"])[0]) :?>
+                                                <?php $i=0; ?>
+                                            <?php endif; ?>
+                                            <?php $lastDate = explode(" ", $value["dt_inclusao"])[0]; ?>
+                                            <?php if($i==0): ?>
+                                                <h2 class="date-header">
+                                                    <span><?php echo Util_Util::getDateNameDayNameMonth(explode(" ", $value["dt_inclusao"])[0]); ?></span>
+                                                </h2>
+                                            <?php endif; ?>
+                                            <div class="post-outer">
+                                                <div class="post-start row" id="post_po_summary5405969120918013030">
+                                                    <div class="home-post-single">
+                                                        <div class="home-post-above">
+                                                            <?php foreach($this->dataBlog["data_procedimento"][$value["co_seq_blog"]] as $v): ?>
+                                                                <span class="post-labels">
+                                                            <?php $linkName = ($v["co_exame"]==0 || $v["co_exame"]=="") ? ($v["co_consulta"]==0 || $v["co_consulta"]=="") ? "laboratorio" : "consulta" : "exame"; ?>
+                                                                    <?php $linkID = ($v["co_exame"]==0 || $v["co_exame"]=="") ? ($v["co_consulta"]==0 || $v["co_consulta"]=="") ? $v["co_laboratorio"] : $v["co_consulta"] : $v["co_exame"]; ?>
+                                                                    <a href="<?php echo $this->baseUrl(); ?>/admin/<?php echo $linkName; ?>/view/id/<?php echo $linkID; ?>" rel="tag">
+                                                                <span class="badge"><?php echo ($v["co_exame"]==0 || $v["co_exame"]=="") ? ($v["co_consulta"]==0 || $v["co_consulta"]=="") ? $v["nm_laboratorio"] : $v["nm_consulta"] : $v["nm_exame"]; ?></span>
+                                                            </a>
+                                                        </span>
+                                                            <?php endforeach; ?>
+                                                        </div>
+                                                        <h2 class="post-home-title post-main-home-title">
+                                                            <a href="<?php echo $this->baseUrl(); ?>/admin/index/view/id/<?php echo $value["co_seq_blog"]; ?>" title="Abrir: <?php echo $value["nm_blog"]; ?>">
+                                                                <?php echo $value["nm_blog"]; ?>
+                                                            </a>
+                                                        </h2>
+                                                        <div class="post-header-home">
+                                                    <span class="post-author vcard">
+                                                        Postado às
+                                                        <span class="fn"></span>
+                                                    </span>
+                                                            <span class="post-timestamp">
+                                                        <i class="fa fa-clock-o"></i>
+                                                        <abbr class="published" title="<?php echo explode(" ", $value["dt_inclusao"])[1]; ?>">
+                                                            <?php echo explode(" ", $value["dt_inclusao"])[1]; ?>
+                                                        </abbr>
+                                                    </span>
+                                                        </div>
+                                                        <div class="homapge-thumb">
+                                                            <div class="post hentry">
+                                                                <div id="summary5405969120918013030">
+                                                                    <div class="span2" style="margin-bottom: 21px;">
+                                                                        <a href="javascript:void(0);">
+                                                                    <span class="img-post-span">
+                                                                        <img class="image-home-pop responsive-img" width="100" src="<?php echo $this->baseUrl(); ?>/adm/blog/img/<?php echo $value["lk_img_blog"]; ?>">
+                                                                    </span>
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="span7">
+                                                                        <iframe id="frameBlog<?php echo $value["co_seq_blog"]; ?>" src="<?php echo $this->baseUrl(); ?>/text-blog/index/text/<?php echo Util_Util::getTextMinBlog($value["tx_blog"]); ?>" width="100%" frameborder="0" height="77px"></iframe>
+                                                                    </div>
+                                                                    <span class="readmore_main">
+                                                                <a class="waves-effect waves-light btn-blog" href="<?php echo $this->baseUrl(); ?>/por-dentro/view/id/<?php echo $value["co_seq_blog"]; ?>">Leia +</a>
+                                                            </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <?php $i++; ?>
+                                        </div>
+                                    <?php endforeach; ?>
+                                    <div class="row">
+                                        <div class="col s12 m12 l12">
+                                            <div class="blog-pager" id="blog-pager">
+                                                <?php if($this->dataBlog["page"] != 1) :?>
+                                                    <a class="home-link btn-blog waves-effect waves-teal" href="<?php echo $this->baseUrl(); ?>/por-dentro/index/page/<?php echo $this->dataBlog["page"]-1; ?>">
+                                                        <<
+                                                    </a>
+                                                <?php endif; ?>
+                                                <?php
+                                                $pagesL = intval($this->dataBlog["page"]/6);
+                                                $pagesLimit = array();
+                                                ?>
+                                                <?php if($this->dataBlog["page"]>5) :?>
+                                                    <a class="btn-number" href="<?php echo $this->baseUrl(); ?>/por-dentro/index/jump/<?php echo $pagesL-1; ?>">
+                                                        ...
+                                                    </a>
+                                                <?php endif; ?>
+                                                <?php $pages = ($this->dataBlog["count"]%5==0)?$this->dataBlog["count"]/5:(intval($this->dataBlog["count"]/5)+1); ?>
+                                                <?php for($i=1; $i<=5; $i++): ?>
+                                                    <?php
+                                                    if($i+($pagesL*5) <= $pages) {
+                                                        $pagesLimit[$i] = $i + ($pagesL * 5);
+                                                    }
+                                                    ?>
+                                                <?php endfor; ?>
+                                                <?php //var_dump($pagesLimit);exit; ?>
+                                                <?php foreach($pagesLimit as $value): ?>
+                                                    <a class="btn-number <?php if($this->dataBlog["page"]==$value): ?>not-active<?php endif; ?>" href="<?php echo $this->baseUrl(); ?>/por-dentro/index/page/<?php echo $value; ?>">
+                                                        <?php echo $value; ?>
+                                                    </a>
+                                                <?php endforeach; ?>
+                                                <?php  ?>
+                                                <?php if($this->dataBlog["page"]<6) :?>
+                                                    <a class="btn-number" href="<?php echo $this->baseUrl(); ?>/por-dentro/index/jump/<?php echo $pagesL+1; ?>">
+                                                        ...
+                                                    </a>
+                                                <?php endif; ?>
+                                                <?php if($pagesLimit>$this->dataBlog["page"]) :?>
+                                                    <a class="blog-pager-older-link btn-blog waves-effect waves-teal" href="<?php echo $this->baseUrl(); ?>/por-dentro/index/page/<?php echo $this->dataBlog["page"]+1; ?>" id="Blog1_blog-pager-older-link" title="Older Posts">
+                                                        >>
+                                                    </a>
+                                                <?php endif; ?>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <script type="text/javascript">window.___gcfg = {'lang': 'en'};</script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column-right">&nbsp;</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    <?php foreach($this->dataBlog["data"] as $value): ?>
+    $(function(){
+        var x = document.getElementById('frameBlog<?php echo $value["co_seq_blog"]; ?>');
+        var y = (x.contentWindow || x.contentDocument);
+        if (y.document)y = y.document;
+
+        y.body.style.backgroundColor = "red";
+        y.getElementsByClassName("text-blog").innerHTML = "teste";
+    });
+    <?php endforeach; ?>
+</script>

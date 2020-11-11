@@ -1,0 +1,63 @@
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/caixa/index.js"></script>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Lista de Caixas
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome do Caixa</th>
+                    <th>Empresa</th>
+                    <th>Visualizar</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php $i=1; ?>
+                <?php foreach($this->dataCaixa as $value) :?>
+                    <tr class="<?php if($value["st_ativo"]==1) :?>success<?php else :?>info<?php endif; ?>" <?php if($value["st_ativo"]==2) :?>style="color: #c3c3c3;"<?php endif; ?>>
+                        <td width="10%"><?php echo $i; ?></td>
+                        <td width="40%"><?php echo $value["nm_caixa"]; ?></td>
+                        <td width="40%"><?php echo $value["nm_empresa"]; ?></td>
+                        <td  width="10%">
+                            <a href="<?php echo $this->baseUrl(); ?>/admin/caixa/view/id/<?php echo $value["co_seq_caixa"]; ?>" title="Visualizar"><i class="icon-eye-open"></i></a>&nbsp;&nbsp;
+                            <a href="<?php echo $this->baseUrl(); ?>/admin/caixa/edit/id/<?php echo $value["co_seq_caixa"]; ?>"><i class="icon-edit" title="Editar"></i></a>&nbsp;&nbsp;
+                            <?php if($value["st_ativo"]==2) :?>
+                                <a href="javascript:void(0);" onclick="activeCaixa(<?php echo $value["co_seq_caixa"]; ?>);"><i style="color: #47a447;" class="icon-ok-circle" title="Ativar"></i></a>&nbsp;&nbsp;
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                    <?php $i++; ?>
+                <?php endforeach; ?>
+                <!--tr class="success">
+                    <td>1</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr class="info">
+                    <td>2</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                <tr class="warning">
+                    <td>3</td>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+                <tr class="danger">
+                    <td>4</td>
+                    <td>John</td>
+                    <td>Smith</td>
+                    <td>@jsmith</td>
+                </tr-->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

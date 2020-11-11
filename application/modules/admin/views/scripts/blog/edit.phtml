@@ -1,0 +1,182 @@
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/site/css/MoneAdmin.css" />
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/site/css/Markdown.Editor.hack.css" />
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/site/css/jquery.cleditor-hack.css" />
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/site/css/bootstrap-wysihtml5-hack.css" />
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/css/lightbox.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/css/blog/edit.css" type="text/css" />
+<style>
+    .wysihtml5-toolbar li{
+        width: 197px;
+        float: left;
+        list-style-type: none;
+    }
+    .wysihtml5-toolbar li:nth-child(4){
+        width: 157px;
+        float: left;
+        list-style-type: none;
+    }
+    .wysihtml5-toolbar li:nth-child(5){
+        width: 37px;
+        float: left;
+        list-style-type: none;
+    }
+    .wysihtml5-toolbar li:nth-child(6){
+        width: 37px;
+        float: left;
+        list-style-type: none;
+    }
+    .wysihtml5-toolbar li:nth-child(7){
+        width: 37px;
+        float: left;
+        list-style-type: none;
+    }
+    .wysihtml5-toolbar .dropdown{
+        width: 127px;
+        float: left;
+        list-style-type: none;
+    }
+    .wysihtml5-toolbar .dropdown:nth-child(1){
+        margin-left: 27px;
+    }
+    .wysihtml5-toolbar .dropdown:nth-child(2){
+        width: 72px;
+        float: left;
+        list-style-type: none;
+        margin-bottom: 7px;
+    }
+    .wysihtml5-toolbar{
+        text-align: center;
+    }
+</style>
+<script type="text/javascript">
+    var procedimentos = [];
+    var procedimento = null;
+    <?php foreach($this->dataProcedimentoBlog as $value) :?>
+        procedimento = {"id": <?php echo $value["co_seq_procedimento"] ?>, "nome": "<?php echo ($value["co_exame"]==null)?($value["co_consulta"]==null)?($value["co_laboratorio"]==null)?:$value["nm_laboratorio"]:$value["nm_consulta"]:$value["nm_exame"]; ?>"};
+        procedimentos.push(procedimento);
+    <?php endforeach; ?>
+</script>
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/lightbox.js"></script>
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/blog/edit.js"></script>
+
+<div class="row">
+    <div class="col-lg-12">
+        <a href="javascript:void(0)" onclick="goBack();" class="btn btn-warning btn-flat btn-rect"><i class="icon-reply"></i>&nbsp;Voltar</a>
+    </div>
+</div>
+<div class="row"><div class="col-lg-12">&nbsp;</div></div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Editar Blog <?php echo $this->dataBlog["nm_blog"]; ?>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <form role="form" onSubmit="return validaEditBlog(this);" name="editBlog" id="editBlog" enctype="multipart/form-data">
+                        <div id="dataTables-example_wrapper2" class="dataTables_wrapper form-inline" role="grid">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <input class="form-control" id="nm_blog" name="nm_blog" placeholder="Nome" value="<?php echo $this->dataBlog["nm_blog"]; ?>">
+                                    <input value="<?php echo $this->idBlog; ?>" name="co_seq_blog" type="hidden"/>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <select class="form-control" name="tp_visualizacao">
+                                        <option value="0">Selecione um tipo de visualização...</option>
+                                        <option value="1" <?php if($this->dataBlog["tp_visualizacao"] == 1){echo "selected";} ?> >Todos</option>
+                                        <option value="2" <?php if($this->dataBlog["tp_visualizacao"] == 2){echo "selected";} ?> >Funcionário</option>
+                                        <option value="3" <?php if($this->dataBlog["tp_visualizacao"] == 3){echo "selected";} ?> >Cliente</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="file" class="lk_img_blog" name="lk_img_blog" style="display: none;" onchange="Handlechange();" id="pdf_file" type="file">
+                                    <input value="Click para selecionar" id="fakeBrowse" onclick="HandleBrowseClick();" type="button">
+                                    <label id="fileLabel">Escolha uma imagem</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">&nbsp;</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <textarea id="wysihtml5" class="form-control" rows="10" name="tx_blog" placeholder="Fale sobre o assunto">
+                                        <?php echo $this->dataBlog["tx_blog"]; ?>
+                                    </textarea>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-sm-9" id="content-select">
+                                    <div class="content-select">
+                                        <div class="content-procedimento">
+                                            <?php foreach ($this->dataProcedimento as $value): ?>
+                                                <div class="procedimento" id="<?php echo $value["co_seq_procedimento"]; ?>" onclick="procedimentoSelect(this);">
+                                                    <?php echo $value["co_seq_procedimento"]; ?>
+                                                    <span>
+                                                        <?php echo ($value["co_exame"]==null)?($value["co_consulta"]==null)?($value["co_laboratorio"]==null)?:$value["nm_laboratorio"]:$value["nm_consulta"]:$value["nm_exame"]; ?>
+                                                    </span>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                        <div class="content-space">&nbsp;</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3" id="content-mais">
+                                    <a href="javascript:void(0);" class="btn btn-info btn-lg btn-rect" onclick="addProcedimento();" style="float:left; position:absolute; bottom:14px; clear:left">+</a>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Código</th>
+                                            <th>Nome Procedimento</th>
+                                            <th>Ação</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach($this->dataProcedimentoBlog as $value) :?>
+                                                <tr class="procedimento-table">
+                                                    <td width="5%"><?php echo $value["co_seq_procedimento"]; ?></td>
+                                                    <td width="82%"><?php echo ($value["co_exame"]==null)?($value["co_consulta"]==null)?($value["co_laboratorio"]==null)?:$value["nm_laboratorio"]:$value["nm_consulta"]:$value["nm_exame"]; ?></td>
+                                                    <td width="13%">
+                                                        <a href="<?php echo $this->baseUrl(); ?>/admin/procedimento/view/id/<?php echo $value["co_seq_procedimento"]; ?>"><i class="icon-eye-open" title="Visualizar"></i></a>&nbsp;&nbsp;
+                                                        <a href="javascript:void(0);" onclick="removeProcedimento(this);" style="color: #d9534f;" title="Excluir"><i class="icon-trash"></i></a>&nbsp;&nbsp;
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-lg-9"></div>
+                                <div class="col-lg-3">
+                                    <a href="javascript:void(0);" class="btn btn-success btn-lg btn-rect" onclick="submitEditBlog();">Editar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="<?php echo $this->baseUrl(); ?>/site/js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+<script src="<?php echo $this->baseUrl(); ?>/site/js/wysihtml5-0.3.0.min.js"></script>
+<script src="<?php echo $this->baseUrl(); ?>/site/js/bootstrap-wysihtml5-hack.js"></script>
+<script src="<?php echo $this->baseUrl(); ?>/site/js/jquery.cleditor.min.js"></script>
+<script src="<?php echo $this->baseUrl(); ?>/site/js/Markdown.Converter.js"></script>
+<script src="<?php echo $this->baseUrl(); ?>/site/js/Markdown.Sanitizer.js"></script>
+<script src="<?php echo $this->baseUrl(); ?>/site/js/editorInit.js"></script>
+<script>
+    $(function () { formWysiwyg(); });
+</script>

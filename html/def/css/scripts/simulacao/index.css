@@ -1,0 +1,79 @@
+#main-contact-form input {
+    background: #a7a7a7;
+    color: #ffffff;
+}
+
+#contact-page{
+    padding-top: 7em;
+    background-color: #ffffff !important;
+    box-shadow: inset 0px 3px 21px rgba(0, 0, 0, 0.77);
+    color: #777777;
+}
+
+#btn-submit-simulacao{
+    margin-right: 200px;
+    background-color: #bd2026 !important;
+    box-shadow: inset 0 0 0 2px #bd2026 !important;
+}
+
+#btn-submit-simulacao:hover{
+    background-color: #83191d !important;
+    box-shadow: inset 0 0 0 2px #83191d !important;
+}
+
+.title-simulacao{
+    text-align: center;
+    font-size: 21px;
+}
+
+.desc-simulacao{
+    text-align: center;
+    font-size: 15px;
+}
+
+.fa-angle-down.select-fa::before {
+    margin-top: 21px;
+    margin-left: 20em;
+    float: left;
+    z-index: 99999;
+    color: #0e0e0e;
+    position: absolute;
+}
+
+.fa-angle-down.select-fa-vantagem::before {
+    margin-top: 21px;
+    margin-left: 43.1em;
+    float: left;
+    z-index: 99999;
+    color: #0e0e0e;
+    position: absolute;
+}
+
+#main-contact-form select {
+    background: transparent;
+    height: 2.2em;
+    color: #777777;
+    cursor: pointer;
+}
+
+input{
+    border: 1px solid #989898 !important;
+}
+
+select{
+    border: 1px solid #989898 !important;
+}
+
+#loading {
+    position: absolute; width: 100%; height: 100%; background: url('../../images/spinner.gif') no-repeat center center;
+    z-index:88899;
+    display: none;
+}
+
+#overlay {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 88888;
+    background: url('../../images/semitransparent.png');
+}

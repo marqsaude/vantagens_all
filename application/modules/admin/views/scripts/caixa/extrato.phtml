@@ -1,0 +1,406 @@
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/css/caixa/extrato.css" type="text/css" />
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/caixa/extrato.js"></script>
+
+<div class="menu-extrato">
+    <a href="javascript:void(0);" onclick="clickRecebeu(this);" class="btn btn-flat btn-rect btn-recebeu btn-desativo <?php if(Util_Util::isMobile()):?>mobile-menu<?php endif; ?>">Recebeu</a>
+    <a href="javascript:void(0);" onclick="clickDinheiro(this);" class="btn btn-flat btn-rect btn-dinheiro <?php if(Util_Util::isMobile()):?>mobile-menu<?php endif; ?>">Dinheiro</a>
+    <a href="javascript:void(0);" onclick="clickBoleto(this);" class="btn btn-flat btn-rect btn-boleto <?php if(Util_Util::isMobile()):?>mobile-menu<?php endif; ?>">Boleto</a>
+    <a href="javascript:void(0);" onclick="clickPagSeguro(this);" class="btn btn-flat btn-rect btn-pag-seguro <?php if(Util_Util::isMobile()):?>mobile-menu<?php endif; ?>">PagSeguro</a>
+    <a href="javascript:void(0);" onclick="clickAReceber(this);" class="btn btn-flat btn-rect btn-a-receber <?php if(Util_Util::isMobile()):?>mobile-menu<?php endif; ?>">A Receber</a>
+</div>
+<div class="content-pagamento" id="recebeu-pagamento">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <?php if(Util_Util::isMobile()){?>
+                <?php echo $this->dataCaixaE["nm_caixa"]; ?> - Recebeu
+            <?php }else{ ?>
+                Extrato (<?php echo $this->dataCaixaE["nm_caixa"]; ?>) - Recebeu
+            <?php } ?>
+            <select id="tempo-extrato">
+                <option value="0">Hoje</option>
+                <option value="1">3 dias</option>
+                <option value="2">7 dias</option>
+                <option value="3">15 dias</option>
+                <option value="4">1 mês</option>
+                <option value="5">3 meses</option>
+                <option value="6">6 meses</option>
+                <option value="7">1 ano</option>
+                <option value="8">3 anos</option>
+                <option value="9">5 anos</option>
+                <option value="10">Tudo</option>
+            </select>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Pagamento</th>
+                        <th>Status</th>
+                        <th>Valor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                        <th>Cliente</th>
+                        <th>Recebeu</th>
+                        <th>Saldo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                        <th>Ação</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <?php $total = $this->dataCaixaE["nu_saldo"]; ?>
+                        <?php foreach($this->dataExtrato as $value): ?>
+                            <?php if($value["st_pagamento"]==1): ?>
+                                <tr>
+                                    <td width="5%"><?php echo $value["nm_forma_pagamento"]; ?></td>
+                                    <td width="5%"><?php echo ($value["st_pagamento"]==1) ? "Pago" : "Não Pago"; ?></td>
+                                    <td width="15%">+ R$ <?php echo number_format($value["nu_valor_transacao"], 2, ',', '.'); ?></td>
+                                    <td width="40%"><?php echo $value["nm_cliente"]; ?></td>
+                                    <td width="10%"><?php echo Util_Util::getDataClient($value["data_extrato"]); ?></td>
+                                    <td width="20%">R$ <?php echo number_format($total, 2, ',', '.'); ?></td>
+                                    <td width="5%">
+                                        <a href="javascript:void(0);" onclick="openModal(this);" rel="modal-conheca1"><i class="icon-eye-open"></i></a>&nbsp;
+                                    </td>
+                                </tr>
+                                <?php $total = ($value["st_pagamento"]==1)?$total-$value["nu_valor_transacao"]:$total; ?>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                        <tr>
+                            <td width="15%"> --- </td>
+                            <td width="5%"> -- </td>
+                            <td width="10%"> R$ 0,00 </td>
+                            <td width="45%"> ------- </td>
+                            <td width="10%"> --- </td>
+                            <td width="10%"> R$ 0,00 </td>
+                            <td width="5%">
+                                --
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-pagamento" id="dinheiro-pagamento">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <?php if(Util_Util::isMobile()){?>
+                <?php echo $this->dataCaixaE["nm_caixa"]; ?> - Dinheiro
+            <?php }else{ ?>
+                Extrato (<?php echo $this->dataCaixaE["nm_caixa"]; ?>) - Dinheiro
+            <?php } ?>
+            <select id="tempo-extrato">
+                <option value="0">Hoje</option>
+                <option value="1">3 dias</option>
+                <option value="2">7 dias</option>
+                <option value="3">15 dias</option>
+                <option value="4">1 mês</option>
+                <option value="5">3 meses</option>
+                <option value="6">6 meses</option>
+                <option value="7">1 ano</option>
+                <option value="8">3 anos</option>
+                <option value="9">5 anos</option>
+                <option value="10">Tudo</option>
+            </select>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Pagamento</th>
+                        <th>Status</th>
+                        <th>Valor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                        <th>Cliente</th>
+                        <th>Recebeu</th>
+                        <th>Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                        <th>Ação</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach($this->dataExtrato as $value): ?>
+                        <?php if($value["st_pagamento"]==1 && $value["co_seq_forma_pagamento"]==6): ?>
+                            <tr>
+                                <td width="15%"><?php echo $value["nm_forma_pagamento"]; ?></td>
+                                <td width="5%"><?php echo ($value["st_pagamento"]==1) ? "Pago" : "Não Pago"; ?></td>
+                                <td width="10%">+ R$ <?php echo number_format($value["nu_valor_transacao"], 2, ',', '.'); ?></td>
+                                <td width="45%"><?php echo $value["nm_cliente"]; ?></td>
+                                <td width="10%"><?php echo Util_Util::getDataClient($value["data_extrato"]); ?></td>
+                                <td width="10%">R$ <?php echo number_format($this->totalDinheiro, 2, ',', '.'); ?></td>
+                                <td width="5%">
+                                    <a href="javascript:void(0);" onclick="openModal(this);" rel="modal-conheca1"><i class="icon-eye-open"></i></a>&nbsp;
+                                </td>
+                            </tr>
+                            <?php $this->totalDinheiro = ($value["st_pagamento"]==1)?$this->totalDinheiro-$value["nu_valor_transacao"]:$this->totalDinheiro; ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                    <tr>
+                        <td width="15%"> --- </td>
+                        <td width="5%"> -- </td>
+                        <td width="10%"> R$ 0,00 </td>
+                        <td width="45%"> ------- </td>
+                        <td width="10%"> --- </td>
+                        <td width="10%"> R$ 0,00 </td>
+                        <td width="5%">
+                            --
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-pagamento" id="boleto-pagamento">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <?php if(Util_Util::isMobile()){?>
+                <?php echo $this->dataCaixaE["nm_caixa"]; ?> - Boleto
+            <?php }else{ ?>
+                Extrato (<?php echo $this->dataCaixaE["nm_caixa"]; ?>) - Boleto
+            <?php } ?>
+            <select id="tempo-extrato">
+                <option value="0">Hoje</option>
+                <option value="1">3 dias</option>
+                <option value="2">7 dias</option>
+                <option value="3">15 dias</option>
+                <option value="4">1 mês</option>
+                <option value="5">3 meses</option>
+                <option value="6">6 meses</option>
+                <option value="7">1 ano</option>
+                <option value="8">3 anos</option>
+                <option value="9">5 anos</option>
+                <option value="10">Tudo</option>
+            </select>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Pagamento</th>
+                        <th>Status</th>
+                        <th>Valor&nbsp;&nbsp;&nbsp;</th>
+                        <th>Cliente</th>
+                        <th>Data</th>
+                        <th>Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                        <th>Ação</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach($this->dataExtrato as $value): ?>
+                        <?php if($value["st_pagamento"]==1 && $value["co_seq_forma_pagamento"]==1): ?>
+                            <tr>
+                                <td width="5%"><?php echo $value["nm_forma_pagamento"]; ?></td>
+                                <td width="5%"><?php echo ($value["st_pagamento"]==1) ? "Pago" : "Não Pago"; ?></td>
+                                <td width="15%">+ R$ <?php echo number_format($value["nu_valor_transacao"], 2, ',', '.'); ?></td>
+                                <td width="40%"><?php echo $value["nm_cliente"]; ?></td>
+                                <td width="10%"><?php echo Util_Util::getDataClient($value["data_extrato"]); ?></td>
+                                <td width="20%">R$ <?php echo number_format($this->totalBoleto, 2, ',', '.'); ?></td>
+                                <td width="5%">
+                                    <a href="javascript:void(0);" onclick="openModal(this);" rel="modal-conheca1"><i class="icon-eye-open"></i></a>&nbsp;
+                                </td>
+                            </tr>
+                            <?php $this->totalBoleto = ($value["st_pagamento"]==1)?$this->totalBoleto-$value["nu_valor_transacao"]:$this->totalBoleto; ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                    <tr>
+                        <td width="15%"> --- </td>
+                        <td width="5%"> -- </td>
+                        <td width="10%"> R$ 0,00 </td>
+                        <td width="45%"> ------- </td>
+                        <td width="10%"> --- </td>
+                        <td width="10%"> R$ 0,00 </td>
+                        <td width="5%">
+                            --
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-pag-seguro" id="pag-seguro-pagamento">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <?php if(Util_Util::isMobile()){?>
+                <?php echo $this->dataCaixaE["nm_caixa"]; ?> - PagSeguro
+            <?php }else{ ?>
+                Extrato (<?php echo $this->dataCaixaE["nm_caixa"]; ?>) - PagSeguro
+            <?php } ?>
+            <select id="tempo-extrato">
+                <option value="0">Hoje</option>
+                <option value="1">3 dias</option>
+                <option value="2">7 dias</option>
+                <option value="3">15 dias</option>
+                <option value="4">1 mês</option>
+                <option value="5">3 meses</option>
+                <option value="6">6 meses</option>
+                <option value="7">1 ano</option>
+                <option value="8">3 anos</option>
+                <option value="9">5 anos</option>
+                <option value="10">Tudo</option>
+            </select>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Pagamento</th>
+                        <th>Status</th>
+                        <th>Valor&nbsp;&nbsp;&nbsp;</th>
+                        <th>Cliente</th>
+                        <th>Data</th>
+                        <th>Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                        <th>Ação</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach($this->dataExtrato as $value): ?>
+                        <?php if($value["st_pagamento"]==1 && $value["co_seq_forma_pagamento"]==3): ?>
+                            <tr>
+                                <td width="5%"><?php echo $value["nm_forma_pagamento"]; ?></td>
+                                <td width="5%"><?php echo ($value["st_pagamento"]==1) ? "Pago" : "Não Pago"; ?></td>
+                                <td width="15%">+ R$ <?php echo number_format($value["nu_valor_transacao"], 2, ',', '.'); ?></td>
+                                <td width="40%"><?php echo $value["nm_cliente"]; ?></td>
+                                <td width="10%"><?php echo Util_Util::getDataClient($value["data_extrato"]); ?></td>
+                                <td width="20%">R$ <?php echo number_format($this->totalPagSeguro, 2, ',', '.'); ?></td>
+                                <td width="5%">
+                                    <a href="javascript:void(0);" onclick="openModal(this);" rel="modal-conheca1"><i class="icon-eye-open"></i></a>&nbsp;
+                                </td>
+                            </tr>
+                            <?php $this->totalPagSeguro = ($value["st_pagamento"]==1)?$this->totalPagSeguro-$value["nu_valor_transacao"]:$this->totalPagSeguro; ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                    <tr>
+                        <td width="15%"> --- </td>
+                        <td width="5%"> -- </td>
+                        <td width="10%"> R$ 0,00 </td>
+                        <td width="45%"> ------- </td>
+                        <td width="10%"> --- </td>
+                        <td width="10%"> R$ 0,00 </td>
+                        <td width="5%">
+                            --
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-pagamento" id="a-receber-pagamento">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <?php if(Util_Util::isMobile()){?>
+                <?php echo $this->dataCaixaE["nm_caixa"]; ?> - A Receber
+            <?php }else{ ?>
+                Extrato (<?php echo $this->dataCaixaE["nm_caixa"]; ?>) - A Receber
+            <?php } ?>
+            <select id="tempo-extrato">
+                <option value="0">Hoje</option>
+                <option value="1">3 dias</option>
+                <option value="2">7 dias</option>
+                <option value="3">15 dias</option>
+                <option value="4">1 mês</option>
+                <option value="5">3 meses</option>
+                <option value="6">6 meses</option>
+                <option value="7">1 ano</option>
+                <option value="8">3 anos</option>
+                <option value="9">5 anos</option>
+                <option value="10">Tudo</option>
+            </select>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Pagamento</th>
+                        <th>Status</th>
+                        <th>Valor&nbsp;&nbsp;&nbsp;</th>
+                        <th>Cliente</th>
+                        <th>Validade</th>
+                        <th>Total Receber&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                        <th>Ação</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php $total = 0; ?>
+                    <?php foreach($this->dataExtrato as $value): ?>
+                        <?php if($value["st_pagamento"]==2 && $value["st_cliente"]==1): ?>
+                            <?php $total = $total+$value["nu_valor_transacao"]; ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                    <?php foreach($this->dataExtrato as $value): ?>
+                        <?php if($value["st_pagamento"]==2 && $value["st_cliente"]==1): ?>
+                            <tr>
+                                <td width="5%"><?php echo $value["nm_forma_pagamento"]; ?></td>
+                                <td width="5%"><?php echo ($value["st_pagamento"]==1) ? "Pago" : "Não Pago"; ?></td>
+                                <td width="15%">+ R$ <?php echo number_format($value["nu_valor_transacao"], 2, ',', '.'); ?></td>
+                                <td width="40%"><?php echo $value["nm_cliente"]; ?></td>
+                                <td width="10%"><?php echo ($value["dt_vencimento"]=="---")?$value["dt_vencimento"]:Util_Util::getDataClient($value["dt_vencimento"]); ?></td>
+                                <td width="20%">R$ <?php echo number_format($total, 2, ',', '.'); ?></td>
+                                <td width="5%">
+                                    <a href="javascript:void(0);" onclick="openModal(this);" rel="modal-conheca1"><i class="icon-eye-open"></i></a>&nbsp;
+                                </td>
+                            </tr>
+                            <?php $total = $total-$value["nu_valor_transacao"]; ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-conheca1" class="modal-conheca">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Lista de Boletos <a href="javascript:void(0);" onclick="closeModal();"><i class="icon-remove" style="float: right;"></i></a>
+        </div>
+        <div class="panel-body" style="height: 434px !important;">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Nº Boleto</th>
+                        <th>Data Vencimento</th>
+                        <th>Data Emissão</th>
+                        <th>Status</th>
+                        <th>Ação</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php //$i=1; ?>
+                    <?php foreach($this->dataBoleto as $value) :?>
+                        <tr class="<?php if($value["st_pago"]==1) :?>success<?php else :?>info<?php endif; ?>" <?php if($value["st_pago"]==2) :?>style="color: #c3c3c3;"<?php endif; ?>>
+                            <td width="30%"><?php echo $value["nu_boleto"]; ?></td>
+                            <td width="20%"><?php echo Util_Util::getDataClientNoHour($value["dt_vencimento"]); ?></td>
+                            <td width="20%"><?php echo Util_Util::getDataClientNoHour($value["dt_emissao"]); ?></td>
+                            <td width="20%" class="pago-boleto"><?php echo ($value["st_pago"]==1)?"Pago":"Não Pago"; ?></td>
+                            <td width="10%">
+                                <?php if($this->coTipoLogin == 1 || $this->coTipoLogin == 2 || $this->coTipoLogin == 3): ?>
+                                    <?php if($value["st_pago"]==1){ ?>
+                                        <a href="javascript:void(0);" onclick="naoPagoBoleto(<?php echo $value["co_seq_boleto"]; ?>, this);">
+                                            <i class="icon-ban-circle" style="color: #f0ad4e;" title="Não Pagar"></i>
+                                        </a>
+                                    <?php }else{ ?>
+                                        <a href="javascript:void(0);" onclick="pagaBoleto(<?php echo $value["co_seq_boleto"]; ?>, this);">
+                                            <i class="icon-ok-circle" style="color: #47a447;" title="Pagar"></i>
+                                        </a>
+                                    <?php } ?>
+                                <?php endif; ?>
+                                &nbsp;
+                                <a href="<?php echo $this->baseUrl(); ?>/admin/boleto/print/id/<?php echo $value["co_seq_boleto"]; ?>" target="_blank"><i class="icon-eye-open" title="Visualizar"></i></a>
+                            </td>
+                        </tr>
+                        <?php //$i++; ?>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

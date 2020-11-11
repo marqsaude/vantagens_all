@@ -1,0 +1,387 @@
+#felipe1{
+    background: url("../../images/slide-felipe/slideFelipe001.png") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#felipe2{
+    background: url("../../images/slide-felipe/slideFelipe002.png") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#felipe3{
+    background: url("../../images/slide-felipe/slideFelipe003.png") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#felipe4{
+    background: url("../../images/slide-felipe/slideFelipe004.png") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#felipe5{
+    background: url("../../images/slide-felipe/slideFelipe005.png") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#felipe6{
+    background: url("../../images/slide-felipe/slideFelipe006.png") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#felipe1 .title-slide-felipe{
+    text-align: right !important;
+    font-size: 50px;
+    font-family: CenturyGothic;
+    bottom: 0;
+    position: relative;
+    font-weight: bold;
+    width: 57%;
+    margin-left: 22%;
+    margin-top: 187px;
+}
+
+#felipe2 .title-slide-felipe{
+    margin-left: 30%;
+    font-size: 50px;
+    bottom: 0;
+    position: absolute;
+    font-family: CenturyGothic;
+    font-weight: bold;
+}
+
+#felipe3 .title-slide-felipe{
+    margin-left: 30%;
+    font-size: 50px;
+    bottom: 0;
+    position: absolute;
+    font-family: CenturyGothic;
+    font-weight: bold;
+}
+
+#felipe4 .title-slide-felipe{
+    margin-left: 20%;
+    font-size: 50px;
+    bottom: 0;
+    position: absolute;
+    font-family: CenturyGothic;
+    font-weight: bold;
+}
+
+#felipe5 .title-slide-felipe{
+    margin-left: 30%;
+    font-size: 50px;
+    bottom: 0;
+    position: relative;
+    font-family: CenturyGothic;
+    font-weight: bold;
+    margin-top: 227px;
+    float: right;
+}
+
+.box-home {
+    padding-bottom: 10px;
+    border: 1px solid #e5e5e5;
+    border-top: 0;
+    border-bottom: 3px solid #e5e5e5;
+    font-family: arial,sans-serif;
+    width: 97%;
+    margin-left: 1.5%;
+}
+
+.box-home-img-wrap {
+    position: relative;
+    height: 162px;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.box-home-content {
+    padding: 0 10px;
+}
+
+.box-home .box-home-img-wrap .box-home-img {
+    border-color: #00acc8;
+}
+
+.box-home .box-home-img-wrap .box-home-img {
+    border-color: #00acc8;
+}
+
+.main-product-icon {
+    -webkit-transition: transform;
+    transition: transform;
+    will-change: transform;
+    transition: transform .2s ease;
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    left: 50%;
+    bottom: -40px;
+    border-radius: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.cloud-hosting .main-product-icon {
+    background: #00acc8;
+}
+
+.main-product-name {
+    height: 55px;
+    display: table;
+    width: 100%;
+    text-align: center;
+}
+
+.main-product-desc {
+    height: 60px;
+    padding-bottom: 10px;
+    display: table;
+    width: 100%;
+    text-align: center;
+}
+
+.main-product-info {
+    padding: 9px 10px;
+    overflow: hidden;
+}
+
+.main-product-info-price {
+    float: left;
+    width: 230px;
+    clear: both;
+    color: #FFFFFF;
+    font-size: 17px;
+    margin-top: -4px;
+}
+
+.main-product-info-price span{
+    font-size: 13px;
+}
+
+.main-product-info-price span span{
+    font-size: 12px;
+}
+
+.main-product-info-action {
+    -webkit-transition: all;
+    transition: all;
+    will-change: all;
+    transition: all .2s ease;
+    float: right;
+    min-width: 110px;
+    height: 27px;
+    line-height: 31px;
+    margin-top: 14px;
+    padding: 0 10px;
+    text-align: center;
+    background: #e5e5e5;
+    font-family: Ubuntu,arial,sans-serif;
+    color: #333;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.main-product-info-price-main {
+    display: block;
+    margin-bottom: 0;
+    margin-left: 79px;
+    font-family: Ubuntu,arial,sans-serif;
+    line-height: 25px;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.main-product-info-price-bottom {
+    display: block;
+    height: 12px;
+    margin-top: -2px;
+    color: #FFFFFF;
+    float: right;
+    font-size: 13px;
+}
+
+input[type=file]{
+    width:90px;
+    color:transparent;
+}
+
+.box-home-img img{
+    height: 207px !important;
+    width: 368px !important;
+}
+
+#main-newsletter-form input{
+    min-height: 30px!important;
+}
+
+.modal-conheca{
+    display: none;
+    background-image: url("../../images/corpoQsaudecard.jpg");
+    position: absolute;
+    z-index: 1020;
+    margin-left: 17px;
+    width: 347px;
+    height: 218px;
+    margin-top: -177px;
+    color: #ffffff;
+    border-radius: 7px;
+}
+
+.modal-conheca ul{
+    list-style-type: none;
+    margin-top: 7px;
+    font-size: 13px;
+}
+
+.modal-conheca ul li{
+    margin: 7px 0;
+}
+
+.modal-conheca .vantagens-contrato{
+    text-align: center;
+    margin-top: 10px;
+    font-size: 17px;
+}
+
+.modal-conheca .link-contrato{
+    margin-top: 17px;
+}
+
+.modal-conheca .link-contrato a{
+    background-color: #ffffff;
+    color: #0390fd;
+    padding: 7px;
+    border-radius: 7px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.modal-conheca .link-contrato a:hover{
+    background-color: #c9bb5f;
+    color: #ffffff !important;
+    font-weight: bold;
+}
+
+.main-product-apelido{
+    margin-top: 107px;
+    margin-bottom: 7px;
+    font-family: NexaLight;
+    font-size: 27px;
+    color: #FFFFFF;
+}
+
+
+
+
+
+/* Style the Image Used to Trigger the Modal */
+.myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modall {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 9999; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.modall-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation - Zoom in the Modal */
+.modall-content, #caption {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)}
+    to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+    .modall-content {
+        width: 100%;
+    }
+}

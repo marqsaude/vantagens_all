@@ -1,0 +1,102 @@
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/css/lightbox.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/css/consulta/add.css" type="text/css" />
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/lightbox.js"></script>
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/consulta/add.js"></script>
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/procedimento/add.js"></script>
+
+<div class="row"><div class="col-lg-12"></div></div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Cadastro de Consulta
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <form role="form" onSubmit="return validaCadastroConsulta(this);" name="addConsulta" id="addConsulta">
+                        <div id="dataTables-example_wrapper2" class="dataTables_wrapper form-inline" role="grid">
+                            <div class="row">
+                                <div class="col-sm-2">&nbsp;</div>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" name="nm_consulta" placeholder="Nome da Consulta"/>
+                                </div>
+                                <div class="col-sm-2">&nbsp;</div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-sm-2">&nbsp;</div>
+                                <div class="col-sm-8">
+                                    <div class="form-group input-group" style="width: 610px !important;">
+                                        <span class="input-group-addon" style="float: left; height: 34px; width: 40px;">R$</span>
+                                        <input style="float: left !important; width: 77%;" class="form-control" id="nu_valor" type="text" name="nu_valor" placeholder="Valor do Procedimento" onkeypress="return validaTeclado(this, event, '999.999,99');" onkeyup="maskIt(this, event, '999.999,99', true)" onfocus="setFieldPosition(this)" />
+                                        <!--span style="float: left; height: 34px; width: 40px;" class="input-group-addon">.00</span-->
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">&nbsp;</div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-sm-2">&nbsp;</div>
+                                <div class="col-sm-8">
+                                    <div class="form-group input-group" style="width: 610px !important;">
+                                        <span class="input-group-addon" style="float: left; height: 34px; width: 40px;">R$</span>
+                                        <input style="float: left !important; width: 77%;" class="form-control" id="nu_valor_real" type="text" name="nu_valor_real" placeholder="Valor Real do Procedimento" onkeypress="return validaTeclado(this, event, '999.999,99');" onkeyup="maskIt(this, event, '999.999,99', true)" onfocus="setFieldPosition(this)" />
+                                        <!--span style="float: left; height: 34px; width: 40px;" class="input-group-addon">.00</span-->
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">&nbsp;</div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-sm-10" id="content-select">
+                                    <div class="content-select">
+                                        <div class="content-prestador">
+                                            <?php foreach ($this->dataPrestador as $value): ?>
+                                                <div class="prestador" id="<?php echo $value["co_seq_prestador"]; ?>" onclick="prestadorSelect(this);">
+                                                    <?php echo $value["co_seq_prestador"]; ?>
+                                                    <span>
+                                                        <?php echo trim($value["nm_prestador"]); ?>
+                                                    </span>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                        <div class="content-space">&nbsp;</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2" id="content-mais">
+                                    <a href="javascript:void(0);" class="btn btn-info btn-lg btn-rect" onclick="addPrestador();" style="float:left; position:absolute; bottom:14px; clear:left">+</a>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Código</th>
+                                            <th>Nome Prestador</th>
+                                            <th>Ação</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-lg-9"></div>
+                                <div class="col-lg-3">
+                                    <a href="javascript:void(0);" class="btn btn-success btn-lg btn-rect" onclick="submitCadastroConsulta();">Cadastrar</a>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

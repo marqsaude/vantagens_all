@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/gogs/css/assinatura/signature-pad.css">
+
+<div id="signature-pad" class="m-signature-pad">
+    <div class="m-signature-pad--body">
+        <canvas></canvas>
+    </div>
+    <div class="m-signature-pad--footer">
+        <div class="description">Sign above</div>
+        <button type="button" class="button back" data-action="back">Voltar</button>
+        <button type="button" class="button clear" data-action="clear">Limpar</button>
+        <button type="button" class="button save" data-action="save-png">Próximo</button>
+    </div>
+</div>
+
+<script src="<?php echo $this->baseUrl(); ?>/site/js/assinatura/signature_pad.js"></script>
+<script src="<?php echo $this->baseUrl(); ?>/site/js/assinatura/app.js"></script>

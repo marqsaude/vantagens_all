@@ -1,0 +1,395 @@
+<?php
+
+$controller = Zend_Controller_Front::getInstance();
+$controlerName = $controller->getRequest()->getControllerName();
+$actionName = $controller->getRequest()->getActionName();
+$read = Zend_Auth::getInstance()->getStorage()->read();
+
+$session_login = new Zend_Session_Namespace('Login');
+$actual_link = 'http://'.$_SERVER['HTTP_HOST'];
+
+?>
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title> vantagens</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="<?php echo $this->baseUrl(); ?>/site/images/favicon.ico">
+    <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/def/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/def/css/jquery-ui.css"/>
+    <!--[if lte IE 8]><script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/def/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/def/css/fonts.css" />
+    <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/def/css/main.css" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/def/css/ie8.css" /><![endif]-->
+    <!--[if lte IE 9]><link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/def/css/ie9.css" /><![endif]-->
+
+    <?php if(Util_Util::isMobile()): ?>
+        <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/def/css/mobile-btn.css" />
+    <?php endif; ?>
+
+    <!-- Scripts -->
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/def/js/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/site/js/jquery-ui.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/def/js/jquery.scrollex.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/def/js/jquery.scrolly.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/def/js/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/site/js/jquery.mask.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/def/js/skel.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/def/js/util.js"></script>
+    <!--[if lte IE 8]><script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/def/js/ie/respond.min.js"></script><![endif]-->
+
+    <?php if(Util_Util::isMobile()): ?>
+        <!--script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/def/js/skel.min.js"></script-->
+        <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/def/js/menu/skel.min.js"></script>
+        <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/def/js/menu/skel-layers.min.js"></script>
+        <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/def/js/menu/init.js"></script>
+        <!--noscript>
+            <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/def/css/menu/skel.css" />
+            <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/def/css/menu/style.css" />
+            <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/def/css/menu/style-xlarge.css" />
+        </noscript-->
+    <?php endif; ?>
+    <style>
+        #dialog_mobile_login{
+            position: fixed;
+            left: -9.7%;
+            top: 7%;
+            width: 100%;
+            height: 357px;
+            transform: translate(-50%, -50%);
+            display: none;
+            z-index: 999999;
+            background: #ffffff;
+            color: #373737;
+        }
+    </style>
+
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/global.js"></script>
+</head>
+<body class="landing">
+<?php if(Util_Util::isMobile()): ?>
+    <div id="black-mask-mobile" class="modal-backdrop fade in modal-backdrop-mobile" style="display: none;z-index: 99998 !important;"></div>
+    <div id="dialog_mobile_login" title="Login">
+        <div class="content-mobile-login">
+            <div class="title-mobile-login">
+                <div class="text-esqueceu-senha">Logar com sua conta MarqSaúde + Vantagens</div>
+            </div>
+            <div class="close-mobile-login">
+                <a href="javascript:void(0);" onclick="closeLoginMobile();">
+                    <i class="icon fa-close fa-2x"></i>
+                </a>
+            </div>
+
+            <div class="body-modal-login">
+                <form class="form-inline" method="post" id="form-login-mobile" onSubmit="return loginMobile(this);">
+                    <input type="text" class="input-small" placeholder="Email" name="user" required="required" />
+                    <input type="password" class="input-small" placeholder="Senha" name="passwd" required="required" />
+                    <button type="submit" id="btn_login_mobile" style="">Entrar</button>
+                </form>
+                <a href="javascript:void(0);" onclick="esquecerSenha();">Esqueceu a senha?</a>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+<?php if(Util_Util::isMobile()): ?>
+    <div class="content-mobile-btn">
+        <div class="row-mobile-btn">
+            <a class="whatsapp-mobile-btn" href="whatsapp://send?phone=5561996681445&text=Oi" target="_blank">
+                <div style="width: 100%; height: 100%;">
+                    <img style="margin-top: 10px;" src="<?php echo $this->baseUrl(); ?>/def/images/whatsapp.png" width="57"/>
+                    <span>WhatsApp</span>
+                </div>
+            </a>
+        </div>
+        <div class="row-mobile-btn">
+            <a class="cel-mobile-btn" href="tel:6135613649">
+                <div style="width: 100%; height: 100%;">
+                    <i class="icon fa-phone fa-3x"></i>
+                    <span>Ligue</span>
+                </div>
+            </a>
+        </div>
+    </div>
+<?php else: ?>
+    <div style="position:fixed; bottom: 0px; z-index: 99999; width: 100%; opacity: 0.77; background: linear-gradient(#52ce5f, #2bb641); height: 47px;">
+        <a href="<?php if(Util_Util::isMobile()): ?>whatsapp://send?phone=5561996681445&text=Oi<?php else: ?>https://api.whatsapp.com/send?phone=5561996681445<?php endif; ?>" target="_blank" id="link-web-whatsapp" <?php if(Util_Util::getBrowserName()=="Chrome"): ?>style="margin-left: 21px !important;"<?php endif; ?>></a>
+        <span style="margin-left: 77px; margin-top: 11px; float: left;">Fale conosco !</span>
+    </div>
+<?php endif; ?>
+
+<?php if(Util_Util::isMobile()): ?>
+    <header id="header">
+        <h1><a href="<?php echo $this->baseUrl(); ?>/">MarqSaúde Vantagens</a></h1>
+        <nav id="nav">
+            <ul>
+                <li class="item <?php if($controlerName=="index") :?>active<?php  endif; ?>">
+                    <a href="<?php echo $this->baseUrl(); ?>/">Início</a>
+                </li>
+                <?php if(!$session_login->logado): ?>
+                    <li class="item">
+                        <a href="<?php echo $this->baseUrl(); ?>/default/cliente">Cadastro</a>
+                    </li>
+                <?php endif; ?>
+                <li class="item <?php if($controlerName=="galeria") :?>active<?php  endif; ?>">
+                    <a href="<?php echo $this->baseUrl(); ?>/default/galeria">Galeria</a>
+                </li>
+                <li class="item <?php if($controlerName=="perguntas") :?>active<?php  endif; ?>">
+                    <a href="<?php echo $this->baseUrl(); ?>/default/perguntas">Perguntas</a>
+                </li>
+                <li class="item <?php if($controlerName=="contato") :?>active<?php  endif; ?>">
+                    <a href="<?php echo $this->baseUrl(); ?>/default/contato">Contato</a>
+                </li>
+                <li class="item has-sub-menu <?php if($controlerName=="sobre" || $controlerName=="por-dentro" || $controlerName=="prestador" || $controlerName=="mais-vantagens") :?>active<?php  endif; ?>">
+                    <a href="javascript:void(0);" id="sobre-menu" onclick="ajustaMenu(this);">Sobre</a>
+                </li>
+                <li class="separador-menu"><a href="<?php echo $this->baseUrl(); ?>/sobre/">&nbsp;&nbsp;<i class="icon fa-caret-right"></i> Sobre</a></li>
+                <li class="separador-menu"><a href="<?php echo $this->baseUrl(); ?>/sobre/missao-visao-valores">&nbsp;&nbsp;<i class="icon fa-caret-right"></i> Missão, Visão e Valores</a></li>
+                <li class="separador-menu"><a href="<?php echo $this->baseUrl(); ?>/por-dentro/">&nbsp;&nbsp;<i class="icon fa-caret-right"></i> Fique por dentro</a></li>
+                <li class="separador-menu"><a href="<?php echo $this->baseUrl(); ?>/prestador/">&nbsp;&nbsp;<i class="icon fa-caret-right"></i> Parceiros</a></li>
+                <li class="separador-menu"><a href="<?php echo $this->baseUrl(); ?>/mais-vantagens/">&nbsp;&nbsp;<i class="icon fa-caret-right"></i> + Vantagens</a></li>
+                <li class="item simulacao-menu">
+                    <a href="<?php echo $this->baseUrl(); ?>/simulacao">Simulação</a>
+                </li>
+                <li class="item">
+                    <?php if(isset($session_login->logado) && $session_login->logado==true) :?>
+                        <a href="<?php echo $this->baseUrl(); ?>/admin/" style="font-size: 10px; text-transform: unset;">
+                            <?php echo $session_login->nmPaciente; ?>
+                        </a>
+                    <?php else :?>
+                        <a href="javascript:void(0);" onclick="openMobileLogin();">Login</a>
+                    <?php endif; ?>
+                </li>
+            </ul>
+        </nav>
+    </header>
+<?php endif; ?>
+
+<!-- Page Wrapper -->
+<div id="page-wrapper">
+
+    <div style="display: none" id="url-page"><?php echo $this->baseUrl(); ?></div>
+    <div style="display: none" id="controller"><?php echo $controlerName; ?></div>
+    <?php if(!Util_Util::isMobile()): ?>
+        <div id="black-mask" class="modal-backdrop fade in" style="display: none;"></div>
+        <!-- Header -->
+        <header id="header" class="alt">
+            <h1><a href="<?php echo $this->baseUrl(); ?>/"><img src="<?php echo $this->baseUrl(); ?>/def/images/vantagens.png"/></a></h1>
+            <nav id="nav">
+                <ul>
+                    <li class="item <?php if($controlerName=="index") :?>active<?php  endif; ?>">
+                        <a href="<?php echo $this->baseUrl(); ?>/">Início</a>
+                    </li>
+                    <?php if(!$session_login->logado): ?>
+                        <li class="item">
+                            <a href="<?php echo $this->baseUrl(); ?>/default/cliente">Cadastro</a>
+                        </li>
+                    <?php endif; ?>
+                    <li class="item <?php if($controlerName=="galeria") :?>active<?php  endif; ?>">
+                        <a href="<?php echo $this->baseUrl(); ?>/default/galeria">Galeria</a>
+                    </li>
+                    <li class="item <?php if($controlerName=="perguntas") :?>active<?php  endif; ?>">
+                        <a href="<?php echo $this->baseUrl(); ?>/default/perguntas">Perguntas</a>
+                    </li>
+                    <li class="item <?php if($controlerName=="contato") :?>active<?php  endif; ?>">
+                        <a href="<?php echo $this->baseUrl(); ?>/default/contato">Contato</a>
+                    </li>
+                    <li class="item has-sub-menu <?php if($controlerName=="sobre" || $controlerName=="por-dentro" || $controlerName=="prestador" || $controlerName=="mais-vantagens") :?>active<?php  endif; ?>">
+                        <a href="javascript:void(0);" id="sobre-menu">Sobre</a>
+                        <ul class="sub-menu">
+                            <li><a href="<?php echo $this->baseUrl(); ?>/sobre/">Sobre</a></li>
+                            <li><a href="<?php echo $this->baseUrl(); ?>/sobre/missao-visao-valores">Missão, Visão e Valores</a></li>
+                            <li><a href="<?php echo $this->baseUrl(); ?>/por-dentro/">Fique por dentro</a></li>
+                            <li><a href="<?php echo $this->baseUrl(); ?>/prestador/">Parceiros</a></li>
+                            <li><a href="<?php echo $this->baseUrl(); ?>/mais-vantagens/">+ Vantagens</a></li>
+                        </ul>
+                    </li>
+                    <li class="item simulacao-menu">
+                        <a href="<?php echo $this->baseUrl(); ?>/simulacao">Simulação</a>
+                    </li>
+                    <li class="item">
+                        <?php if(isset($session_login->logado) && $session_login->logado==true) :?>
+                            <a href="<?php echo $this->baseUrl(); ?>/admin/" style="font-size: 10px; text-transform: unset;">
+                                <?php echo $session_login->nmPaciente; ?>
+                            </a>
+                        <?php else :?>
+                            <a href="javascript:void(0);" onclick="openLogin(1);">Login</a>
+                            <div id="dialog_login" title="Login">
+                                <div id="modal_logar">
+                                    <div class="close-modal-login">
+                                        <a href="javascript:void(0);" onclick="closeLogin(1);">
+                                            <i class="icon fa-close"></i>
+                                        </a>
+                                    </div>
+                                    <div class="title-modal-login">
+                                        <div class="text-esqueceu-senha">Logar com sua conta MarqSaúde + Vantagens</div>
+                                    </div>
+                                    <!--Modal Body-->
+                                    <div class="body-modal-login">
+                                        <form class="form-inline" method="post" id="form-login" onSubmit="return login(this);">
+                                            <input type="text" class="input-small" placeholder="Email" name="user" required="required" />
+                                            <input type="password" class="input-small" placeholder="Senha" name="passwd" required="required" />
+                                            <button type="submit" id="btn_login" style="">Entrar</button>
+                                        </form>
+                                        <a href="javascript:void(0);" onclick="esquecerSenha();">Esqueceu a senha?</a>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+    <?php endif; ?>
+    <?php //if(Util_Util::isMobile()): ?>
+        <!--menu style="position: fixed;">
+            <ul>
+                <li>
+                    <a href="<?php echo $this->baseUrl(); ?>/">Início</a>
+                </li>
+                <?php if(!$session_login->logado): ?>
+                    <li>
+                        <a href="<?php echo $this->baseUrl(); ?>/default/cliente">Cadastro</a>
+                    </li>
+                <?php endif; ?>
+                <li>
+                    <a href="<?php echo $this->baseUrl(); ?>/default/galeria">Galeria</a>
+                </li>
+                <li>
+                    <a href="<?php echo $this->baseUrl(); ?>/default/perguntas">Perguntas</a>
+                </li>
+                <li>
+                    <a href="<?php echo $this->baseUrl(); ?>/default/contato">Contato</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);">Simulação</a>
+                </li>
+                <li>
+                    <?php //if(isset($session_login->logado) && $session_login->logado==true) :?>
+                        <a href="<?php //echo $this->baseUrl(); ?>/admin/" style="font-size: 10px; text-transform: unset;">
+                            <?php //echo $session_login->nmPaciente; ?>
+                        </a>
+                    <?php //else :?>
+                        <a href="javascript:void(0);" onclick="openLogin(1);">Login</a>
+                        <div id="dialog_login" title="Login">
+                            <div id="modal_logar">
+                                <div class="close-modal-login">
+                                    <a href="javascript:void(0);" onclick="closeLogin(1);">
+                                        <i class="icon fa-close"></i>
+                                    </a>
+                                </div>
+                                <div class="title-modal-login">
+                                    <div class="text-esqueceu-senha">Logar com sua conta MarqSaúde + Vantagens</div>
+                                </div>
+
+                                <div class="body-modal-login">
+                                    <form class="form-inline" method="post" id="form-login" onSubmit="return login(this);">
+                                        <input type="text" class="input-small" placeholder="Email" name="user" required="required" />
+                                        <input type="password" class="input-small" placeholder="Senha" name="passwd" required="required" />
+                                        <button type="submit" id="btn_login" style="">Entrar</button>
+                                    </form>
+                                    <a href="javascript:void(0);" onclick="esquecerSenha();">Esqueceu a senha?</a>
+                                </div>
+                            </div>
+                        </div>
+                    <?php //endif; ?>
+                </li>
+            </ul>
+        </menu-->
+    <?php //endif; ?>
+
+    <?php echo $this->layout()->content; ?>
+
+    <!-- CTA -->
+    <section id="cta" class="wrapper style4">
+        <div class="inner">
+            <header>
+                <h2>Não é um plano de saúde</h2>
+                <p>Conheça mais os locais em que você será atendido com seu Cartão MarqSaúde + Vantagens.</p>
+            </header>
+            <ul class="actions vertical">
+                <li><a href="<?php echo $this->baseUrl(); ?>/mais-vantagens" class="button fit special">+ Vantagens</a></li>
+                <li><a href="<?php echo $this->baseUrl(); ?>/simulacao" class="button fit special2">Simulação</a></li>
+                <li><a href="<?php echo $this->baseUrl(); ?>/prestador" class="button fit">Parceiros</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <?php if(Util_Util::isMobile()): ?>
+        <br/><br/><br/><br/><br/><br/>
+    <?php endif; ?>
+
+    <?php if(Util_Util::isMobile()): ?>
+        <!-- Footer -->
+        <footer id="footer" style="padding: 0.7em 0.1em 0.7em 0.3em; text-align: left;">
+            <div>
+                <i class="icon fa-home"></i>&nbsp; QS 03, Lote 03,05,07, sobreloja 113 - Ed. Patio Capital - Águas Claras, Brasília - DF.
+            </div>
+            <div>
+                <i class="icon fa-map-marker"></i>&nbsp; CEP: 71953-000
+            </div>
+            <div>
+                <i class="icon fa-phone"></i>&nbsp; (61) 2026-1313
+            </div>
+            <div>
+                <i class="icon fa-whatsapp fa-whatsapp-icon"></i>&nbsp; (61) 99668-1445
+            </div>
+            <div style="width: 100%; height: 77px;">&nbsp;</div>
+        </footer>
+    <?php else: ?>
+        <!-- Footer -->
+        <footer id="footer">
+            <div class="endereco-footer">
+                <div>
+                    <i class="icon fa-home"></i>&nbsp; QNC 15 Lote 14 2º andar Taguatinga - DF (Atrás do Hospital Anchieta).<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QS 03 Lote 03, 05 e 07 Sobreloja 113 - Ed. Pátio Capital - Águas Claras, Brasília - DF.<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ponto de Referência: Ao lado da Feibox e Taguatinga Shopping - Pistão Sul.
+                </div>
+                <div>
+                    <i class="icon fa-map-marker"></i>&nbsp; CEP: 72.115-650
+                </div>
+                <div>
+                    <i class="icon fa-phone"></i>&nbsp; (61) 2026-1313
+                </div>
+                <div>
+                    <i class="icon fa-whatsapp fa-whatsapp-icon"></i>&nbsp; (61) 99668-1445
+                </div>
+            </div>
+            <div class="icons-footer">
+                <ul class="icons">
+                    <li><a href="https://twitter.com/MarqSaude" class="icon fa-twitter" target="_blank"><span class="label">Twitter</span></a></li>
+                    <li><a href="https://www.facebook.com/pg/MarqSaudepravoce/about/" class="icon fa-facebook" target="_blank"><span class="label">Facebook</span></a></li>
+                    <li><a href="https://www.instagram.com/marqsaude/" class="icon fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+                    <li><a href="<?php echo $this->baseUrl(); ?>/default/contato" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+                </ul>
+                <ul class="copyright">
+                    <li>&copy; 2018</li><li>Design: <a href="https://www.facebook.com/felipefelks">Felipe Braga</a></li>
+                </ul>
+            </div>
+        </footer>
+    <?php endif; ?>
+
+</div>
+
+<!-- Scripts -->
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/def/js/main.js"></script>
+<script>
+    $(function() {
+        setInterval(function () {
+            testando();
+        }, 3000);
+    });
+    function testando(){
+        var htmlContentMobile = $(".content-mobile-btn").html();
+        $(".content-mobile-btn").remove();
+        if ( !$( "#content-mobile-btn" ).length ) {
+            var html = '<div id="content-mobile-btn" class="content-mobile-btn"></div>';
+            $("body").prepend(html);
+        }
+        $("#content-mobile-btn").html(htmlContentMobile);
+    }
+</script>
+
+</body>
+</html>

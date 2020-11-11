@@ -1,0 +1,72 @@
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/usuario/edit.js"></script>
+
+<div class="row">
+    <div class="col-lg-4">&nbsp;</div>
+    <div class="col-lg-4"><h4 style="text-align: center;">Trocar Senha</h4></div>
+    <div class="col-lg-4">&nbsp;</div>
+</div>
+<div class="row">&nbsp;</div>
+<form role="form" onSubmit="return validaEditarUsuario(this);" name="editUsuario" id="editUsuario">
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-5 form-group">
+            <input type="text" class="form-control" name="nm_usuario" placeholder="Nome do Usuário" value="<?php echo $this->dataUsuario["nm_usuario"]; ?>" disabled />
+        </div>
+        <div class="col-lg-5 form-group">
+            <input type="text" class="form-control" name="nm_login" placeholder="Nome do Login" value="<?php echo $this->dataUsuario["nm_login"]; ?>" disabled />
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-5 form-group">
+            <input type="password" class="form-control" name="nm_senha" placeholder="Senha"/>
+        </div>
+        <div class="col-lg-5 form-group">
+            <input type="password" class="form-control" name="nm_confirma_senha" placeholder="Confirma Senha"/>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10 form-group">
+            <?php if($this->euMesmo==1 || ($this->coTipoLogin==3 || $this->coTipoLogin==4 || $this->coTipoLogin==5)) :?>
+                <select class="form-control" name="tipoUsuario" <?php if($this->coTipoLogin==4) {?>style="display: none;"<?php } ?> disabled>
+                    <?php foreach($this->dataTipoUsuario as $value) :?>
+                        <?php if($this->dataUsuario["co_tipo_usuario"]==$value["co_seq_tipo_usuario"]) {?>
+                            <option value="<?php echo $value["co_seq_tipo_usuario"]; ?>" selected><?php echo $value["nm_tipo_usuario"]; ?></option>
+                        <?php }else{ ?>
+                            <option value="<?php echo $value["co_seq_tipo_usuario"]; ?>"><?php echo $value["nm_tipo_usuario"]; ?></option>
+                        <?php } ?>
+                    <?php endforeach; ?>
+                </select>
+            <?php else :?>
+                <select class="form-control" name="tipoUsuario" <?php if($this->coTipoLogin==4) {?>style="display: none;"<?php } ?>>
+                    <option value="0">Selecione um tipo de usuário</option>
+                    <?php foreach($this->dataTipoUsuario as $value) :?>
+                        <?php if($this->dataUsuario["co_tipo_usuario"]==$value["co_seq_tipo_usuario"]) {?>
+                            <option value="<?php echo $value["co_seq_tipo_usuario"]; ?>" selected><?php echo $value["nm_tipo_usuario"]; ?></option>
+                        <?php }else{ ?>
+                            <option value="<?php echo $value["co_seq_tipo_usuario"]; ?>"><?php echo $value["nm_tipo_usuario"]; ?></option>
+                        <?php } ?>
+                    <?php endforeach; ?>
+                </select>
+            <?php endif; ?>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-3">
+            <?php if($this->coTipoLogin!=4) :?>
+                <a href="<?php echo $this->baseUrl(); ?>/admin/usuario/funcionario" class="btn btn-warning btn-flat btn-rect"><i class="icon-reply"></i>&nbsp;Voltar</a>
+            <?php endif; ?>
+        </div>
+        <div class="col-lg-5"></div>
+        <div class="col-lg-2">
+            <a href="javascript:void(0);" class="btn btn-success btn-flat btn-rect" onclick="submitEditarUsuario();" style="float: right;">Salvar</a>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+    <input type="hidden" value="<?php echo $this->dataUsuario["co_seq_usuario"]; ?>" name="co_seq_usuario" id="co_seq_usuario"/>
+</form>

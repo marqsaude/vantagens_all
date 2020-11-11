@@ -1,0 +1,73 @@
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/procedimento/add.js"></script>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Cadastrar de Procedimento
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <form role="form" onSubmit="return validaCadastroProcedimento(this);" name="addProcedimento" id="addProcedimento">
+                        <div id="dataTables-example_wrapper2" class="dataTables_wrapper form-inline" role="grid">
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-sm-2">&nbsp;</div>
+                                <div class="col-sm-8">
+                                    <div class="form-group input-group" style="width: 610px !important;">
+                                        <span class="input-group-addon" style="float: left; height: 34px; width: 40px;">R$</span>
+                                        <input style="float: left !important; width: 77%;" class="form-control" id="nu_valor" type="text" name="nu_valor" placeholder="Valor do Procedimento" onkeypress="return validaTeclado(this, event, '999.999,99');" onkeyup="maskIt(this, event, '999.999,99', true)" onfocus="setFieldPosition(this)" />
+                                        <!--span style="float: left; height: 34px; width: 40px;" class="input-group-addon">.00</span-->
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">&nbsp;</div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-sm-2">&nbsp;</div>
+                                <div class="col-sm-8">
+                                    <div class="form-group input-group" style="width: 610px !important;">
+                                        <span class="input-group-addon" style="float: left; height: 34px; width: 40px;">R$</span>
+                                        <input style="float: left !important; width: 77%;" class="form-control" id="nu_valor_real" type="text" name="nu_valor_real" placeholder="Valor Real do Procedimento" onkeypress="return validaTeclado(this, event, '999.999,99');" onkeyup="maskIt(this, event, '999.999,99', true)" onfocus="setFieldPosition(this)" />
+                                        <!--span style="float: left; height: 34px; width: 40px;" class="input-group-addon">.00</span-->
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">&nbsp;</div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-lg-2">&nbsp;</div>
+                                <div class="col-lg-8 form-group">
+                                    <select class="form-control" name="tipo_procedimento" id="select-tipo_procedimento" onChange="validaTipoProcedimento(this);">
+                                        <option value="0">Selecione um Tipo de Procedimento...</option>
+                                        <option value="1">Exames</option>
+                                        <option value="2">Consultas</option>
+                                        <option value="3">Exames Laboratoriais</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-2">&nbsp;</div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-lg-2"></div>
+                                <div class="col-lg-8 form-group" id="procedimento_add">
+
+                                </div>
+                                <div class="col-lg-2"></div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-lg-9"></div>
+                                <div class="col-lg-3">
+                                    <a href="javascript:void(0);" class="btn btn-success btn-lg btn-rect" onclick="submitCadastroProcedimento();">Cadastrar</a>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+.spotlight{
+    background-color: rgba(255, 255, 255, 1) !important;
+}
+
+.spotlight .row-fluid{
+    padding-top: 3.7em;
+    color: #474747 !important;
+    padding-bottom: 4.7em;
+}
+
+.spotlight .row-fluid .span8 b{
+    color: #474747 !important;
+}
+
+.column-left{
+    width: 7%;
+    float: left;
+}
+
+.column-right{
+    width: 7%;
+    float: left;
+}
+
+.column-center{
+    width: 86%;
+    float: left;
+    padding-bottom: 2em;
+}
+
+.wrapper.style2 {
+    background-color: transparent;
+}
+
+.span10 b{
+    color: #373737;
+}
+
+#text-sobre{
+    box-shadow: inset 0px 3px 21px rgba(0, 0, 0, 0.77);
+}

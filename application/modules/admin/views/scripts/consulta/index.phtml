@@ -1,0 +1,35 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Lista de Consulta
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome Consulta</th>
+                    <th>Ação</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php $i=1; ?>
+                <?php foreach($this->dataConsulta as $value): ?>
+                    <tr>
+                        <td width="5%"><?php echo $i; ?></td>
+                        <td width="82%"><?php echo $value["nm_consulta"]; ?></td>
+                        <td width="13%">
+                            <a href="<?php echo $this->baseUrl(); ?>/admin/consulta/view/id/<?php echo $value["co_seq_consulta"]; ?>"><i class="icon-eye-open" title="Visualizar"></i></a>&nbsp;&nbsp;
+                            <?php if($this->session_login->coTipoLogin==1 || $this->session_login->coTipoLogin==2) :?>
+                                <a href="<?php echo $this->baseUrl(); ?>/admin/consulta/edit/id/<?php echo $value["co_seq_consulta"]; ?>"><i class="icon-edit" title="Editar"></i></a>&nbsp;&nbsp;
+                                <a href="javascript:void(0);" for="consulta" onclick="excluirRegistro(<?php echo $value["co_seq_consulta"]; ?>, this);" style="color: #d9534f;"><i class="icon-trash"></i></a>&nbsp;&nbsp;
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                    <?php $i++; ?>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

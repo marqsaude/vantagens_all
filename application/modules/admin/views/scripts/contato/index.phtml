@@ -1,0 +1,36 @@
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/exame/index.js"></script>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Lista de Contatos
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php $i=1; ?>
+                <?php if(!empty($this->dataContato)) :?>
+                    <?php foreach($this->dataContato as $value): ?>
+                        <tr>
+                            <td width="5%"><?php echo $i; ?></td>
+                            <td width="42%"><?php echo $value["nm_nome"]; ?></td>
+                            <td width="42%"><?php echo $value["nm_email"]; ?></td>
+                            <td width="11%">
+                                <a href="<?php echo $this->baseUrl(); ?>/admin/contato/view/id/<?php echo $value["co_seq_contato"]; ?>"><i class="icon-eye-open" title="Visualizar"></i></a>&nbsp;&nbsp;
+                            </td>
+                        </tr>
+                        <?php $i++; ?>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

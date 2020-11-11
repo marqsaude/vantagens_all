@@ -1,0 +1,145 @@
+<script type="text/javascript">
+    var countDependentes=1;
+    var dataTipoDependentes=null;
+    var array = {"id": 1};
+</script>
+<!--script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/cliente/extension/cep.js"></script-->
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/dependentes/add.js"></script>
+
+<div class="row">
+    <div class="col-lg-2">
+        <a href="javascript:void(0)" onclick="goBack();" class="btn btn-warning btn-flat btn-rect"><i class="icon-reply"></i>&nbsp;Voltar</a>
+    </div>
+    <div class="col-lg-10"></div>
+</div>
+<div class="row">
+    <div class="col-lg-12"></div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Adicionar Dependentes
+            </div>
+            <div class="table-responsive" id="cartao-vantagem">
+                <form id="dependenteCliente" onSubmit="return validaDependentes(this);" action="javascript:void(0);" method="post" class="contact-form">
+                    <div id="dataTables-example_wrapper2" class="dataTables_wrapper form-inline" role="grid">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                &nbsp;
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="status alert alert-success" style="display: none"></div>
+                            </div>
+                        </div>
+                        <div class="row dependencia">
+                            <br/>
+                        </div>
+                        <div class="row dependencia">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-8">
+                                <input type="text" name="nm_dependente" id="nm_cliente" value="" class="form-control" size="30" maxlength="80" placeholder="Nome"/>
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                        <br/>
+                        <div class="row dependencia">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-4">
+                                <input type="text" name="nu_rg" id="nu_rg" value="" class="form-control nu_rg" size="30" placeholder="RG"/>
+                                <br/><br/>
+                                <input type="text" name="dt_nascimento" id="dt_nascimento" value="" class="form-control date-picker" size="30" placeholder="Data Nascimento"/>
+                                <br/><br/>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" name="nu_cpf" id="nu_cpf" value="" class="form-control nu_cpf" size="30" placeholder="CPF"/>
+                                <br/><br/>
+                                <select name="tipo_dependente" id="tipo_dependente" class="form-control tipo_dependente" style="float: left; margin-bottom: 20px;">
+                                </select>
+                                <br/><br/>
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                        <div class="row dependencia">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-8">
+                                <input type="text" name="nm_email" id="nm_email" value="" class="form-control" size="30" maxlength="50" placeholder="Email"/>
+                                <br/><br/>
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                        <!--div class="row dependencia">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-8">
+                                <input type="text" name="nu_cep" id="nu_cep" value="" class="form-control nu_cep" size="30" placeholder="CEP" onkeydown="cepKeyDown(this)" onkeyup="cepKeyUp(this)"/>
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div-->
+                        <div class="row">
+                            <div class="col-sm-12"><br/></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-4">
+                                <div class="load-cep"></div>
+                                <div class="logradouro-cep form-linha"></div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="bairro-cep form-linha"></div>
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-4">
+                                <div class="localidade-cep form-linha"></div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="uf-cep form-linha"></div>
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12"><br/></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-4">
+                                <div class="complemento-cep form-linha"></div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="numero-cep form-linha"></div>
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <br/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                &nbsp;
+                            </div>
+                            <div class="col-sm-4">
+                                &nbsp;
+                            </div>
+                            <div class="col-lg-4">
+                                <a href="javascript:void(0);" style="float: right;" class="btn btn-success btn-lg btn-rect" onclick="submitCadastroDependenteCliente();">Adicionar</a>
+                            </div>
+                            <div class="col-sm-2">
+                                &nbsp;
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12"><br/></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

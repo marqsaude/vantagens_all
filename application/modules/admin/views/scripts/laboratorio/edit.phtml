@@ -1,0 +1,43 @@
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/laboratorio/edit.js"></script>
+
+<div class="row">
+    <div class="col-lg-12">
+        <a href="javascript:void(0)" onclick="goBack();" class="btn btn-warning btn-flat btn-rect"><i class="icon-reply"></i>&nbsp;Voltar</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">&nbsp;</div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Editar Laboratório
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <div class="row">&nbsp;</div>
+                    <div class="row">
+                        <form role="form" onSubmit="return validaEditarLaboratorio(this);" name="editLaboratorio" id="editLaboratorio">
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-10 form-group">
+                                <div class="form-group input-group">
+                                    <input type="text" class="form-control" name="nm_laboratorio" placeholder="Nome do Laboratório" value="<?php echo $this->dataLaboratorio["nm_laboratorio"]; ?>"/>
+                                    <input type="hidden" name="co_seq_laboratorio" value="<?php echo $this->dataLaboratorio["co_seq_laboratorio"]; ?>">
+                                    <span class="input-group-btn">
+                                        <button onclick="submitEditarLaboratorio();" class="btn btn-default" type="button" style="background-color: #5cb85c; color: #FFFFFF;">
+                                            Salvar
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-1"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

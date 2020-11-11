@@ -1,0 +1,314 @@
+<?php
+
+$controller = Zend_Controller_Front::getInstance();
+$controlerName = $controller->getRequest()->getControllerName();
+$actionName = $controller->getRequest()->getActionName();
+$read = Zend_Auth::getInstance()->getStorage()->read();
+$session_login = new Zend_Session_Namespace('Login');
+
+?>
+
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="UTF-8" />
+    <title>Q Saúde Admin</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <![endif]-->
+    <link rel="icon" href="<?php echo $this->baseUrl(); ?>/site/images/icone_q_saude.ico">
+    <!-- GLOBAL STYLES -->
+    <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/plugins/bootstrap/css/bootstrap.mini.css" />
+    <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/css/main.css" />
+    <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/css/theme.css" />
+    <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/css/MoneAdmin.css" />
+    <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/plugins/Font-Awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/css/font-awesome.css" />
+    <!--END GLOBAL STYLES -->
+    <!-- PAGE LEVEL STYLES -->
+    <link href="<?php echo $this->baseUrl(); ?>/adm/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+    <link href="<?php echo $this->baseUrl(); ?>/adm/css/layout2.css" rel="stylesheet" />
+    <link href="<?php echo $this->baseUrl(); ?>/adm/plugins/flot/examples/examples.css" rel="stylesheet" />
+    <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/plugins/timeline/timeline.css" />
+    <link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/css/jquery-ui.css" />
+    <!-- END PAGE LEVEL  STYLES -->
+
+    <!-- GLOBAL SCRIPTS -->
+    <!--script src="<?php echo $this->baseUrl(); ?>/adm/js/jquery-3.2.1.js"></script-->
+    <script src="<?php echo $this->baseUrl(); ?>/adm/js/jquery-2.0.3.min.js"></script>
+
+    <!-- END GLOBAL SCRIPTS -->
+
+    <!-- PAGE LEVEL SCRIPTS -->
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/global.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/site/js/jquery.mask.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- END PAGE LEVEL SCRIPTS -->
+
+    <!-- SCRIPTS LIVRE -->
+    <script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/main.js"></script>
+    <!-- END SCRIPTS LIVRE -->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+<body class="padTop53 " >
+
+<div class="data" style="display: none">
+    <div id="url-page"><?php echo $this->baseUrl(); ?></div>
+    <div id="user-type"><?php echo $session_login->coTipoLogin; ?></div>
+</div>
+
+<!-- MAIN WRAPPER -->
+<div id="wrap" >
+
+    <!-- HEADER SECTION -->
+    <div id="top">
+
+        <nav class="navbar navbar-inverse navbar-fixed-top " style="padding-top: 10px;">
+            <a data-original-title="Show/Hide Menu" data-placement="bottom" data-tooltip="tooltip" class="accordion-toggle btn btn-primary btn-sm visible-xs" data-toggle="collapse" href="#menu" id="menu-toggle">
+                <i class="icon-align-justify"></i>
+            </a>
+            <!-- LOGO SECTION -->
+            <header class="navbar-header">
+                <a href="<?php echo $this->baseUrl(); ?>/default/" class="navbar-brand" style="margin-bottom: 10px;">
+                    <img src="<?php echo $this->baseUrl(); ?>/site/images/logo_q_saude_admin.png" alt="" width="127"/>
+                </a>
+            </header>
+
+        </nav>
+
+    </div>
+    <!-- END HEADER SECTION -->
+
+    <!-- MENU SECTION -->
+    <div id="left" >
+        <div class="media user-media well-small">
+            <br />
+            <div class="media-body">
+                <h5 class="media-heading"> <?php echo $session_login->nmPaciente; ?></h5>
+            </div>
+            <br />
+        </div>
+        <ul id="menu" class="collapse">
+            <li class="panel <?php if($controlerName=="index"){echo 'active';}?>">
+                <a href="<?php echo $this->baseUrl(); ?>/admin/index" >
+                    <i class="icon-home"></i> Início
+                </a>
+            </li>
+            <?php if($session_login->coTipoLogin==1 || $session_login->coTipoLogin==2 || $session_login->coTipoLogin==3) :?>
+                <li class="panel <?php if($controlerName=="usuario"){echo 'active';}?>">
+                    <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#component-nav">
+                        <i class="icon-user"> </i> Usuário
+                        <span class="pull-right">
+                          <i class="icon-angle-left"></i>
+                        </span>
+                    </a>
+                    <ul class="collapse" id="component-nav">
+                        <li class=""><a href="<?php echo $this->baseUrl(); ?>/admin/usuario/add"><i class="icon-angle-right"></i> Cadastrar </a></li>
+                        <li class=""><a href="<?php echo $this->baseUrl(); ?>/admin/usuario"><i class="icon-angle-right"></i> Listar </a></li>
+                    </ul>
+                </li>
+            <?php endif; ?>
+            <?php if($session_login->coTipoLogin==1 || $session_login->coTipoLogin==2 || $session_login->coTipoLogin==3) :?>
+                <li class="panel <?php if($controlerName=="cliente" || $controlerName=="dependente"){echo 'active';}?>">
+                    <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#form-nav">
+                        <i class="icon-male"></i> Cliente
+                        <span class="pull-right">
+                            <i class="icon-angle-left"></i>
+                        </span>
+                    </a>
+                    <ul class="collapse" id="form-nav">
+                        <li class=""><a href="<?php echo $this->baseUrl(); ?>/admin/cliente/index"><i class="icon-angle-right"></i> Listar </a></li>
+                        <li class=""><a href="<?php echo $this->baseUrl(); ?>/admin/cliente/add"><i class="icon-angle-right"></i> Cadastrar </a></li>
+                        <a href="#" data-parent="#DDL-nav" data-toggle="collapse" class="accordion-toggle" data-target="#dependente">
+                            <i class="icon-sitemap"></i>&nbsp; Dependentes
+                            <span class="pull-right" style="margin-right: 20px;">
+                                <i class="icon-angle-left"></i>
+                            </span>
+                        </a>
+                        <ul class="collapse" id="dependente">
+                            <li>
+                                <a href="<?php echo $this->baseUrl(); ?>/admin/dependente/add"><i class="icon-angle-right"></i> Cadastrar </a>
+                            </li>
+                        </ul>
+                    </ul>
+                </li>
+            <?php endif; ?>
+            <?php if($session_login->coTipoLogin==4) :?>
+                <li class="panel <?php if($controlerName=="dependente"){echo 'active';}?>">
+                    <a href="#" data-parent="#DDL-nav" data-toggle="collapse" class="accordion-toggle" data-target="#dependente">
+                        <i class="icon-sitemap"></i>&nbsp; Dependentes
+                                    <span class="pull-right">
+                                        <i class="icon-angle-left"></i>
+                                    </span>
+                    </a>
+                    <ul class="collapse" id="dependente">
+                        <li>
+                            <a href="<?php echo $this->baseUrl(); ?>/admin/dependente/index"><i class="icon-angle-right"></i> Listar </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo $this->baseUrl(); ?>/admin/dependente/add"><i class="icon-angle-right"></i> Cadastrar </a>
+                        </li>
+                    </ul>
+                </li>
+            <?php endif; ?>
+            <?php if($session_login->coTipoLogin==1 || $session_login->coTipoLogin==2) :?>
+                <li class="panel <?php if($controlerName=="caixa"){echo 'active';}?>">
+                    <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#pagesr-nav">
+                        <i class="icon-usd"></i> Caixa
+                        <span class="pull-right">
+                            <i class="icon-angle-left"></i>
+                        </span>
+                    </a>
+                    <ul class="collapse" id="pagesr-nav">
+                        <li><a href="<?php echo $this->baseUrl(); ?>/admin/caixa/index"><i class="icon-angle-right"></i> Listar </a></li>
+                        <li><a href="<?php echo $this->baseUrl(); ?>/admin/caixa/add"><i class="icon-angle-right"></i> Cadastrar </a></li>
+                        <li><a href="<?php echo $this->baseUrl(); ?>/admin/caixa/extrato"><i class="icon-angle-right"></i> Extrato </a></li>
+                    </ul>
+                </li>
+            <?php endif; ?>
+            <li class="panel <?php if($controlerName=="procedimento" || $controlerName=="exame" || $controlerName=="consulta"){echo 'active';}?>">
+                <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#procedimento">
+                    <i class="icon-th-list"></i> Procedimento
+                    <span class="pull-right">
+                        <i class="icon-angle-left"></i>
+                    </span>
+                </a>
+                <ul class="collapse" id="procedimento">
+                    <?php if($session_login->coTipoLogin==1 || $session_login->coTipoLogin==2 || $session_login->coTipoLogin==3) :?>
+                        <li><a href="<?php echo $this->baseUrl(); ?>/admin/procedimento/index"><i class="icon-angle-right"></i> Listar Procedimentos </a></li>
+                        <li><a href="<?php echo $this->baseUrl(); ?>/admin/procedimento/add"><i class="icon-angle-right"></i> Cadastrar Procedimentos </a></li>
+                    <?php endif; ?>
+                    <a href="#" data-parent="#DDL-nav" data-toggle="collapse" class="accordion-toggle" data-target="#exame">
+                        <i class="icon-beaker"></i>&nbsp; Exame
+                        <span class="pull-right" style="margin-right: 20px;">
+                            <i class="icon-angle-left"></i>
+                        </span>
+                    </a>
+                    <ul class="collapse" id="exame">
+                        <li><a href="<?php echo $this->baseUrl(); ?>/admin/exame/index"><i class="icon-angle-right"></i> Listar </a></li>
+                        <li><a href="<?php echo $this->baseUrl(); ?>/admin/exame/add"><i class="icon-angle-right"></i> Cadastrar </a></li>
+                    </ul>
+                    <a href="#" data-parent="#DDL-nav" data-toggle="collapse" class="accordion-toggle" data-target="#consulta">
+                        <i class="icon-stethoscope"></i>&nbsp; Consulta
+                        <span class="pull-right" style="margin-right: 20px;">
+                            <i class="icon-angle-left"></i>
+                        </span>
+                    </a>
+                    <ul class="collapse" id="consulta">
+                        <li><a href="<?php echo $this->baseUrl(); ?>/admin/consulta/index"><i class="icon-angle-right"></i> Listar </a></li>
+                        <li><a href="<?php echo $this->baseUrl(); ?>/admin/consulta/add"><i class="icon-angle-right"></i> Cadastrar </a></li>
+                    </ul>
+                </ul>
+            </li>
+            <li class="panel <?php if($controlerName=="prestador"){echo 'active';}?>">
+                <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#prestador">
+                    <i class="icon-user-md"></i> Prestador
+                    <span class="pull-right">
+                        <i class="icon-angle-left"></i>
+                    </span>
+                </a>
+                <ul class="collapse" id="prestador">
+                    <li><a href="<?php echo $this->baseUrl(); ?>/admin/prestador/index"><i class="icon-angle-right"></i> Listar </a></li>
+                    <?php if($session_login->coTipoLogin==1 || $session_login->coTipoLogin==2 || $session_login->coTipoLogin==3) :?>
+                        <li><a href="<?php echo $this->baseUrl(); ?>/admin/prestador/add"><i class="icon-angle-right"></i> Cadastrar </a></li>
+                    <?php endif; ?>
+                </ul>
+            </li>
+            <li class="panel <?php if($controlerName=="parceiro"){echo 'active';}?>">
+                <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#parceiro">
+                    <i class="icon-link"></i> Parceiros
+                    <span class="pull-right">
+                        <i class="icon-angle-left"></i>
+                    </span>
+                </a>
+                <ul class="collapse" id="parceiro">
+                    <li><a href="<?php echo $this->baseUrl(); ?>/admin/parceiro/index"><i class="icon-angle-right"></i> Listar </a></li>
+                    <?php if($session_login->coTipoLogin==1 || $session_login->coTipoLogin==2) :?>
+                        <li><a href="<?php echo $this->baseUrl(); ?>/admin/parceiro/add"><i class="icon-angle-right"></i> Cadastrar </a></li>
+                    <?php endif; ?>
+                </ul>
+            </li>
+            <?php if($session_login->coTipoLogin==1) :?>
+                <li class="panel <?php if($controlerName=="contrato-gog"){echo 'active';}?>">
+                    <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#contrato-gog">
+                        <i class="icon-file-alt"></i> Contrato Gog
+                        <span class="pull-right">
+                            <i class="icon-angle-left"></i>
+                        </span>
+                    </a>
+                    <ul class="collapse" id="contrato-gog">
+                        <li><a href="<?php echo $this->baseUrl(); ?>/admin/contrato-gog/index"><i class="icon-angle-right"></i> Listar </a></li>
+                        <li><a href="<?php echo $this->baseUrl(); ?>/admin/contrato-gog/add"><i class="icon-angle-right"></i> Cadastrar </a></li>
+                    </ul>
+                </li>
+            <?php endif; ?>
+            <?php if($session_login->coTipoLogin==1 || $session_login->coTipoLogin==2 || $session_login->coTipoLogin==3) :?>
+                <li class="panel <?php if($controlerName=="contato"){echo 'active';}?>">
+                    <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#contato">
+                        <i class="icon-envelope-alt"></i> Contatos
+                        <span class="pull-right">
+                            <i class="icon-angle-left"></i>
+                        </span>
+                    </a>
+                    <ul class="collapse" id="contato">
+                        <li><a href="<?php echo $this->baseUrl(); ?>/admin/contato/index"><i class="icon-angle-right"></i> Listar </a></li>
+                    </ul>
+                </li>
+            <?php endif; ?>
+        </ul>
+    </div>
+    <!--END MENU SECTION -->
+
+    <!--PAGE CONTENT -->
+    <div id="content">
+        <div class="inner" style="min-height: 700px;">
+            <div class="row">&nbsp;</div>
+            <div class="row">&nbsp;</div>
+            <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10">
+                    <?php echo $this->layout()->content; ?>
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+        </div>
+    </div>
+    <!--END PAGE CONTENT -->
+
+    <!--END MAIN WRAPPER -->
+</div>
+
+<!-- FOOTER -->
+<div id="footer">
+    <p>&copy;  Q Saúde &nbsp;2017 &nbsp;</p>
+</div>
+<!--END FOOTER -->
+<script src="<?php echo $this->baseUrl(); ?>/adm/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="<?php echo $this->baseUrl(); ?>/adm/plugins/modernizr-custom.js"></script>
+<!--script src="<?php echo $this->baseUrl(); ?>/adm/plugins/modernizr-2.6.2-respond-1.1.0.min.js"></script-->
+
+<!--script src="<?php echo $this->baseUrl(); ?>/adm/plugins/flot/jquery.flot.js"></script-->
+<!--script src="<?php echo $this->baseUrl(); ?>/adm/plugins/flot/jquery.flot.resize.js"></script-->
+<!--script src="<?php echo $this->baseUrl(); ?>/adm/plugins/flot/jquery.flot.time.js"></script-->
+<!--script  src="<?php echo $this->baseUrl(); ?>/adm/plugins/flot/jquery.flot.stack.js"></script-->
+<script src="<?php echo $this->baseUrl(); ?>/adm/js/for_index.js"></script>
+
+</body>
+
+<!-- END BODY -->
+</html>

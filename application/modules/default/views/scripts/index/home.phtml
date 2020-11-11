@@ -1,0 +1,57 @@
+<link rel="stylesheet" type="text/css" href="<?php echo $this->baseUrl(); ?>/site/css/jquery.simplebanner.css"/>
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/site/js/jquery.simplebanner.js"></script>
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/site/js/index/index.js"></script>
+
+<style>
+    input::-moz-placeholder {
+        font-size: 17px !important;
+        line-height: 23px !important;
+    };
+</style>
+
+<article id="me" class="panel">
+    <header>
+        <div style="margin-top: 10%; float: left;">
+            <h1>
+                <img src="<?php echo $this->baseUrl(); ?>/site/images/logo_q_saude2.png" width="377"/>
+            </h1>
+            <p style="color: #363636; font-family: MarckScript; font-size: 32px;">Pra você</p>
+        </div>
+        <div style="float: left; margin-left: 25%; margin-top: 12%;">
+            <form id="form-login" onSubmit="return login(this);">
+                <div class="row">
+                    <div class="10u$" style="padding: 7px 0 0 25px;"><h3 style="color:#972a2b; font-family:'Tobago';text-shadow: 3px 0px 0px #ffffff, -3px 0px 0px #ffffff, 0px 3px 0px #ffffff, 0px -3px 0px #ffffff;">Login</h3></div>
+                    <div class="10u$" style="padding: 7px 0 0 25px;"><input type="text" name="user" placeholder="Login" style="padding: 0.15em;" /></div>
+                    <div class="10u$" style="padding: 7px 0 0 25px;"><input type="password" name="passwd" placeholder="Senha" style="padding: 0.15em;" /></div>
+                    <div class="6u" style="padding: 1px 0 0 0px;"><a href="#" style="color: #363636; text-decoration: underline; font-size: 10px; padding: 7px 0 0 25px;">Esqueceu Senha?</a></div>
+                    <div class="6u" style="padding: 7px 0 0 19px;"><input type="submit" value="Entrar"  style="padding-top: 5px; padding-left: 10px; padding-bottom: 5px; padding-right: 10px;" /></div>
+                </div>
+            </form>
+        </div>
+    </header>
+    <!--div style="font-family: MarckScript; margin-left: 100px; margin-top: 300px; color: #363636; font-size: 27px;">Para a sua família</div-->
+    <div style="margin-left: 100px; margin-top: 317px;"></div>
+    <div id="siteWpr" style="margin-top: 47px; margin-left: 100px;">
+        <div class="simpleBanner">
+            <div class="bannerListWpr">
+                <ul class="bannerList">
+                    <!--li><img src="<?php echo $this->baseUrl(); ?>/site/images/samples/qsaude.png" width="700" /></li-->
+                    <li><img src="<?php echo $this->baseUrl(); ?>/site/images/samples/faca_cartao.png" width="700" /></li>
+                    <li><img src="<?php echo $this->baseUrl(); ?>/site/images/samples/QSaudeCardPraVC.png" width="700" /></li>
+                    <!--li><img src="<?php echo $this->baseUrl(); ?>/site/images/samples/faca_cartao2.png" width="700" /></li-->
+                    <!--li><img src="<?php echo $this->baseUrl(); ?>/site/images/samples/image5.jpg" width="700" /></li>
+                    <li><img src="<?php echo $this->baseUrl(); ?>/site/images/samples/image6.jpg" width="700" /></li-->
+                </ul>
+            </div>
+            <div class="bannerControlsWpr bannerControlsPrev"><div class="bannerControls"></div></div>
+            <!--div class="bannerIndicators"><ul></ul></div-->
+            <div class="bannerControlsWpr bannerControlsNext"><div class="bannerControls"></div></div>
+        </div>
+    </div>
+
+        <!--img src="<?php echo $this->baseUrl(); ?>/site/images/post-feliz.jpg" style="margin-top: 50%;"/-->
+
+    <a href="#work" class="jumplink pic">
+        <span class="arrow icon fa-chevron-right"></span>
+    </a>
+</article>

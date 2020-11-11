@@ -1,0 +1,98 @@
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/def/css/scripts/simulacao/index.css" type="text/css"/>
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/def/js/scripts/simulacao/index.js"></script>
+
+<div id="loading"></div>
+<?php if(!Util_Util::isMobile()): ?>
+    <section id="contact-page" class="container" xmlns="http://www.w3.org/1999/html">
+<?php else: ?>
+    <section id="contact-page" class="container" xmlns="http://www.w3.org/1999/html" style="width: 100%;">
+<?php endif ?>
+    <div class="title-simulacao">Simulador do cartão MarqSaúde Vantagens </div>
+    <div class="desc-simulacao">Faça uma simulação e veja o valor para adiquirir o cartão MarqSaúde Vantagens</div>
+    <div class="row-fluid">
+        <div class="span12"></div>
+    </div>
+    <div class="row-fluid">
+        <div class="span2"></div>
+        <div class="span8">
+            <div id="sobre-contrato-gog"></div>
+        </div>
+        <div class="span2"></div>
+    </div>
+    <div id="cartao-vantagem">
+        <form onSubmit="return validaSimulacao(this);" action="javascript:void(0);" method="post" class="contact-form" id="main-contact-form" name="contact-form">
+            <div class="row-fluid">
+                <div class="span12">
+                    &nbsp;
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span2"></div>
+                <div class="span8">
+                    <input type="text" name="nm_cliente" id="nm_cliente" value="" class="input-block-level nm_cliente" maxlength="80" placeholder="Nome" />
+                </div>
+                <div class="span2"></div>
+            </div>
+            <div class="row-fluid">
+                <div class="span2"></div>
+                <div class="span8">
+                    <i class="icon fa-angle-down select-fa-vantagem"></i>
+                    <select name="contrato_gog" id="contrato_gog" class="input-block-level form-control" required="required" style="margin-bottom: 11px;">
+                        <option value="0">Escolha o Contrato...</option>
+                        <?php foreach ($this->dataContratoGog as $value): ?>
+                            <?php if($this->setContrato && $value["co_seq_contrato_gog"]==$this->idContrato): ?>
+
+                                <option selected="selected" value="<?php echo $value["co_seq_contrato_gog"]; ?>" contrato="<?php echo $value["tx_contrato_gog"]; ?>" apelido="<?php echo $value["nm_apelido"]; ?>" price="<?php echo $value["nu_valor"]; ?>" dependents="<?php echo $value["nu_dependentes"]; ?>"><?php echo $value["nm_contrato_gog"]; ?></option>
+                            <?php else: ?>
+                                <option value="<?php echo $value["co_seq_contrato_gog"]; ?>" contrato="<?php echo $value["tx_contrato_gog"]; ?>" apelido="<?php echo $value["nm_apelido"]; ?>" price="<?php echo $value["nu_valor"]; ?>" dependents="<?php echo $value["nu_dependentes"]; ?>"><?php echo $value["nm_contrato_gog"]; ?></option>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="span2"></div>
+            </div>
+            <div class="row-fluid">
+                <div class="span2"></div>
+                <div class="span4">
+                    <input type="text" name="nu_telefone" id="nu_telefone" value="" class="input-block-level nu_telefone" size="30" placeholder="Telefone"/>
+                    <input type="text" name="nm_email" id="nm_email" value="" class="input-block-level nm_email" size="30" maxlength="50" placeholder="Email"/>
+                </div>
+                <div class="span4">
+                    <i class="icon fa-angle-down select-fa"></i>
+                    <select name="forma_pagamento" id="forma_pagamento" class="input-block-level form-control" required="required" style="margin-bottom: 11px;">
+                        <option value="0">Forma de Pagamento...</option>
+                        <?php foreach ($this->dataFormaPagamento as $value): ?>
+                            <option value="<?php echo $value["co_seq_forma_pagamento"]; ?>"><?php echo $value["nm_forma_pagamento"]; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <i class="icon fa-angle-down select-fa"></i>
+                    <select name="nu_vezes" id="nu_vezes" class="input-block-level form-control" required="required" style="margin-bottom: 11px;">
+                        <option value="0">Quantas Vezes...</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                </div>
+                <div class="span2"></div>
+            </div>
+            <br/>
+            <div class="row-fluid">
+                <div class="span6"></div>
+                <div class="span6">
+                    <button type="submit" class="pull-right btn-contato" id="btn-submit-simulacao" onclick="submitCadastroSimulacao();">Simular</button>
+                </div>
+            </div>
+            <br/>
+        </form>
+    </div>
+</section>
+
+<?php if($this->setContrato): ?>
+    <script>
+        obj = document.getElementById("contrato_gog");
+        mudaValoresMensagem(obj);
+    </script>
+<?php endif; ?>

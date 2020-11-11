@@ -1,0 +1,139 @@
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/gogs/js/cartao-marq/add-cliente.js"></script>
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/gogs/css/cartao-marq/add-cliente.css" type="text/css"/>
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/css/assinatura/signature-pad.css" type="text/css"/>
+<!--script src="<?php echo $this->baseUrl(); ?>/gogs/js/cartao-marq/signature_pad.js"></script>
+<script src="<?php echo $this->baseUrl(); ?>/gogs/js/cartao-marq/app.js"></script-->
+
+<div class="block big">
+    <div class="block_cont">
+        <div class="table">
+            <div class="panel panel-default" id="cartao-vantagem">
+                <div class="panel-heading">
+                    <h3 class="panel-title"> Cadastro de Cliente </h3>
+                </div>
+                <div class="panel-body">
+                    <form id="cliente-form" onSubmit="return validaCliente(this);" action="#" method="post" class="form-validate form-horizontal">
+                        <fieldset>
+                            <p class="required-field">Todos os campos com * são obrigatórios.</p>
+                            <p>&nbsp;</p>
+                            <table>
+                                <tr class="form-linha">
+                                    <td>
+                                        <label id="label_nome" for="label_nome" class="hasTip required" title="Nome::Nome do Cliente">
+                                            Nome Cliente<span class="star">&#160;*</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="nm_cliente" id="nm_cliente" value="" class="required" size="30" maxlength="80"/>
+                                    </td>
+                                </tr>
+                                <tr class="form-linha">
+                                    <td>
+                                        <label id="label_nascimento" for="label_nascimento" class="hasTip required" title="Data Nascimento::Data de Nascimento do Cliente">
+                                            Data Nascimento<span class="star">&#160;*</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="dt_nascimento" id="dt_nascimento" value="" class="required date-picker" size="30"/>
+                                    </td>
+                                </tr>
+                                <tr class="form-linha">
+                                    <td>
+                                        <label id="label_rg" for="label_rg" class="hasTip required" title="RG::RG do Cliente">
+                                            RG<span class="star">&#160;*</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="nu_rg" id="nu_rg" value="" class="required nu_rg" size="30"/>
+                                    </td>
+                                </tr>
+                                <tr class="form-linha">
+                                    <td>
+                                        <label id="label_cpf" for="label_cpf" class="hasTip required" title="CPF::CPF do Cliente">
+                                            CPF<span class="star">&#160;*</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="nu_cpf" id="nu_cpf" value="" class="required nu_cpf" size="30"/>
+                                    </td>
+                                </tr>
+                                <tr class="form-linha">
+                                    <td>
+                                        <label id="label_sexo" for="label_sexo" class="hasTip required" title="Sexo::Sexo do Cliente">
+                                            Sexo<span class="star">&#160;*</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <select name="tp_sexo" id="tp_sexo">
+                                            <option value="1">Masculino</option>
+                                            <option value="2">Feminino</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr class="form-linha">
+                                    <td>
+                                        <label id="label_telefone" for="label_telefone" class="hasTip required" title="Telefone::Telefone do Cliente">
+                                            Telefone
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="nu_telefone" id="nu_telefone" value="" class="required nu_telefone" size="30"/>
+                                    </td>
+                                </tr>
+                                <tr class="form-linha">
+                                    <td>
+                                        <label id="label_celular" for="label_celular" class="hasTip required" title="Celular::Celular do Cliente">
+                                            Celular<span class="star">&#160;*</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="nu_celular" id="nu_celular" value="" class="required nu_celular" size="30"/>
+                                    </td>
+                                </tr>
+                                <tr class="form-linha">
+                                    <td>
+                                        <label id="label_whatsapp" for="label_whatsapp" class="hasTip required" title="Whatsapp::Whatsapp do Cliente">
+                                            Whatsapp<span class="star"></span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="nu_whatsapp" id="nu_whatsapp" value="" class="required nu_whatsapp" size="30"/>
+                                    </td>
+                                </tr>
+                                <tr class="form-linha">
+                                    <td>
+                                        <label id="label_email" for="label_email" class="hasTip required" title="Email::Email do Cliente">
+                                            Email<span class="star">&#160;*</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="nm_email" id="nm_email" value="" class="required nm_email" size="30" maxlength="50"/>
+                                    </td>
+                                </tr>
+                                <tr class="form-linha">
+                                    <td>
+                                        <label id="label_cep" for="label_cep" class="hasTip required" title="CEP::CEP do Cliente">
+                                            CEP<span class="star">&#160;*</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="nu_cep" id="nu_cep" value="" class="required nu_cep" size="30"/>
+                                    </td>
+                                </tr>
+                                <tr class="logradouro-cep form-linha"></tr>
+                                <tr class="bairro-cep form-linha"></tr>
+                                <tr class="localidade-cep form-linha"></tr>
+                                <tr class="uf-cep form-linha"></tr>
+                            </table>
+                            <div class="load-cep"></div>
+                            <br/>
+                            <div class="fileUpload btn btn-primary" id="enviar-cliente" style="float:right;">
+                                <span>Próximo</span>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

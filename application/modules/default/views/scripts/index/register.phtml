@@ -1,0 +1,134 @@
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/site/js/cartao-marq/add-cliente-gog.js"></script>
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/site/css/assinatura/signature-pad.css" type="text/css"/>
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/site/css/register/date-picker.css" type="text/css"/>
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/site/css/register/register.css" type="text/css"/>
+
+<article id="work" class="panel">
+    <div style="text-align: center; color: #363636;">
+        <span class="icon fa-user-plus column-registro">&nbsp;</span>
+        <span class="icon fa-file column-registro">&nbsp;</span>
+        <span class="icon fa-users column-registro">&nbsp;</span>
+        <span class="icon fa-heartbeat column-registro">&nbsp;1</span>
+    </div>
+    <!--div>
+        <span class="icon fa-angle-up">&nbsp;</span>
+    </div-->
+    <div style="text-align: center; color: #363636;">
+        <span class="icon fa-square" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square-o" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square-o" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square-o" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square-o" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square-o" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square-o" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square-o" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square-o" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square-o" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square-o" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square-o" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square-o" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square-o" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square-o" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square-o" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square-o" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square-o" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square-o" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square-o" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square-o" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square-o" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square-o" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square-o" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square-o" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square-o" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square-o" style="margin-left: -7px">&nbsp;</span>
+        <span class="icon fa-square-o" style="margin-left: -7px">&nbsp;</span>
+    </div>
+    <br/>
+    <header>
+        <h2 style="color: #363636;">Cadastro</h2>
+    </header>
+    <div id="cartao-vantagem">
+        <form id="cliente-form" onSubmit="return validaCliente(this);" action="#" method="post" class="form-validate form-horizontal">
+            <div class="row">
+                <!--div class="6u 12u$(mobile)">
+                    <input type="text" name="name" placeholder="Name" />
+                </div>
+                <div class="6u$ 12u$(mobile)">
+                    <input type="text" name="email" placeholder="Email" />
+                </div>
+                <div class="12u$">
+                    <input type="text" name="subject" placeholder="Subject" />
+                </div>
+                <div class="12u$">
+                    <textarea name="message" placeholder="Message" rows="8"></textarea>
+                </div>
+                <div class="12u$">
+                    <input type="submit" value="Send Message" />
+                </div-->
+
+                <div class="12u$">
+                    <input type="text" name="nm_cliente" id="nm_cliente" value="" class="required" size="30" maxlength="80" placeholder="Nome" />
+                </div>
+                <div class="6u 12u$(mobile)">
+                    <input type="text" name="nu_rg" id="nu_rg" value="" class="required nu_rg" size="30" placeholder="RG"/>
+                </div>
+                <div class="6u 12u$(mobile)">
+                    <input type="text" name="nu_cpf" id="nu_cpf" value="" class="required nu_cpf" size="30" placeholder="CPF"/>
+                </div>
+                <div class="6u 12u$(mobile)">
+                    <input type="text" name="dt_nascimento" id="dt_nascimento" value="" class="required date-picker" size="30" placeholder="Data Nascimento"/>
+                </div>
+                <div class="6u 12u$(mobile)">
+                    <select name="tp_sexo" id="tp_sexo">
+                        <option value="0">Selecione o Sexo</option>
+                        <option value="1">Masculino</option>
+                        <option value="2">Feminino</option>
+                    </select>
+                </div>
+                <div class="6u 12u$(mobile)">
+                    <input type="text" name="nu_telefone" id="nu_telefone" value="" class="required nu_telefone" size="30" placeholder="Telefone Residêncial"/>
+                </div>
+                <div class="6u 12u$(mobile)">
+                    <input type="text" name="nu_celular" id="nu_celular" value="" class="required nu_celular" size="30" placeholder="Telefone Celular"/>
+                </div>
+                <div class="6u 12u$(mobile)">
+                    <input type="text" name="nu_whatsapp" id="nu_whatsapp" value="" class="required nu_whatsapp" size="30" placeholder="WhatsApp"/>
+                </div>
+                <div class="6u 12u$(mobile)">
+                    <input type="text" name="nm_email" id="nm_email" value="" class="required nm_email" size="30" maxlength="50" placeholder="Email"/>
+                </div>
+                <div class="12u$">
+                    <input type="text" name="nu_cep" id="nu_cep" value="" class="required nu_cep" size="30" placeholder="CEP" onkeydown="cepKeyDown(this)" onkeyup="cepKeyUp(this)"/>
+                </div>
+                <!--div class="12u$"-->
+                <div class="6u">
+                    <div class="logradouro-cep form-linha"></div>
+                </div>
+                <div class="6u">
+                    <div class="bairro-cep form-linha"></div>
+                </div>
+                <div class="6u">
+                    <div class="localidade-cep form-linha"></div>
+                </div>
+                <div class="6u">
+                    <div class="uf-cep form-linha"></div>
+                </div>
+                <div class="12u$">
+                    <div class="load-cep"></div>
+                </div>
+                <div class="3u$" id="enviar-cliente" style="float:right;">
+                    <input type="submit" value="Próximo >>" />
+                </div>
+                <div class="12u$"></div>
+            </div>
+        </form>
+    </div>
+</article>

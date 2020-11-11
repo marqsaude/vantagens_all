@@ -1,0 +1,40 @@
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/servicos/add.js"></script>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Cadastrar Mais Você
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <form role="form" onSubmit="return validaCadastroServicos(this);" name="addServicos" id="addServicos" enctype="multipart/form-data">
+                        <div id="dataTables-example_wrapper2" class="dataTables_wrapper form-inline" role="grid">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <input class="form-control" id="nm_servicos" name="nm_servicos" placeholder="Nome dos Serviços" maxlength="80">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="file" class="lk_servicos" name="lk_servicos">
+                                </div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <textarea class="form-control" rows="3" id="tx_servicos" name="tx_servicos" placeholder="Texto dos Serviços..."></textarea>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="col-sm-12">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <a href="javascript:void(0);" class="btn btn-success btn-lg btn-rect" onclick="submitCadastroServicos();">Cadastrar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

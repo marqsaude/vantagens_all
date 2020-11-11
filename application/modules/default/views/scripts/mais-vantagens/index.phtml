@@ -1,0 +1,118 @@
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/def/css/scripts/mais-vantagens/index.css" type="text/css" />
+
+<?php if(!Util_Util::isMobile()): ?>
+    <section class="container container-mais-vantagens">
+<?php else: ?>
+    <section class="container container-mais-vantagens" style="width: 100%;">
+<?php endif ?>
+    <div class="row-fluid container-title-mais-vantagens">
+        <div class="span4"></div>
+        <div class="span4 container-title-mais-vantagens">CONHEÇA AQUI SUAS VANTAGENS</div>
+        <div class="span4"></div>
+    </div>
+
+    <div class="row-fluid"><div class="span12"></div></div>
+    <div class="row-fluid">
+        <div class="span1"></div>
+        <div class="span10">
+            <table class="exame-mais-vantagens">
+                <thead>
+                <tr class="title-procedimento">
+                    <th>Procedimento - Consultas</th>
+                    <th>Valor Real</th>
+                    <th>MarqSaúde Vantagens</th>
+                    <th>Desconto</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach($this->dataProcedimentoConsulta as $key=>$value) :?>
+                    <tr>
+                        <td width="70%" class="nome-procedimento"><?php echo $value["nm_consulta"]; ?></td>
+                        <td width="12%">R$ <?php echo number_format($value["nu_valor_real"], 2, ',', '.'); ?></td>
+                        <td width="12%">R$ <?php echo number_format($value["nu_valor"], 2, ',', '.'); ?></td>
+                        <td width="6%"><?php echo number_format((float)(100 - ($value["nu_valor"]*100)/$value["nu_valor_real"]), 2, '.', ''); ?>%</td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+        <div class="span1"></div>
+    </div>
+    <div class="row-fluid"><div class="span12"></div></div>
+    <div class="row-fluid">
+        <div class="span1"></div>
+        <div class="span10">
+            <table class="exame-mais-vantagens">
+                <thead>
+                    <tr class="title-procedimento">
+                        <th>Procedimento - Exames Diagnósticos</th>
+                        <th>Valor Real</th>
+                        <th>MarqSaúde Vantagens</th>
+                        <th>Desconto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach($this->dataProcedimentoExame as $key=>$value) :?>
+                        <tr>
+                            <td width="70%" class="nome-procedimento"><?php echo $value["nm_exame"]; ?></td>
+                            <td width="12%">R$ <?php echo number_format($value["nu_valor_real"], 2, ',', '.'); ?></td>
+                            <td width="12%">R$ <?php echo number_format($value["nu_valor"], 2, ',', '.'); ?></td>
+                            <td width="6%"><?php echo number_format((float)(100 - ($value["nu_valor"]*100)/$value["nu_valor_real"]), 2, '.', ''); ?>%</td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+        <div class="span1"></div>
+    </div>
+    <div class="row-fluid"><div class="span12"></div></div>
+    <div class="row-fluid">
+        <div class="span1"></div>
+        <div class="span10">
+            <table class="exame-mais-vantagens">
+                <thead>
+                <tr class="title-procedimento">
+                    <th>Procedimento - Exames Radiológicos</th>
+                    <th>Valor Real</th>
+                    <th>MarqSaúde Vantagens</th>
+                    <th>Desconto</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach($this->dataProcedimentoExameRadio as $key=>$value) :?>
+                    <tr>
+                        <td width="70%" class="nome-procedimento"><?php echo $value["nm_exame"]; ?></td>
+                        <td width="12%">R$ <?php echo number_format($value["nu_valor_real"], 2, ',', '.'); ?></td>
+                        <td width="12%">R$ <?php echo number_format($value["nu_valor"], 2, ',', '.'); ?></td>
+                        <td width="6%"><?php echo number_format((float)(100 - ($value["nu_valor"]*100)/$value["nu_valor_real"]), 2, '.', ''); ?>%</td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+        <div class="span1"></div>
+    </div>
+    <div class="row-fluid"><div class="span12"></div></div>
+    <div class="row-fluid">
+        <div class="span1"></div>
+        <div class="span10">
+            <table class="exame-mais-vantagens">
+                <thead>
+                <tr class="title-procedimento">
+                    <th>Procedimento - Exames Laboratoriais</th>
+                    <th>MarqSaúde Vantagens</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach($this->dataProcedimentoLaboratorio as $key=>$value) :?>
+                    <tr>
+                        <td width="76%" class="nome-procedimento"><?php echo $value["nm_laboratorio"]; ?></td>
+                        <td width="24%">R$ <?php echo number_format($value["nu_valor"], 2, ',', '.'); ?></td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+        <div class="span1"></div>
+    </div>
+</section>

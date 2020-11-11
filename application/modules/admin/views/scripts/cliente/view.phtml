@@ -1,0 +1,480 @@
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/css/cliente/view.css">
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/cliente/view.js"></script>
+
+<div id="loading"></div>
+<div id="coSeqCliente"><?php echo $this->dataCliente["co_seq_cliente"]; ?></div>
+<div>
+
+    <?php if($this->dataCliente["st_cliente"] == 2): ?>
+        <div class="block-client-t"></div>
+        <div class="row">
+            <div class="col-lg-12" id="disabled-client">
+                <div class="col-lg-12">&nbsp;<br></div>
+                <span>Cliente Desabilitado</span>
+            </div>
+        </div>
+    <?php endif; ?>
+    <div class="row" id="row1">
+        <div class="col-lg-2">
+            <a href="javascript:void(0)" onclick="goBack();" class="btn btn-warning btn-flat btn-rect"><i class="icon-reply"></i>&nbsp;Voltar</a>
+        </div>
+
+        <div class="col-lg-10">
+            <?php if($this->coTipoLogin != 7 ): ?>
+                <?php if($this->stCliente==1): ?>
+                    <a href="<?php echo $this->baseUrl(); ?>/admin/contrato-gog/print/id/<?php echo $this->dataCliente["co_seq_cliente"]; ?>" target="_blank" class="btn btn-danger btn-flat btn-rect" style="float: right; background-color: #26a69a; margin-left: 13px;">
+                        <i class="icon-print"></i>&nbsp;Imprimir Contrato
+                    </a>
+                    <a href="<?php echo $this->baseUrl(); ?>/admin/cartao/print/id/<?php echo $this->dataCliente["co_seq_cliente"]; ?>" target="_blank" class="btn btn-danger btn-flat btn-rect" style="float: right; <?php if($this->dataCliente["co_seq_status_pagamento"]==3 || $this->dataCliente["co_seq_status_pagamento"]==4) :?>margin-left: 13px;<?php else: ?>margin-left: 47px;<?php endif; ?>">
+                        <i class="icon-print"></i>&nbsp;Imprimir Cartão
+                    </a>
+                    <a href="<?php echo $this->baseUrl(); ?>/admin/cartao/view/id/<?php echo $this->dataCliente["co_seq_cliente"]; ?>" class="btn btn-info btn-flat btn-rect" style="margin-left: 12px; float: right;">
+                        <i class="icon-credit-card"></i>&nbsp;Abrir Cartão
+                    </a>
+                    <?php if($this->dataCliente["co_seq_status_pagamento"]==3 || $this->dataCliente["co_seq_status_pagamento"]==4) :?>
+                        <a href="<?php echo $this->baseUrl(); ?>/admin/recibo/view/id/<?php echo $this->dataCliente["co_seq_pagamento"]; ?>" target="_blank" class="btn btn-success btn-flat btn-rect" style="margin-left: 12px; float: right;">
+                            <i class="icon-print"></i>&nbsp;Imprimir Recibo
+                        </a>
+                    <?php endif; ?>
+                <?php endif; ?>
+            <?php endif; ?>
+        </div>
+    </div>
+
+    <div class="row" id="row2">
+        <div class="col-lg-12">&nbsp;</div>
+    </div>
+
+    <div class="row" id="row3">
+
+        <div class="col-lg-12">
+            <div class="well" style="height: 207px;">
+                <div class="col-lg-6">
+                    Cliente <h4><?php echo $this->dataCliente["nm_cliente"]; ?></h4>
+                    Forma a pagar <h4><?php echo ($this->dataCliente["co_forma_pagamento"]==1)?"Boleto":(($this->dataCliente["co_forma_pagamento"]==3)?"PagSeguro":(($this->dataCliente["co_forma_pagamento"]==6)?"Dinheiro": (($this->dataCliente["co_forma_pagamento"]==7)?"Cartão Presencial":"Outro"))); ?></h4>
+                    <?php if($this->coTipoLogin != 7 ): ?>
+                        <?php if($this->dataCliente["co_forma_pagamento"]==1) :?>
+                            <a href="javascript:void(0);" onclick="openModal(this);" rel="modal-conheca1" class="btn btn-danger btn-flat btn-rect" style="float: right; color: #47a447; background-color: #FFFFFF; margin-top: -7px;">
+                                <i class="icon-ok-circle"></i>&nbsp;Boleto
+                            </a>
+                        <?php endif; ?>
+                        <?php if($this->dataCliente["co_forma_pagamento"]==6 && ($this->dataCliente["co_seq_status_pagamento"]!=3 && $this->dataCliente["co_seq_status_pagamento"]!=4)) :?>
+                            <a href="javascript:void(0);" onclick="openModal(this);" rel="modal-conheca1" class="btn btn-danger btn-flat btn-rect" style="float: right; color: #47a447; background-color: #FFFFFF; margin-top: -7px;">
+                                <i class="icon-ok-circle"></i>&nbsp;Dinheiro
+                            </a>
+                        <?php endif; ?>
+                        <?php if($this->dataCliente["co_forma_pagamento"]==3 && ($this->dataCliente["co_seq_status_pagamento"]!=3 && $this->dataCliente["co_seq_status_pagamento"]!=4)) :?>
+                            <a href="javascript:void(0);" id="insert-codigo-pagseguro" class="btn btn-danger btn-flat btn-rect" style="float: left; color: #47a447; background-color: #FFFFFF; margin-top: -7px;">
+                                Inserir Código PagSeguro
+                            </a>
+                            <div id="content-codigo-pagseguro" style="float: left; margin-top: -7px;">
+                                <form method="post" onSubmit="return registraCodigoPagSeguro(this);">
+                                    <input type="text" placeholder="Código PagSeguro" name="tx_id_pagseguro" value="<?php echo $this->dataCliente["tx_id_pagseguro"]; ?>">
+                                    <input type="hidden" name="co_seq_cliente" value="<?php echo $this->dataCliente["co_seq_cliente"]; ?>">
+                                    <input type="hidden" name="co_seq_pagamento" value="<?php echo $this->dataCliente["co_seq_pagamento"]; ?>">
+                                </form>
+                            </div>
+                            <?php if($this->dataCliente["tx_id_pagseguro"] != "" || $this->dataCliente["tx_id_pagseguro"] != null) {?>
+                                <a href="javascript:void(0);" onclick="openModal(this);" rel="modal-conheca1" class="btn btn-danger btn-flat btn-rect" style="float: right; color: #47a447; background-color: #FFFFFF; margin-top: -7px; margin-left: 7px;">
+                                    <i class="icon-ok-circle"></i>&nbsp;PagSeguro
+                                </a>
+                            <?php } ?>
+                        <?php endif; ?>
+                        <?php if($this->dataCliente["co_seq_contrato_gog"]!=12): ?>
+                            <a href="<?php echo $this->baseUrl(); ?>/admin/dependente/index/id/<?php echo $this->dataCliente["co_seq_cliente"]; ?>" class="btn btn-danger btn-flat btn-rect" style="float: left; background-color: #26a69a;">
+                                <i class="icon-sitemap"></i>&nbsp;Dependentes
+                            </a>
+                        <?php endif; ?>
+                        <?php if($this->dataCliente["co_forma_pagamento"]==7 && ($this->dataCliente["co_seq_status_pagamento"]!=3 && $this->dataCliente["co_seq_status_pagamento"]!=4)) :?>
+                            <a href="javascript:void(0);" onclick="openModal(this);" rel="modal-conheca1" class="btn btn-danger btn-flat btn-rect" style="float: right; color: #47a447; background-color: #FFFFFF; margin-top: -7px;">
+                                <i class="icon-ok-circle"></i>&nbsp;Cartão Presencial
+                            </a>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </div>
+                <div class="col-lg-6" style="height: 147px;">
+                    <?php if($this->dataCliente["co_seq_status_pagamento"]==3 || $this->dataCliente["co_seq_status_pagamento"]==4) :?>
+                        <?php if($this->dataCliente["co_forma_pagamento"]==1) :?>
+                            <?php
+                            $dataNow = intval(Util_Util::getDateBoletoNow());
+                            $dataFinaliza = intval(str_replace("-", "", $this->dataCliente["dt_finaliza"]));
+                            ?>
+                            <?php if($dataNow>$dataFinaliza): ?>
+                                <h4 style="float: right; background-color: #d9534f; color: #fff; padding: 17px; border-radius:47%;">Contrato terminado! Necessário renovar.</h4>
+                            <?php else: ?>
+                                <?php
+                                $i=0;
+                                $stPago=1;
+                                foreach($this->dataBoleto as $value) {
+                                    $dataVencimento[$i] = intval(str_replace("-", "", $value["dt_vencimento"]));
+                                    $anoMesVencimento=substr($dataVencimento[$i], 0, -2);
+                                    $anoMesNow=substr($dataNow, 0, -2);
+                                    $diaNow=substr($dataNow, 0, -2);
+                                    $diaVencimento=substr($dataVencimento[$i], 0, -2);
+                                    if($dataVencimento[$i] <= $dataNow){
+                                        if($value["st_pago"]==2){
+                                            $stPago = 2;
+                                        }
+                                    }
+                                    $i++;
+                                }
+                                ?>
+                                <?php if($stPago == 2): ?>
+                                    <h4 style="float: right; background-color: #d9534f; color: #fff; padding: 17px; border-radius:47%;">Boleto não esta em dia</h4>
+                                <?php else: ?>
+                                    <h4 style="float: right; background-color: #5cb85c; color: #fff; padding: 17px; border-radius:47%;"><?php echo $this->dataCliente["nm_status_pagamento"]; ?></h4>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        <?php else: ?>
+                            <h4 style="float: right; background-color: #5cb85c; color: #fff; padding: 17px; border-radius:47%;"><?php echo $this->dataCliente["nm_status_pagamento"]; ?></h4>
+                        <?php endif; ?>
+                    <?php else : ?>
+                        <h4 style="float: right; background-color: #d9534f; color: #fff; padding: 17px; border-radius:47%;"><?php echo $this->dataCliente["nm_status_pagamento"]; ?></h4>
+                    <?php endif; ?>
+                    <?php if($this->coTipoLogin == 1 || $this->coTipoLogin == 2 || $this->coTipoLogin == 3 || $this->coSeqCliente == 72): ?>
+                        <a href="javascript:void(0);" onclick="reenviarEmail(<?php echo $this->dataCliente["co_seq_cliente"]; ?>);" class="btn btn-info btn-flat btn-rect btn-reenviar-email">
+                            <i class="icon-envelope-alt"></i>&nbsp;Reenviar email de confirmação
+                        </a>
+                    <?php endif; ?>
+                </div>
+                <?php if($this->dataCliente["co_forma_pagamento"]==7) :?>
+                    <div id="modal-conheca1" class="modal-conheca-dinheiro">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Liberar pagamento em Cartão Presencial <a href="javascript:void(0);" onclick="closeModal();"><i class="icon-remove" style="float: right;"></i></a>
+                            </div>
+                            <div class="panel-body" style="height: 137px !important;">
+                                <div class="table-responsive">
+                                    <div style="margin-top: 7px;">
+                                        Confirma pagamento em Cartão Presencial do Cliente?
+                                    </div>
+                                    <div style="margin-top: 47px;">
+                                        <a href="javascript:void(0);" onclick="closeModal();" class="btn btn-danger btn-flat btn-rect" style="margin-left: 12px; float: left;">
+                                            Não
+                                        </a>
+                                        <a href="javascript:void(0);" onclick="validaClienteCartaoPresencial(<?php echo $this->dataCliente["co_seq_cliente"]; ?>);" class="btn btn-success btn-flat btn-rect" style="margin-left: 12px; float: right;">
+                                            Sim
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php elseif($this->dataCliente["co_forma_pagamento"]==6) :?>
+                    <div id="modal-conheca1" class="modal-conheca-dinheiro">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Liberar pagamento em Dinheiro <a href="javascript:void(0);" onclick="closeModal();"><i class="icon-remove" style="float: right;"></i></a>
+                            </div>
+                            <div class="panel-body" style="height: 137px !important;">
+                                <div class="table-responsive">
+                                    <div style="margin-top: 7px;">
+                                        Confirma pagamento em Dinheiro do Cliente?
+                                    </div>
+                                    <div style="margin-top: 47px;">
+                                        <a href="javascript:void(0);" onclick="closeModal();" class="btn btn-danger btn-flat btn-rect" style="margin-left: 12px; float: left;">
+                                            Não
+                                        </a>
+                                        <a href="javascript:void(0);" onclick="validaClienteDinheiro(<?php echo $this->dataCliente["co_seq_cliente"]; ?>);" class="btn btn-success btn-flat btn-rect" style="margin-left: 12px; float: right;">
+                                            Sim
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php elseif($this->dataCliente["co_forma_pagamento"]==1): ?>
+                    <div id="modal-conheca1" class="modal-conheca">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Lista de Boletos <a href="javascript:void(0);" onclick="closeModal();"><i class="icon-remove" style="float: right;"></i></a>
+                            </div>
+                            <div class="panel-body" style="height: 434px !important;">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Nº Boleto</th>
+                                            <th>Data Vencimento</th>
+                                            <th>Data Emissão</th>
+                                            <th>Status</th>
+                                            <th>Ação</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php //$i=1; ?>
+                                        <?php foreach($this->dataBoleto as $value) :?>
+                                            <?php
+                                            $antigo = 1;
+                                            $somaDtInclusao = str_replace("'", "", Util_Util::getDataSomaNoHour($value["dt_inclusao"]));
+                                            if($somaDtInclusao < 20180203){
+                                                $antigo = 1;
+                                            }else{
+                                                $antigo = 2;
+                                            }
+                                            ?>
+                                            <tr class="<?php if($value["st_pago"]==1) :?>success<?php else :?>info<?php endif; ?>" <?php if($value["st_pago"]==2) :?>style="color: #c3c3c3;"<?php endif; ?>>
+                                                <td width="30%"><?php echo $value["nu_boleto"]; ?></td>
+                                                <td width="20%"><?php echo Util_Util::getDataClientNoHour($value["dt_vencimento"]); ?></td>
+                                                <td width="20%"><?php echo Util_Util::getDataClientNoHour($value["dt_emissao"]); ?></td>
+                                                <td width="20%" class="pago-boleto"><?php echo ($value["st_pago"]==1)?"Pago":"Não Pago"; ?></td>
+                                                <td width="10%">
+                                                    <?php if($this->coTipoLogin == 1 || $this->coTipoLogin == 2 || $this->coTipoLogin == 3): ?>
+                                                        <?php if($value["st_pago"]==1){ ?>
+                                                            <a href="javascript:void(0);" onclick="naoPagoBoleto(<?php echo $value["co_seq_boleto"]; ?>, this);">
+                                                                <i class="icon-ban-circle" style="color: #f0ad4e;" title="Não Pagar"></i>
+                                                            </a>
+                                                        <?php }else{ ?>
+                                                            <a href="javascript:void(0);" onclick="pagaBoleto(<?php echo $value["co_seq_boleto"]; ?>, this, <?php echo $antigo; ?>);">
+                                                                <i class="icon-ok-circle" style="color: #47a447;" title="Pagar"></i>
+                                                            </a>
+                                                        <?php } ?>
+                                                    <?php endif; ?>
+                                                    &nbsp;
+                                                    <a href="<?php echo $this->baseUrl(); ?>/admin/boleto/print/id/<?php echo $value["co_seq_boleto"]; ?>" target="_blank"><i class="icon-eye-open" title="Visualizar"></i></a>
+                                                </td>
+                                            </tr>
+                                            <?php //$i++; ?>
+                                        <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php elseif($this->dataCliente["co_forma_pagamento"]==3): ?>
+                    <div id="modal-conheca1" class="modal-conheca-pagseguro">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Liberar pagamento pelo PagSeguro <a href="javascript:void(0);" onclick="closeModal();"><i class="icon-remove" style="float: right;"></i></a>
+                            </div>
+                            <div class="panel-body" style="height: 137px !important;">
+                                <div class="table-responsive">
+                                    <div style="margin-top: 7px;">
+                                        Confirma pagamento pelo PagSeguro do Cliente?
+                                    </div>
+                                    <div style="margin-top: 47px;">
+                                        <a href="javascript:void(0);" onclick="closeModal();" class="btn btn-danger btn-flat btn-rect" style="margin-left: 12px; float: left;">
+                                            Não
+                                        </a>
+                                        <a href="javascript:void(0);" onclick="validaClientePagSeguro('<?php echo $this->dataCliente["tx_id_pagseguro"]; ?>', <?php echo $this->dataCliente["co_seq_cliente"]; ?>);" class="btn btn-success btn-flat btn-rect" style="margin-left: 12px; float: right;">
+                                            Sim
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <div class="col-lg-12">&nbsp;</div>
+                <?php endif; ?>
+                <div>&nbsp;</div>
+            </div>
+        </div>
+
+        <?php if($this->stCliente==1): ?>
+            <div class="col-lg-12 height-well">
+                <div class="well cliente-dados">
+                    <div class="col-lg-3">
+                        <p>Login</p>
+                        <h4><?php echo $this->dataCliente["nm_login"]; ?></h4>
+                    </div>
+                    <div class="col-lg-5">
+                        <p>Data Nascimento</p>
+                        <h4><?php echo Util_Util::getDataClientNoHour($this->dataCliente["dt_nascimento"]); ?></h4>
+                    </div>
+                    <div class="col-lg-4">
+                        <p>Rg</p>
+                        <h4><?php echo $this->dataCliente["nu_rg"]; ?></h4>
+                    </div>
+                    <div class="col-lg-3">
+                        <p>CPF</p>
+                        <h4><?php echo $this->dataCliente["nu_cpf"]; ?></h4>
+                    </div>
+                    <div class="col-lg-5">
+                        <p>Email</p>
+                        <h4 class="email-cliente"><?php echo $this->dataCliente["nm_email"]; ?></h4>
+                    </div>
+                    <div class="col-lg-4">
+                        <p>Empresa</p>
+                        <h4><?php echo $this->dataCliente["nm_empresa"]; ?></h4>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-12">&nbsp;</div>
+            <div class="col-lg-12">
+                <div class="well cliente-telefone">
+                    <div class="col-lg-12">
+                        <p>Telefones</p>
+                    </div>
+                    <div class="col-lg-4">
+                        <i class="icon-phone icon-2x" style="float: left; margin-right: 10px;"></i>
+                        <h4>(<?php echo $this->dataTelefone[1]["nu_ddd"]; ?>) <?php echo $this->dataTelefone[1]["nu_telefone"]; ?></h4>
+                    </div>
+                    <div class="col-lg-4">
+                        <i class="icon-mobile-phone icon-2x" style="float: left; margin-right: 10px;"></i>
+                        <h4>(<?php echo $this->dataTelefone[0]["nu_ddd"]; ?>) <?php echo $this->dataTelefone[0]["nu_telefone"]; ?></h4>
+                    </div>
+                    <div class="col-lg-4">
+                        <?php if(isset($this->dataTelefone[2]["nu_telefone"])) :?>
+                            <i class="fa fa-whatsapp fa-2x" aria-hidden="true" style="float: left; margin-right: 10px;"></i>
+                            <h4>(<?php echo $this->dataTelefone[2]["nu_ddd"]; ?>) <?php echo $this->dataTelefone[2]["nu_telefone"]; ?></h4>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="well cliente-endereco">
+                    <div class="col-lg-12">
+                        <p>Endereço</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <p>Logradouro</p>
+                        <h4><?php echo $this->dataCliente["nm_logradouro"]; ?></h4>
+                    </div>
+                    <div class="col-lg-6">
+                        <p>Bairro</p>
+                        <h4><?php echo $this->dataCliente["nm_bairro"]; ?></h4>
+                    </div>
+                    <div class="col-lg-6">
+                        <p>Localidade</p>
+                        <h4><?php echo $this->dataCliente["nm_localidade"]; ?></h4>
+                    </div>
+                    <div class="col-lg-6">
+                        <p>UF</p>
+                        <h4><?php echo $this->dataCliente["nm_uf"]; ?></h4>
+                    </div>
+                    <div class="col-lg-6">
+                        <p>CEP</p>
+                        <h4><?php echo $this->dataCliente["nu_cep"]; ?></h4>
+                    </div>
+                    <div class="col-lg-6">
+                        <p><?php echo $this->dataCliente["nm_complemento"]; ?></p>
+                        <h4><?php echo $this->dataCliente["nu_endereco"]; ?></h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="well cliente-contrato">
+                    <div class="col-lg-12">
+                        <p>Contrato</p>
+                    </div>
+                    <?php if($this->coTipoLogin<3) :?>
+                        <div class="col-lg-6">
+                            <p>Tipo</p>
+                            <h4><?php echo $this->dataCliente["nm_contrato_gog"]; ?></h4>
+                        </div>
+                        <div class="col-lg-6">
+                            <p>Data Término</p>
+                            <h4><?php echo Util_Util::getDataClientNoHour($this->dataCliente["dt_finaliza"]); ?></h4>
+                        </div>
+                        <div class="col-lg-6">
+                            <p>Data do Acordo</p>
+                            <h4><?php echo Util_Util::getDataClientNoHour($this->dataCliente["dt_acordo"]); ?></h4>
+                        </div>
+                        <div class="col-lg-6">
+                            <?php if($this->dataCliente["tx_id_pagseguro"]!=null) :?>
+                                <p>ID PagSeguro</p>
+                                <h4><?php echo $this->dataCliente["tx_id_pagseguro"]; ?></h4>
+                            <?php endif; ?>
+                        </div>
+                    <?php else: ?>
+                        <div class="col-lg-6">
+                            <p>Tipo</p>
+                            <h4><?php echo $this->dataCliente["nm_contrato_gog"]; ?></h4>
+                        </div>
+                        <div class="col-lg-6">
+                            <p>Data Término</p>
+                            <h4><?php echo Util_Util::getDataClientNoHour($this->dataCliente["dt_finaliza"]); ?></h4>
+                        </div>
+                        <div class="col-lg-6">
+                            <p>Data do Acordo</p>
+                            <h4><?php echo Util_Util::getDataClientNoHour($this->dataCliente["dt_acordo"]); ?></h4>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        <?php else: ?>
+            <div class="col-lg-12">
+                <div class="well">
+                    <div class="col-lg-12">
+                        <p>Paciênte Desativo!</p>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?php if($this->coTipoLogin != 7 ): ?>
+            <div id="modal-add-ocorrencia" class="modal-add-ocorrencia">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Adicionando Ocorrência <a href="javascript:void(0);" onclick="closeModal();"><i class="icon-remove" style="float: right;"></i></a>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <form role="form" onSubmit="return validaAddOcorrencia(this);" name="addOcorrencia" id="addOcorrencia">
+                                <div class="row">
+                                    <div class="col-sm-1">&nbsp;</div>
+                                    <div class="col-sm-10">
+                                        <textarea style="float: left !important; width: 100%;" class="form-control" id="tx_ocorrencia" name="tx_ocorrencia" placeholder="Texto Ocorrência"></textarea>
+                                        <input type="hidden" name="co_cliente" value="<?php echo $this->dataCliente["co_seq_cliente"]; ?>"/>
+                                    </div>
+                                    <div class="col-sm-1">&nbsp;</div>
+                                </div>
+                                <div style="margin-top: 27px;">
+                                    <a href="javascript:void(0);" id="btn-add-ocorrencia" class="btn btn-success btn-flat btn-rect" style="margin-left: 12px; float: right;">
+                                        Adicionar Ocorrência
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="well" style="height: 207px;">
+                    <div class="col-lg-10">
+                        <p>Ocorrências</p>
+                    </div>
+                    <div class="col-lg-2">
+                        <a href="javascript:void(0);" id="btn-open-ocorrencia" title="Adicionar Nova Ocorrência">
+                            <div class="add-ocorrencia">
+                                <i class="icon-plus icon-2x"></i>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-12" style="margin-top: 47px;">
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Texto</th>
+                                        <th>Usuário</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php $i=1; ?>
+                                    <?php foreach($this->dataOcorrencia as $value): ?>
+                                        <tr>
+                                            <td width="5%"><?php echo $i; ?></td>
+                                            <td width="77%"><?php echo $value["tx_ocorrencia"]; ?></td>
+                                            <td width="18%"><?php echo $value["nm_usuario"]; ?></td>
+                                        </tr>
+                                        <?php $i++; ?>
+                                    <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>

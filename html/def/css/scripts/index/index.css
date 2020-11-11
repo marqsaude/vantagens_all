@@ -1,0 +1,210 @@
+.spotlight:nth-child(1) {
+    background-color: rgba(108, 195, 196, 0.7);
+}
+
+.spotlight:nth-child(2) {
+    background-color: rgba(255, 90, 85, 0.85);
+}
+
+.spotlight:nth-child(3) {
+    background-color: rgba(108, 195, 196, 0.5);
+}
+
+.contrato-gog-desc{
+    list-style-type: none;
+    list-style-image: url("../../../images/check.png");
+}
+
+.consultar-preco{
+    text-align: center;
+    border: solid 1px #ffffff;
+    padding: 5px 3px 3px 7px;
+    width: 177px;
+}
+
+.spotlight:nth-child(1) .consultar-preco{
+    border: solid 1px #ffffff;
+    width: 177px;
+    background-color: rgba(255, 90, 85, 0.85);
+}
+
+.spotlight:nth-child(2) .consultar-preco{
+    border: solid 1px #ffffff;
+    width: 177px;
+    background-color: rgba(44, 142, 143, 1);
+}
+
+.spotlight:nth-child(3) .consultar-preco{
+    border: solid 1px #ffffff;
+    width: 177px;
+    background-color: rgba(255, 90, 85, 0.85);
+}
+
+.spotlight:nth-child(1) .consultar-preco:hover{
+    border: solid 1px #ffffff;
+    width: 177px;
+    background-color: rgba(108, 195, 196, 1);
+}
+
+.spotlight:nth-child(2) .consultar-preco:hover{
+    border: solid 1px #ffffff;
+    width: 177px;
+    background-color: rgba(255, 90, 85, 1);
+}
+
+.spotlight:nth-child(3) .consultar-preco:hover{
+    border: solid 1px #ffffff;
+    width: 177px;
+    background-color: rgba(108, 195, 196, 1);
+}
+
+.consultar-preco a{
+    border-bottom: dotted 0px;
+}
+
+.spotlight .content a{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.spotlight .content a:visited{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.spotlight .content a:hover{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+#dialog_consultas{
+    display: none;
+}
+
+#dialog_exames{
+    display: none;
+}
+
+#dialog_laboratoriais{
+    display: none;
+}
+
+#dialog_Single{
+    display: none;
+}
+
+#dialog_Plus{
+    display: none;
+}
+
+#dialog_Master{
+    display: none;
+}
+
+.modal-servicos{
+    z-index: 9999;
+}
+
+.modal-preco{
+    z-index: 9999;
+    width: 37% !important;
+    height: 37% !important;
+}
+
+.modal-preco .ui-dialog-titlebar {
+    display: none;
+}
+
+.close-modal-preco{
+    width: 100%;
+    text-align: right;
+}
+
+.close-modal-preco .btn-close-modal{
+    font-size: 20px;
+    height: 30px;
+    background-color: red;
+}
+
+.close-modal-preco a{
+    border-bottom: dotted 0px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.close-modal-preco a:visited{
+    text-decoration: none;
+}
+
+.close-modal-preco a:hover{
+    text-decoration: none;
+}
+
+.close-modal-preco a:active{
+    text-decoration: none;
+}
+
+.body-modal-preco i{
+    font-size: 17px;
+}
+
+.body-modal-preco ul{
+    list-style-type: none;
+    font-size: 14px;
+}
+
+.modal-3column{
+    font-size: 10px;
+    padding-right: 7px;
+}
+
+#text-servicos li:nth-child(1) .servicos{
+    float: left;
+    text-align: center;
+    margin-left: 57px;
+    font-size: 15px;
+}
+
+#text-servicos li:nth-child(2) .servicos{
+    float: left;
+    text-align: center;
+    margin-left: -27px;
+    font-size: 15px;
+}
+
+#text-servicos li:nth-child(3) .servicos{
+    float: left;
+    text-align: center;
+    margin-left: -84px;
+    font-size: 15px;
+}
+
+.title-modal-preco{
+    text-align: center;
+}
+
+.btn-comprar-modal-preco{
+    text-align: center;
+    width: 100%;
+}
+
+.btn-comprar-modal-preco a{
+    border-bottom: dotted 0px;
+    border: solid 1px #333333;
+    padding: 7px 14px 7px 14px;
+}
+
+.btn-comprar-modal-preco a:visited{
+    text-decoration: none;
+}
+
+.btn-comprar-modal-preco a:hover{
+    text-decoration: none;
+    background: rgb(189, 32, 38);
+    color: #ffffff;
+    border: solid 1px #ffffff;
+}
+
+.btn-comprar-modal-preco a:active{
+    text-decoration: none;
+}

@@ -1,0 +1,125 @@
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/css/dependente/view.css">
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/dependente/view.js"></script>
+
+<div class="row">
+    <div class="col-lg-2">
+        <a href="javascript:void(0)" onclick="goBack();" class="btn btn-warning btn-flat btn-rect"><i class="icon-reply"></i>&nbsp;Voltar</a>
+    </div>
+
+    <div class="col-lg-10">
+        <?php if($this->stDependente==1): ?>
+            <?php if($this->coTipoLogin < 5): ?>
+                <a href="<?php echo $this->baseUrl(); ?>/admin/cartao/print-dependente/id/<?php echo $this->dataDependentes["co_seq_dependentes"]; ?>" target="_blank" class="btn btn-danger btn-flat btn-rect" style="float: right; margin-left: 7px;">
+                    <i class="icon-print"></i>&nbsp;Imprimir Cartão
+                </a>
+            <?php elseif ($this->coTipoLogin == 6): ?>
+                <a href="<?php echo $this->baseUrl(); ?>/admin/cartao/print-dependente/id/<?php echo $this->dataDependentes["co_seq_dependentes"]; ?>" target="_blank" class="btn btn-danger btn-flat btn-rect" style="float: right; margin-left: 7px;">
+                    <i class="icon-print"></i>&nbsp;Imprimir Cartão
+                </a>
+            <?php endif; ?>
+            <a href="<?php echo $this->baseUrl(); ?>/admin/cartao/view-dependente/id/<?php echo $this->dataDependentes["co_seq_dependentes"]; ?>" class="btn btn-info btn-flat btn-rect" style="margin-left: 12px; float: right;">
+                <i class="icon-credit-card"></i>&nbsp;Abrir Cartão
+            </a>
+        <?php endif; ?>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">&nbsp;</div>
+</div>
+
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="well status-pagamento">
+            <div class="col-lg-6">Status Pagamento Titular</div>
+            <div class="col-lg-6">
+                <?php if($this->dataDependentes["co_seq_status_pagamento"]==3 || $this->dataDependentes["co_seq_status_pagamento"]==4) :?>
+                    <?php if($this->dataDependentes["co_forma_pagamento"]==1) :?>
+                        <?php
+                        $dataNow = intval(Util_Util::getDateBoletoNow());
+                        $dataFinaliza = intval(str_replace("-", "", $this->dataDependentes["dt_finaliza"]));
+                        ?>
+                        <?php if($dataNow>$dataFinaliza): ?>
+                            <h4 style="float: right; background-color: #d9534f; color: #fff; padding: 17px; border-radius:47%;">Contrato terminado! Necessário renovar.</h4>
+                        <?php else: ?>
+                            <?php
+                            $i=0;
+                            $stPago=1;
+                            foreach($this->dataBoleto as $value) {
+                                $dataVencimento[$i] = intval(str_replace("-", "", $value["dt_vencimento"]));
+                                $anoMesVencimento=substr($dataVencimento[$i], 0, -2);
+                                $anoMesNow=substr($dataNow, 0, -2);
+                                $diaNow=substr($dataNow, 0, -2);
+                                $diaVencimento=substr($dataVencimento[$i], 0, -2);
+                                if($dataVencimento[$i] <= $dataNow){
+                                    if($value["st_pago"]==2){
+                                        $stPago = 2;
+                                    }
+                                }
+                                $i++;
+                            }
+                            ?>
+                            <?php if($stPago == 2): ?>
+                                <h4 style="float: right; background-color: #d9534f; color: #fff; padding: 17px; border-radius:47%;">Boleto não esta em dia</h4>
+                            <?php else: ?>
+                                <h4 style="float: right; background-color: #5cb85c; color: #fff; padding: 17px; border-radius:47%;"><?php echo $this->dataDependentes["nm_status_pagamento"]; ?></h4>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    <?php else: ?>
+                        <h4 style="float: right; background-color: #5cb85c; color: #fff; padding: 17px; border-radius:47%;"><?php echo $this->dataDependentes["nm_status_pagamento"]; ?></h4>
+                    <?php endif; ?>
+                <?php else : ?>
+                    <h4 style="float: right; background-color: #d9534f; color: #fff; padding: 17px; border-radius:47%;"><?php echo $this->dataDependentes["nm_status_pagamento"]; ?></h4>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="well dependente-nome">
+            <div class="col-lg-6">
+                Dependente <h4><?php echo $this->dataDependentes["nm_dependente"]; ?></h4>
+            </div>
+            <div class="col-lg-6">
+                Titular <h4><?php echo $this->dataDependentes["nm_cliente"]; ?></h4>
+            </div>
+        </div>
+    </div>
+
+    <?php if($this->stDependente==1): ?>
+        <div class="col-lg-12">
+            <div class="well dependente-informacoes">
+                <div class="col-lg-4">
+                    <p>Tipo Dependente</p>
+                    <h4><?php echo $this->dataDependentes["nm_tipo_dependente"]; ?></h4>
+                </div>
+                <div class="col-lg-4">
+                    <p>Data Nascimento</p>
+                    <h4><?php echo Util_Util::getDataClientNoHour($this->dataDependentes["nascimento_dependente"]); ?></h4>
+                </div>
+                <div class="col-lg-4">
+                    <p>Rg</p>
+                    <h4><?php echo $this->dataDependentes["rg_dependente"]; ?></h4>
+                </div>
+                <div class="col-lg-4">
+                    <p>CPF</p>
+                    <h4><?php echo $this->dataDependentes["cpf_dependente"]; ?></h4>
+                </div>
+                <div class="col-lg-4">
+                    <p>Email</p>
+                    <h4><?php echo $this->dataDependentes["email_dependente"]; ?></h4>
+                </div>
+                <div class="col-lg-4"></div>
+            </div>
+        </div>
+    <?php else: ?>
+        <div class="col-lg-12">
+            <div class="well">
+                <div class="col-lg-12">
+                    <p>Paciênte Desativo!</p>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+</div>

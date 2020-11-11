@@ -1,0 +1,167 @@
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/adm/css/relatorio/pagamento.css" type="text/css" />
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/adm/js/relatorio/pagamento.js"></script>
+
+<div id="id-session" style="display: none;"><?php echo $this->coSeqPaciente; ?></div>
+<?php if(Util_Util::isMobile()){?>
+    <div class="campo-busca-pagamento-mobile">
+        <form action="javascript:void(0);" onsubmit="return buscaNomePagamento(this);" id="buscaPagamento">
+            <div class="form-group input-group">
+                <input class="form-control" type="text" name="nome_busca" placeholder="Busca por nome">
+                <input type="hidden" name="pago" value="1" id="pago_input">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" onclick="submitBuscaPagamento();">
+                        <i class="icon-search"></i>
+                    </button>
+                </span>
+            </div>
+        </form>
+    </div>
+<?php } ?>
+
+<div class="menu-pagamento">
+    <a href="javascript:void(0);" onclick="clickPago(this);" class="btn btn-flat btn-rect btn-pago btn-desativo <?php if(Util_Util::isMobile()):?>mobile-menu<?php endif; ?>">Pagos</a>
+    <a href="javascript:void(0);" onclick="clickNaoPago(this);" class="btn btn-flat btn-rect btn-aguardando-pagamento <?php if(Util_Util::isMobile()):?>mobile-menu<?php endif; ?>">Aguardando Pagamento</a>
+</div>
+
+<?php if(!Util_Util::isMobile()){?>
+    <div class="campo-busca-pagamento">
+        <form action="javascript:void(0);" onsubmit="return buscaNomePagamento(this);" id="buscaPagamento">
+            <div class="form-group input-group">
+                <input class="form-control" type="text" name="nome_busca" placeholder="Busca por nome">
+                <input type="hidden" name="pago" value="1" id="pago_input">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" onclick="submitBuscaPagamento();">
+                        <i class="icon-search"></i>
+                    </button>
+                </span>
+            </div>
+        </form>
+    </div>
+<?php } ?>
+<div class="content-pagamento" id="recebeu-pagamento">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="col-sm-10 nome-qtd-pago">
+                <?php if(Util_Util::isMobile()){?>
+                    Clientes - Pagos <span class="count-pagamento"><?php echo $this->n; ?></span>
+                <?php }else{ ?>
+                    Relatório (Clientes) - Pagos <span class="count-pagamento"><?php echo $this->n; ?></span>
+                <?php } ?>
+            </div>
+            <div class="btnPrint">
+                <a href="javascript:void(0);" onclick="imprimeRelatorio();" title="Imprime Relatório">
+                    <i class="icon-print"></i>
+                </a>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Forma Pagamento</th>
+                        <th>Contrato</th>
+                        <th>Ação</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach($this->dataCliente as $value): ?>
+                        <tr>
+                            <td width="55%"><?php echo $value["nm_cliente"]; ?></td>
+                            <td width="20%"><?php echo $value["nm_forma_pagamento"]; ?></td>
+                            <td width="20%"><?php echo $value["nm_contrato_gog"]; ?></td>
+                            <td width="5%">
+                                <a href="<?php echo $this->baseUrl(); ?>/admin/cliente/view/id/<?php echo $value["co_seq_cliente"]; ?>"><i class="icon-eye-open"></i></a>&nbsp;
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content-pagamento" id="nao-recebeu-pagamento">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="col-sm-10 nome-qtd-pago">
+                <?php if(Util_Util::isMobile()){?>
+                    Clientes - <span class="count-pagamento"><?php echo $this->n; ?></span>
+                <?php }else{ ?>
+                    Relatório (Clientes) - <span class="count-pagamento"><?php echo $this->n; ?></span>
+                <?php } ?>
+            </div>
+            <div class="btnPrint">
+                <a href="javascript:void(0);" onclick="imprimeRelatorio();" title="Imprime Relatório">
+                    <i class="icon-print"></i>
+                </a>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Forma Pagamento</th>
+                        <th>Contrato</th>
+                        <th>Ação</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach($this->dataCliente as $value): ?>
+                        <tr>
+                            <td width="55%"><?php echo $value["nm_cliente"]; ?></td>
+                            <td width="20%"><?php echo $value["nm_forma_pagamento"]; ?></td>
+                            <td width="20%"><?php echo $value["nm_contrato_gog"]; ?></td>
+                            <td width="5%">
+                                <a href="<?php echo $this->baseUrl(); ?>/admin/cliente/view/id/<?php echo $value["co_seq_cliente"]; ?>"><i class="icon-eye-open"></i></a>&nbsp;
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="dataTables_info" id="dataTables-example_info" role="alert" aria-live="polite" aria-relevant="all"></div>
+    </div>
+    <div class="col-sm-6">
+        <div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
+            <ul class="pagination">
+                <?php if($this->page == 1){?>
+                    <li class="paginate_button previous disabled" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous">
+                        <a href="javascript:void(0);">Anterior</a>
+                <?php } else { ?>
+                    <li class="paginate_button previous" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous">
+                        <a href="javascript:void(0);" onclick="pagamentoPage(<?php echo $this->page-1; ?>)">Anterior</a>
+                <?php }?>
+                    </li>
+                <?php for($i=1; $i<=$this->dataCount; $i++) :?>
+                    <?php if($i==$this->page) {?>
+                        <li class="paginate_button active" aria-controls="dataTables-example" tabindex="0">
+                            <a href="javascript:void(0);"><?php echo $i; ?></a>
+                    <?php }else {?>
+                        <li class="paginate_button" aria-controls="dataTables-example" tabindex="0">
+                            <a href="javascript:void(0);" onclick="pagamentoPage(<?php echo $i;?>)"><?php echo $i; ?></a>
+                    <?php } ?>
+                    </li>
+                <?php endfor; ?>
+                <?php if($this->page == $this->dataCount){?>
+                    <li class="paginate_button next disabled" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_next">
+                        <a href="javascript:void(0);">Próxima</a>
+                <?php } else { ?>
+                    <li class="paginate_button next" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_next">
+                        <a href="javascript:void(0);" onclick="pagamentoPage(<?php echo $this->page+1; ?>)">Próxima</a>
+                <?php }?>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

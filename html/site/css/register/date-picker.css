@@ -1,0 +1,17 @@
+#ui-datepicker-div{
+    background-color: #d3d3d3;
+    border-radius: 7px;
+}
+.ui-datepicker-calendar{
+    background-color: #FFFFFF;
+}
+.ui-datepicker-current{
+    float: left !important;
+    margin-top: -7px !important;
+    padding-bottom: 2px !important;
+}
+.ui-datepicker-close{
+    float: right !important;
+    margin-top: -7px !important;
+    padding-bottom: 2px !important;
+}

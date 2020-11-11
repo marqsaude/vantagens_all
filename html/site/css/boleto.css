@@ -1,0 +1,30 @@
+@font-face{
+    font-family:"ERASB";
+    src:url('../font/ERASB.ttf');
+}
+@font-face{
+    font-family:"KGAlwaysAGoodTime";
+    src:url('../font/KGAlwaysAGoodTime.ttf');
+}
+<!--
+div.p0 { border-right:1px solid #000; }
+div.p1 { border-right:3px solid #000; }
+div.b0 { border-right:1px solid #FFF; }
+div.b1 { border-right:3px solid #FFF; }
+div.barra { float:left; display:inline; width:420px; margin:5px 0px 15px 0px; }
+div.barra div { float:left; display:block; width:0px; height:50px; }
+body {font-family: Arial, Verdana, Helvetica, sans-serif;font-size:11px;margin-left: 2px;margin-top: 2px;margin-right: 2px;margin-bottom: 2px;}
+td.corFundoTabela { background-color:#CCCCCC;}
+span.fontePequena {font-size:8px;}
+span.fonteMedia {font-weight:bold;font-size:12px;}
+span.fonteGrande {font-weight:bold;font-size:18px;}
+span.fonteForm {font-family:"Times New Roman", Times, serif;font-size:11px;}
+span.fonteFormArial {font-family:Arial, serif;font-size:9px;}-->
+
+@page { size: A4; margin:17.77pt 1.4cm 30.77pt 1.4cm !important;}
+@page contentWord {
+    size:595.3pt 841.9pt !important;
+    margin:17.77pt 1.4cm 30.77pt 1.4cm !important;
+}
+table.contentWord
+{page:contentWord;}

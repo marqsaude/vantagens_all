@@ -1,0 +1,64 @@
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/def/css/scripts/galeria/index.css">
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/def/js/scripts/galeria/index.js"></script>
+
+<!-- One -->
+<!--section id="one" class="wrapper style1 special">
+</section-->
+
+<!-- Two -->
+<section id="two" class="wrapper alt style2">
+    <?php $i=0; ?>
+    <?php foreach($this->images as $value) :?>
+        <?php if(($i%2)==0):?>
+            <section class="spotlight">
+                <div class="content"></div>
+            </section>
+            <section class="spotlight">
+        <?php endif; ?>
+                <div class="image">
+                    <?php $image=explode("/", $value); ?>
+                    <img src="<?php echo $this->baseUrl()."/site/images/galeria/".end($image); ?>" />
+                </div>
+
+        <?php if(($i%2)!=0):?>
+            </section>
+        <?php endif; ?>
+        <!--section class="spotlight">
+            <div class="content"></div>
+        </section>
+        <section class="spotlight">
+            <div class="image">
+                <img src="<?php echo $this->baseUrl(); ?>/def/images/pic01.jpg" alt="" />
+            </div>
+            <div class="image">
+                <img src="<?php echo $this->baseUrl(); ?>/def/images/pic01.jpg" alt="" />
+            </div>
+        </section>
+        <section class="spotlight">
+            <div class="content"></div>
+        </section>
+        <section class="spotlight">
+            <div class="image">
+                <img src="<?php echo $this->baseUrl(); ?>/def/images/pic01.jpg" alt="" />
+            </div>
+            <div class="image">
+                <img src="<?php echo $this->baseUrl(); ?>/def/images/pic01.jpg" alt="" />
+            </div>
+        </section>
+        <section class="spotlight">
+            <div class="content"></div>
+        </section>
+        <section class="spotlight">
+            <div class="image">
+                <img src="<?php echo $this->baseUrl(); ?>/def/images/pic01.jpg" alt="" />
+            </div>
+            <div class="image">
+                <img src="<?php echo $this->baseUrl(); ?>/def/images/pic01.jpg" alt="" />
+            </div>
+        </section>
+        <section class="spotlight">
+            <div class="content"></div>
+        </section-->
+        <?php $i++; ?>
+    <?php endforeach; ?>
+</section>

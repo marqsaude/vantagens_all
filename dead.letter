@@ -1,0 +1,16 @@
+
+
+ip-172-31-36-225.us-east-2.compute.internal : Feb  8 09:26:28 : www-data : user NOT in sudoers ; TTY=unknown ; PWD=/var/www/html ; USER=root ; COMMAND=/bin/chmod 777 /var/www/html/site/pdf/contrato/Single166.pdf
+
+
+
+ip-172-31-36-225.us-east-2.compute.internal : Feb  8 09:39:34 : www-data : user NOT in sudoers ; TTY=unknown ; PWD=/var/www/html ; USER=root ; COMMAND=/bin/chmod 777 /var/www/html/site/pdf/contrato/Single166.pdf
+
+
+
+ip-172-31-36-225.us-east-2.compute.internal : Feb  8 10:16:43 : www-data : user NOT in sudoers ; TTY=unknown ; PWD=/var/www/html ; USER=root ; COMMAND=/bin/chmod 0775 -R /var/www/html/site/pdf/contrato
+
+
+
+ip-172-31-36-225.us-east-2.compute.internal : Feb  8 10:52:18 : www-data : user NOT in sudoers ; TTY=unknown ; PWD=/var/www/html ; USER=root ; COMMAND=/bin/chmod 0775 -R /var/www/html/site/pdf/contrato
+

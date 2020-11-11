@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/def/css/scripts/sobre/missao-visao-valores.css">
+<section id="two" class="wrapper alt style2">
+    <section class="spotlight">
+        <div class="content"></div>
+    </section>
+    <section class="spotlight">
+        <img src="<?php echo $this->baseUrl(); ?>/site/images/foto_mockup.png" />
+    </section>
+    <section class="spotlight">
+        <div class="content"></div>
+    </section>
+    <section class="spotlight">
+        <div class="content"></div>
+    </section>
+    <?php if(!Util_Util::isMobile()): ?>
+        <section class="spotlight" id="text-missao-visao-valores">
+    <?php else: ?>
+        <section class="spotlight" id="text-missao-visao-valores" style="height: 477px;">
+    <?php endif; ?>
+        <div class="content">
+            <div class="row-fluid" style="height: 37px;">
+                <div class="span4">
+                    <h3>Missão</h3>
+                </div>
+                <div class="span4">
+                    <h3>Visão</h3>
+                </div>
+                <div class="span4">
+                    <h3>Valores</h3>
+                </div>
+            </div>
+            <?php if(!Util_Util::isMobile()): ?>
+                <div class="row-fluid"><div class="span12">&nbsp;</div></div>
+            <?php else: ?>
+                <div style="height: 77px;"><br><br></div>
+            <?php endif; ?>
+            <div class="row-fluid" style="height: 37px;">
+                <div class="span4">
+                    Facilitar o acesso à saúde privada de qualidade, à população do DF.
+                </div>
+                <div class="span4">
+                    Ser reconhecido como o maior cartão de benefícios na área da saúde e bem estar.
+                </div>
+                <div class="span4 align-left">
+                    <span class="icon fa-check"></span>&nbsp;&nbsp;Compromisso.<br/>
+                    <span class="icon fa-check"></span>&nbsp;&nbsp;Confiança.<br/>
+                    <span class="icon fa-check"></span>&nbsp;&nbsp;Ética.<br/>
+                    <span class="icon fa-check"></span>&nbsp;&nbsp;Qualidade.<br/>
+                    <span class="icon fa-check"></span>&nbsp;&nbsp;Respeito.<br/>
+                    <span class="icon fa-check"></span>&nbsp;&nbsp;Responsabilidade.<br/>
+                    <span class="icon fa-check"></span>&nbsp;&nbsp;Solidariedade.<br/>
+                </div>
+            </div>
+
+            <div class="row-fluid">
+                <div class="span12">&nbsp;</div>
+            </div>
+        </div>
+    </section>
+</section>

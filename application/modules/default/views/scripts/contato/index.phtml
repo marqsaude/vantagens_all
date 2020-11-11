@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/def/css/scripts/contato/index.css">
+<script type="text/javascript" src="<?php echo $this->baseUrl(); ?>/def/js/scripts/contato/index.js"></script>
+
+<section id="contact-page" class="container">
+    <div class="content-contato">
+        <div class="row-fluid" style="height: 37px;">
+            <div class="span12">
+                &nbsp;
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span2"></div>
+            <div class="span8">
+                <div id="title-contato">
+                    <h4>Contate-nos, para que possamos melhor atendê-lo.</h4>
+                </div>
+            </div>
+            <div class="span2"></div>
+        </div>
+        <div class="row-fluid" style="height: 27px;">
+            <div class="span12">
+                &nbsp;
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="status alert alert-success" style="display: none"></div>
+                <form onSubmit="return validSendContato(this);" action="javascript:void(0);" method="post" class="contact-form" id="main-contact-form" name="contact-form">
+                    <div class="row-fluid">
+                        <div class="span5">
+                            <input type="text" name="nm_nome" id="nm_nome" class="input-block-level" required="required" placeholder="Digite o seu nome">
+                            <input type="text" name="nm_email"  id="nm_email" class="input-block-level" required="required" placeholder="Digite seu endereço de email">
+                            <input type="text" name="nu_telefone" id="nu_telefone" class="input-block-level" required="required" placeholder="Digite o seu número de telefone">
+                            <input type="text" name="nu_whatsapp" id="nu_whatsapp" class="input-block-level" placeholder="Digite o seu número do WhatsApp">
+                        </div>
+                        <div class="span7">
+                            <textarea name="tx_mensagem" id="tx_mensagem" required="required" class="input-block-level" rows="11" placeholder="Digite o que você deseja..."></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="pull-right btn-contato">Enviar</button>
+                    <p> </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
